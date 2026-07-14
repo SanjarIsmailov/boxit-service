@@ -1,703 +1,519 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOXIT — Home & Office Removals Across the UK</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <style>
-        :root{
-          --ink:#1C1330;
-          --purple-950:#231044;
-          --purple-800:#3B1D72;
-          --purple-700:#4C2896;
-          --purple-600:#6528D9;
-          --purple-500:#7C3AED;
-          --purple-300:#C7B6F7;
-          --lilac-100:#F4EFFD;
-          --lilac-50:#FBF9FF;
-          --grey-600:#6B6478;
-          --grey-300:#E4DEF0;
-          --white:#FFFFFF;
-          --radius:20px;
-          --shadow-soft:0 20px 50px rgba(59,29,114,0.10);
-          --shadow-lift:0 24px 60px rgba(59,29,114,0.18);
-          --disp:'Fraunces', Georgia, serif;
-          --body:'Inter', -apple-system, sans-serif;
-          --mono:'IBM Plex Mono', monospace;
-        }
-        *{box-sizing:border-box;}
-        html{scroll-behavior:smooth;}
-        body{
-          margin:0; background:var(--lilac-50); color:var(--ink); font-family:var(--body);
-          -webkit-font-smoothing:antialiased; overflow-x:hidden;
-        }
-        h1,h2,h3{font-family:var(--disp); margin:0; color:var(--purple-950); letter-spacing:-0.01em; line-height:1.08;}
-        p{margin:0;}
-        a{color:inherit; text-decoration:none;}
-        ul{margin:0; padding:0; list-style:none;}
-        img,svg{display:block; max-width:100%;}
-        .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative;}
-        .eyebrow{
-          font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
-          color:var(--purple-600); font-weight:600; display:inline-flex; align-items:center; gap:10px;
-        }
-        .eyebrow::before{content:''; width:20px; height:2px; background:var(--purple-500); display:inline-block;}
-        .btn{
-          font-family:var(--body); font-size:15px; font-weight:700; letter-spacing:0.01em;
-          padding:15px 28px; border-radius:12px; border:1.5px solid transparent; cursor:pointer;
-          display:inline-flex; align-items:center; gap:10px; transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
-        }
-        .btn-primary{ background:linear-gradient(135deg, var(--purple-500), var(--purple-700)); color:#fff; box-shadow:0 14px 30px rgba(101,40,217,0.35);}
-        .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 38px rgba(101,40,217,0.45);}
-        .btn-outline{ background:#fff; border-color:var(--grey-300); color:var(--purple-950);}
-        .btn-outline:hover{ border-color:var(--purple-500); transform:translateY(-2px);}
-        .btn-block{width:100%; justify-content:center;}
-
-        /* ---------- route line signature ---------- */
-        .route-line{ position:fixed; top:0; left:34px; width:2px; height:100vh; z-index:1; pointer-events:none; display:none;}
-        .route-line .dash{ position:absolute; inset:0; background:repeating-linear-gradient(to bottom, var(--purple-300) 0 8px, transparent 8px 16px); opacity:0.55;}
-        .route-van{ position:absolute; left:50%; transform:translate(-50%,-50%); width:34px; height:34px; background:var(--purple-600); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(101,40,217,0.4); transition:top .1s linear;}
-        .route-van svg{width:18px; height:18px;}
-        @media (min-width:1360px){ .route-line{display:block;} }
-
-        /* ---------- header ---------- */
-        header{ position:sticky; top:0; z-index:50; background:rgba(251,249,255,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--grey-300);}
-        .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1180px; margin:0 auto;}
-        .brand{display:flex; align-items:center; gap:10px; font-family:var(--disp); font-weight:700; font-size:22px; color:var(--purple-950);}
-        .brand-mark{width:32px; height:32px;}
-        .nav-links{display:flex; align-items:center; gap:32px; font-size:14.5px; color:var(--grey-600); font-weight:500;}
-        .nav-links a:hover{color:var(--purple-700);}
-        .nav-cta{display:flex; align-items:center; gap:14px;}
-        .nav-phone{font-family:var(--mono); font-size:13.5px; font-weight:600; color:var(--purple-800);}
-        .burger{display:none; width:40px; height:40px; border:1px solid var(--grey-300); border-radius:10px; background:#fff; font-size:18px; cursor:pointer;}
-
-        /* ---------- hero ---------- */
-        .hero{padding:78px 0 40px; position:relative; overflow:hidden;}
-        .hero::before{content:''; position:absolute; top:-160px; right:-160px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(124,58,237,0.16), transparent 70%);}
-        .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
-        .hero-copy h1{font-size:clamp(36px,4.6vw,56px); font-weight:600; margin:18px 0 22px;}
-        .hero-copy h1 em{font-style:italic; color:var(--purple-600); font-weight:500;}
-        .hero-copy p.lead{font-size:17.5px; line-height:1.65; color:var(--grey-600); max-width:490px; margin-bottom:32px;}
-        .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
-        .hero-trust{display:flex; gap:26px; flex-wrap:wrap;}
-        .hero-trust span{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--grey-600); font-weight:600;}
-        .hero-trust svg{width:16px; height:16px; color:var(--purple-500); flex:none;}
-        .hero-art{position:relative;}
-        .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
-        .reveal.is-visible{opacity:1; transform:translateY(0);}
-        .hero-art .reveal{transition-delay:.15s;}
-
-        /* ---------- section shell ---------- */
-        section{padding:100px 0; position:relative;}
-        .section-head{max-width:620px; margin-bottom:52px;}
-        .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
-        .section-head h2{font-size:clamp(28px,3.2vw,40px); font-weight:600; margin-top:14px;}
-        .section-head p{color:var(--grey-600); font-size:16px; margin-top:14px; line-height:1.65;}
-
-        /* ---------- about ---------- */
-        .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center;}
-        .about-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:34px;}
-        .stat b{display:block; font-family:var(--disp); font-size:30px; color:var(--purple-700); font-weight:600;}
-        .stat span{font-size:13.5px; color:var(--grey-600);}
-        .about-copy p{color:var(--grey-600); font-size:16px; line-height:1.75; margin-bottom:16px;}
-
-        /* ---------- services ---------- */
-        .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-        .svc-card{background:#fff; border:1px solid var(--grey-300); border-radius:var(--radius); padding:32px 28px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;}
-        .svc-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lift); border-color:transparent;}
-        .svc-icon{width:54px; height:54px; border-radius:14px; background:var(--lilac-100); display:flex; align-items:center; justify-content:center; margin-bottom:22px;}
-        .svc-icon svg{width:28px; height:28px; color:var(--purple-600);}
-        .svc-card h3{font-size:19px; font-weight:600; margin-bottom:10px;}
-        .svc-card p{font-size:14.5px; color:var(--grey-600); line-height:1.65;}
-
-        /* ---------- why choose us ---------- */
-        .why{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; background:var(--purple-950); border-radius:28px; padding:70px 60px; color:#fff; position:relative; overflow:hidden;}
-        .why::before{content:''; position:absolute; inset:0; background:radial-gradient(500px 300px at 90% 0%, rgba(124,58,237,0.35), transparent 60%);}
-        .why-head{position:relative;}
-        .why-head .eyebrow{color:var(--purple-300);}
-        .why-head .eyebrow::before{background:var(--purple-300);}
-        .why-head h2{color:#fff; margin-top:14px; font-size:clamp(26px,3vw,34px);}
-        .why-list{position:relative; margin-top:0;}
-        .why-list li{display:flex; gap:16px; padding:20px 0; border-top:1px solid rgba(255,255,255,0.12);}
-        .why-list li:first-child{border-top:none;}
-        .why-num{font-family:var(--mono); font-size:13px; color:var(--purple-300); flex:none; width:28px; padding-top:2px;}
-        .why-list h4{font-size:16.5px; font-weight:600; color:#fff; margin-bottom:6px;}
-        .why-list p{font-size:14px; color:#C9BEE8; line-height:1.6;}
-
-        /* ---------- how it works ---------- */
-        .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
-        .steps::before{content:''; position:absolute; top:27px; left:6%; right:6%; height:2px; background:repeating-linear-gradient(90deg, var(--grey-300) 0 10px, transparent 10px 18px);}
-        .step{padding:0 18px; position:relative;}
-        .step-num{width:54px; height:54px; border-radius:50%; background:#fff; border:2px solid var(--purple-500); color:var(--purple-700); font-family:var(--mono); font-weight:700; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:2;}
-        .step h3{font-size:17.5px; font-weight:600; margin-bottom:10px;}
-        .step p{font-size:14px; color:var(--grey-600); line-height:1.65;}
-
-        /* ---------- fleet ---------- */
-        .fleet-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-        .fleet-card{background:#fff; border:1px solid var(--grey-300); border-radius:var(--radius); overflow:hidden; transition:box-shadow .25s ease, transform .25s ease;}
-        .fleet-card:hover{box-shadow:var(--shadow-lift); transform:translateY(-6px);}
-        .fleet-art{background:linear-gradient(160deg, var(--lilac-100), #fff); padding:30px 20px 10px; display:flex; align-items:flex-end; justify-content:center; height:190px;}
-        .fleet-body{padding:24px 26px 28px;}
-        .fleet-tag{font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--purple-600); font-weight:600;}
-        .fleet-body h3{font-size:19px; font-weight:600; margin:10px 0 10px;}
-        .fleet-body p{font-size:14px; color:var(--grey-600); line-height:1.6; margin-bottom:14px;}
-        .fleet-specs{display:flex; gap:16px; flex-wrap:wrap;}
-        .fleet-specs span{font-family:var(--mono); font-size:11.5px; color:var(--grey-600); background:var(--lilac-100); padding:5px 10px; border-radius:8px;}
-
-        /* ---------- testimonials ---------- */
-        .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-        .testi-card{background:#fff; border:1px solid var(--grey-300); border-radius:var(--radius); padding:30px 28px;}
-        .stars{color:var(--purple-500); font-size:15px; letter-spacing:2px; margin-bottom:16px;}
-        .testi-card p.quote{font-size:15px; color:var(--ink); line-height:1.7; margin-bottom:24px;}
-        .testi-who{display:flex; align-items:center; gap:12px;}
-        .avatar{width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg, var(--purple-500), var(--purple-700)); display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:600; color:#fff; font-size:15px;}
-        .testi-who b{display:block; font-size:14px; color:var(--purple-950);}
-        .testi-who span{font-size:12.5px; color:var(--grey-600);}
-
-        /* ---------- FAQ ---------- */
-        .faq-list{max-width:820px; margin:0 auto;}
-        .faq-item{border-bottom:1px solid var(--grey-300); padding:6px 0;}
-        .faq-item summary{cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; padding:20px 4px; font-size:16.5px; font-weight:600; color:var(--purple-950);}
-        .faq-item summary::-webkit-details-marker{display:none;}
-        .faq-plus{width:26px; height:26px; border-radius:50%; border:1.5px solid var(--purple-300); position:relative; flex:none; transition:transform .25s ease, background .25s ease;}
-        .faq-plus::before, .faq-plus::after{content:''; position:absolute; background:var(--purple-600); top:50%; left:50%; transform:translate(-50%,-50%);}
-        .faq-plus::before{width:10px; height:1.6px;}
-        .faq-plus::after{width:1.6px; height:10px; transition:opacity .2s ease;}
-        .faq-item[open] .faq-plus{background:var(--purple-600); transform:rotate(180deg);}
-        .faq-item[open] .faq-plus::before, .faq-item[open] .faq-plus::after{background:#fff;}
-        .faq-item[open] .faq-plus::after{opacity:0;}
-        .faq-item p{padding:0 4px 22px; font-size:14.5px; color:var(--grey-600); line-height:1.7; max-width:680px;}
-
-        /* ---------- contact ---------- */
-        .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
-        .contact-card{background:var(--purple-950); border-radius:var(--radius); padding:44px 38px; color:#fff; position:relative; overflow:hidden;}
-        .contact-card::before{content:''; position:absolute; inset:0; background:radial-gradient(400px 240px at 100% 0%, rgba(124,58,237,0.35), transparent 60%);}
-        .contact-card h3{color:#fff; font-size:22px; font-weight:600; margin-bottom:24px; position:relative;}
-        .contact-row{display:flex; gap:14px; margin-bottom:22px; position:relative;}
-        .contact-row svg{width:20px; height:20px; color:var(--purple-300); flex:none; margin-top:2px;}
-        .contact-row b{display:block; font-size:14.5px; color:#fff; margin-bottom:3px;}
-        .contact-row span{font-size:13.5px; color:#C9BEE8; line-height:1.5;}
-        .contact-form{background:#fff; border:1px solid var(--grey-300); border-radius:var(--radius); padding:40px 36px;}
-        .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
-        .field{display:flex; flex-direction:column; gap:7px;}
-        .field label{font-size:13px; font-weight:600; color:var(--purple-950);}
-        .field input, .field textarea{border:1.5px solid var(--grey-300); border-radius:10px; padding:12px 14px; font-family:var(--body); font-size:14.5px; color:var(--ink); background:var(--lilac-50); transition:border-color .2s ease;}
-        .field input:focus, .field textarea:focus{outline:none; border-color:var(--purple-500);}
-        .field.full{grid-column:1 / -1;}
-        .form-note{font-size:12.5px; color:var(--grey-600); margin-top:14px; text-align:center;}
-        .form-success{display:none; text-align:center; padding:30px 10px;}
-        .form-success.show{display:block;}
-        .form-success svg{width:44px; height:44px; color:var(--purple-600); margin:0 auto 14px;}
-        .form-success h4{font-size:18px; font-weight:600; margin-bottom:8px;}
-        .form-success p{font-size:14px; color:var(--grey-600);}
-
-        /* ---------- footer ---------- */
-        footer{background:var(--purple-950); color:#fff; padding:70px 0 30px; margin-top:20px;}
-        .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;}
-        .foot-brand .brand{color:#fff; margin-bottom:16px;}
-        .foot-brand p{color:#B8ABD9; font-size:13.5px; line-height:1.7; max-width:260px;}
-        .foot-col h4{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple-300); margin-bottom:18px;}
-        .foot-col a, .foot-col p{display:block; font-size:14px; color:#C9BEE8; margin-bottom:12px;}
-        .foot-col a:hover{color:#fff;}
-        .foot-bottom{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#8878AC; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:26px;}
-
-        /* ---------- responsive ---------- */
-        @media (max-width:980px){
-          .hero-grid{grid-template-columns:1fr;}
-          .hero-art{order:-1;}
-          .about-grid, .why, .contact-grid{grid-template-columns:1fr;}
-          .services-grid{grid-template-columns:repeat(2,1fr);}
-          .steps{grid-template-columns:repeat(2,1fr); row-gap:36px;}
-          .steps::before{display:none;}
-          .fleet-grid, .testi-grid{grid-template-columns:1fr;}
-          .foot-grid{grid-template-columns:1fr 1fr;}
-          .nav-links{display:none;}
-          .burger{display:flex; align-items:center; justify-content:center;}
-          .why{padding:50px 30px;}
-        }
-        @media (max-width:560px){
-          .services-grid{grid-template-columns:1fr;}
-          .foot-grid{grid-template-columns:1fr;}
-          .form-row{grid-template-columns:1fr;}
-          section{padding:70px 0;}
-        }
-        @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BOXIT — Premium Home & Office Removals Across the UK</title>
+<meta name="description" content="BOXIT is a UK-based moving company delivering seamless home and office relocations across London and beyond. Uniformed crews, modern fleet, full insurance." />
+<meta property="og:title" content="BOXIT — Moving Made Simple" />
+<meta property="og:description" content="Home and office relocations across the UK. Uniformed crews, modern fleet, full insurance." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="images/hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="images/logo.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div class="route-line" id="routeLine">
-    <div class="dash"></div>
-    <div class="route-van" id="routeVan">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="8" width="12" height="8" rx="1.5" fill="#fff"/><path d="M14 10h4l3 4v2a1 1 0 0 1-1 1h-6v-7Z" fill="#fff"/><circle cx="7" cy="18" r="1.8" fill="#fff"/><circle cx="17" cy="18" r="1.8" fill="#fff"/></svg>
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo">
+      <img src="images/logo.jpg" alt="BOXIT logo" />
+      <div>
+        <div class="logo-name">BOXIT</div>
+        <div class="logo-tag">Moving Made Simple</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why BOXIT</a>
+      <a href="#process">Process</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:+442045772468" class="header-phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        020 4577 2468
+      </a>
+      <a href="#contact" class="btn btn-primary">Get a Quote
+        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-</div>
-
-<header>
-    <div class="nav">
-        <div class="brand">
-            <svg class="brand-mark" viewBox="0 0 32 32" fill="none"><rect x="3" y="13" width="26" height="16" rx="2" fill="#7C3AED"/><path d="M3 13L16 6L29 13" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6V22" stroke="#231044" stroke-width="1.6"/></svg>
-            BOXIT
-        </div>
-        <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#fleet">Fleet</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="nav-cta">
-            <span class="nav-phone">020 3868 4471</span>
-            <a class="btn btn-primary" href="#contact" style="padding:11px 20px;">Get a Free Quote</a>
-            <button class="burger" aria-label="Menu">☰</button>
-        </div>
-    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why BOXIT</a>
+    <a href="#process">Process</a>
+    <a href="#fleet">Fleet</a>
+    <a href="#contact">Contact</a>
+  </div>
 </header>
 
-<main>
-    <!-- HERO -->
-    <section class="hero">
-        <div class="wrap hero-grid">
-            <div class="hero-copy">
-                <span class="eyebrow reveal">UK REMOVALS &amp; RELOCATION SPECIALISTS</span>
-                <h1 class="reveal">House moves and office relocations, <em>done properly.</em></h1>
-                <p class="lead reveal">BOXIT plans, packs and delivers your move across the UK — from a one-bedroom flat in Manchester to a full office fit-out in London. Insured crews, modern vans, and a plan for every box.</p>
-                <div class="hero-actions reveal">
-                    <a class="btn btn-primary" href="#contact">Get a Free Quote</a>
-                    <a class="btn btn-outline" href="tel:+442038684471">Call 020 3868 4471</a>
-                </div>
-                <div class="hero-trust reveal">
-                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4Z"/></svg>Fully insured</span>
-                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>DBS-checked crews</span>
-                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>500+ moves a year</span>
-                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>Nationwide coverage</span>
-                </div>
-            </div>
-            <div class="hero-art reveal">
-                <svg viewBox="0 0 560 460" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4EFFD"/><stop offset="1" stop-color="#fff"/></linearGradient>
-                        <linearGradient id="vanG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#5B21B6"/></linearGradient>
-                    </defs>
-                    <rect x="0" y="0" width="560" height="460" rx="28" fill="url(#skyG)"/>
-                    <!-- terraced houses skyline -->
-                    <g opacity="0.9">
-                        <rect x="40" y="150" width="80" height="130" fill="#E4DEF0"/>
-                        <polygon points="40,150 80,110 120,150" fill="#C7B6F7"/>
-                        <rect x="130" y="120" width="70" height="160" fill="#EDE7FA"/>
-                        <polygon points="130,120 165,85 200,120" fill="#C7B6F7"/>
-                        <rect x="210" y="160" width="60" height="120" fill="#E4DEF0"/>
-                        <polygon points="210,160 240,128 270,160" fill="#C7B6F7"/>
-                        <rect x="60" y="200" width="18" height="24" fill="#B29CE8"/>
-                        <rect x="150" y="170" width="18" height="24" fill="#B29CE8"/>
-                    </g>
-                    <!-- ground -->
-                    <rect x="0" y="360" width="560" height="100" fill="#EDE7FA"/>
-                    <rect x="0" y="358" width="560" height="4" fill="#C7B6F7"/>
-                    <!-- boxes -->
-                    <g>
-                        <rect x="330" y="300" width="46" height="42" rx="3" fill="#fff" stroke="#C7B6F7" stroke-width="2"/>
-                        <path d="M330 318h46M353 300v42" stroke="#C7B6F7" stroke-width="2"/>
-                        <rect x="368" y="270" width="36" height="34" rx="3" fill="#fff" stroke="#C7B6F7" stroke-width="2"/>
-                        <path d="M368 286h36M386 270v34" stroke="#C7B6F7" stroke-width="2"/>
-                    </g>
-                    <!-- luton van -->
-                    <g transform="translate(60,300)">
-                        <rect x="0" y="-6" width="230" height="90" rx="10" fill="url(#vanG)"/>
-                        <rect x="0" y="-6" width="230" height="18" rx="9" fill="#A78BFA" opacity="0.5"/>
-                        <rect x="210" y="10" width="52" height="58" rx="8" fill="#5B21B6"/>
-                        <path d="M262 30h14l16 20v14a4 4 0 0 1-4 4h-26V30Z" fill="#5B21B6"/>
-                        <rect x="222" y="20" width="26" height="20" rx="3" fill="#C7B6F7"/>
-                        <circle cx="40" cy="90" r="16" fill="#231044"/>
-                        <circle cx="40" cy="90" r="6" fill="#C7B6F7"/>
-                        <circle cx="240" cy="90" r="16" fill="#231044"/>
-                        <circle cx="240" cy="90" r="6" fill="#C7B6F7"/>
-                        <rect x="18" y="14" width="150" height="6" rx="3" fill="#fff" opacity="0.85"/>
-                        <text x="95" y="46" font-family="Inter, sans-serif" font-size="26" font-weight="800" fill="#fff">BOXIT</text>
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="wrap about-grid">
-            <div class="reveal">
-                <svg viewBox="0 0 380 420" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs><linearGradient id="moverG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C2896"/></linearGradient></defs>
-                    <rect x="0" y="0" width="380" height="420" rx="26" fill="#F4EFFD"/>
-                    <!-- doorway -->
-                    <rect x="230" y="60" width="120" height="300" rx="6" fill="#fff" stroke="#DCD2F5" stroke-width="2"/>
-                    <rect x="252" y="90" width="76" height="150" rx="4" fill="#EDE7FA"/>
-                    <circle cx="315" cy="165" r="5" fill="#B29CE8"/>
-                    <!-- mover carrying box -->
-                    <g transform="translate(60,120)">
-                        <circle cx="55" cy="20" r="20" fill="#3B1D72"/>
-                        <rect x="30" y="40" width="50" height="90" rx="20" fill="url(#moverG)"/>
-                        <rect x="10" y="55" width="90" height="60" rx="14" fill="#fff" stroke="#C7B6F7" stroke-width="3"/>
-                        <path d="M10 85h90M55 55v60" stroke="#C7B6F7" stroke-width="3"/>
-                        <rect x="20" y="128" width="18" height="70" rx="8" fill="#231044"/>
-                        <rect x="72" y="128" width="18" height="70" rx="8" fill="#231044"/>
-                    </g>
-                </svg>
-            </div>
-            <div class="about-copy">
-                <span class="eyebrow reveal">ABOUT BOXIT</span>
-                <h2 class="reveal" style="margin-top:14px;">Removals built around the way people actually move</h2>
-                <p class="reveal" style="margin-top:22px;">BOXIT started in London in 2016 with a single van and a simple idea: moving house shouldn't feel like a second job. Ten years on, our crews cover England, Scotland and Wales, handling homes, flats and offices with the same care we'd want for our own belongings.</p>
-                <p class="reveal">We're not the biggest removals firm in the country, and we like it that way. Every crew is trained in-house, every van is checked before it leaves the depot, and every move gets a named coordinator from quote to final box.</p>
-                <div class="about-stats reveal">
-                    <div class="stat"><b>10,000+</b><span>Moves completed</span></div>
-                    <div class="stat"><b>12</b><span>UK cities covered</span></div>
-                    <div class="stat"><b>4.9/5</b><span>Average customer rating</span></div>
-                    <div class="stat"><b>98%</b><span>On-time arrivals</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="wrap">
-            <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-                <span class="eyebrow">SERVICES</span>
-                <h2>Everything a move needs, under one roof</h2>
-                <p>From a single sofa to an entire office floor, BOXIT covers every part of the move — so you're not managing three different suppliers.</p>
-            </div>
-            <div class="services-grid">
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><rect x="10" y="14" width="4" height="6"/></svg></div>
-                    <h3>Home Removals</h3>
-                    <p>Full-service moves for flats and houses, from a studio to a five-bedroom family home.</p>
-                </div>
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
-                    <h3>Office Relocations</h3>
-                    <p>Out-of-hours and weekend moves that get your business running again by Monday morning.</p>
-                </div>
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="9" width="13" height="8" rx="1.5"/><path d="M15 11h4l3 3.5V17h-7Z"/><circle cx="7" cy="19" r="1.8"/><circle cx="17.5" cy="19" r="1.8"/></svg></div>
-                    <h3>Man &amp; Van</h3>
-                    <p>For single items, small loads, or last-minute moves across town — booked same day.</p>
-                </div>
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16M12 6v5"/></svg></div>
-                    <h3>Packing &amp; Unpacking</h3>
-                    <p>Professional packing materials and a crew that labels every box by room.</p>
-                </div>
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 20v-7h6v7"/></svg></div>
-                    <h3>Storage Solutions</h3>
-                    <p>Secure, short and long-term storage while you find your feet or wait on completion.</p>
-                </div>
-                <div class="svc-card reveal">
-                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2Z"/></svg></div>
-                    <h3>Furniture Assembly</h3>
-                    <p>Dismantling and rebuilding wardrobes, beds and flat-pack furniture on both ends.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section id="why">
-        <div class="wrap">
-            <div class="why reveal">
-                <div class="why-head">
-                    <span class="eyebrow">WHY CHOOSE BOXIT</span>
-                    <h2>The details that make moving day boring — in a good way</h2>
-                    <p style="color:#C9BEE8; font-size:15px; margin-top:18px; max-width:400px; line-height:1.65;">No surprises, no subcontracted vans you've never seen, no crew showing up late. Just a move that goes the way it was planned.</p>
-                </div>
-                <ul class="why-list">
-                    <li><span class="why-num">01</span><div><h4>Fully insured, every move</h4><p>Goods-in-transit and public liability cover included as standard on every booking.</p></div></li>
-                    <li><span class="why-num">02</span><div><h4>DBS-checked, uniformed crews</h4><p>The same people who confirmed your booking are the ones who turn up on the day.</p></div></li>
-                    <li><span class="why-num">03</span><div><h4>Your date, held</h4><p>Once booked, your moving date is reserved — no last-minute rescheduling.</p></div></li>
-                    <li><span class="why-num">04</span><div><h4>A real UK-based team</h4><p>Call and speak to someone who knows your booking — not a script.</p></div></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <span class="eyebrow">HOW IT WORKS</span>
-                <h2>From quote to keys, in four steps</h2>
-                <p>Every move follows the same process, so you know exactly what happens next.</p>
-            </div>
-            <div class="steps">
-                <div class="step reveal">
-                    <div class="step-num">1</div>
-                    <h3>Get your quote</h3>
-                    <p>Tell us about your move online or over the phone — most quotes are ready the same day.</p>
-                </div>
-                <div class="step reveal">
-                    <div class="step-num">2</div>
-                    <h3>Free survey</h3>
-                    <p>A short video call or home visit confirms the details and locks in your plan.</p>
-                </div>
-                <div class="step reveal">
-                    <div class="step-num">3</div>
-                    <h3>Moving day</h3>
-                    <p>Your crew arrives on time, packs what's left, and loads everything with care.</p>
-                </div>
-                <div class="step reveal">
-                    <div class="step-num">4</div>
-                    <h3>Settle in</h3>
-                    <p>We unload, reassemble furniture, and clear the boxes away if you'd like us to.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FLEET -->
-    <section id="fleet">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <span class="eyebrow">OUR FLEET</span>
-                <h2>The right vehicle for the size of your move</h2>
-                <p>All vans are serviced on a rolling schedule and fitted with removal blankets, straps and trolleys as standard.</p>
-            </div>
-            <div class="fleet-grid">
-                <div class="fleet-card reveal">
-                    <div class="fleet-art">
-                        <svg viewBox="0 0 220 130" width="180"><rect x="10" y="40" width="150" height="60" rx="10" fill="#8B5CF6"/><rect x="150" y="55" width="40" height="45" rx="6" fill="#4C2896"/><rect x="160" y="62" width="20" height="16" rx="2" fill="#EDE7FA"/><circle cx="45" cy="102" r="13" fill="#231044"/><circle cx="45" cy="102" r="5" fill="#EDE7FA"/><circle cx="160" cy="102" r="13" fill="#231044"/><circle cx="160" cy="102" r="5" fill="#EDE7FA"/></svg>
-                    </div>
-                    <div class="fleet-body">
-                        <span class="fleet-tag">Compact</span>
-                        <h3>Transit Van</h3>
-                        <p>Best for studio and one-bedroom moves, or man &amp; van bookings for a few large items.</p>
-                        <div class="fleet-specs"><span>3.4m load length</span><span>Up to 1,100kg</span></div>
-                    </div>
-                </div>
-                <div class="fleet-card reveal">
-                    <div class="fleet-art">
-                        <svg viewBox="0 0 220 130" width="190"><rect x="8" y="20" width="130" height="82" rx="8" fill="#7C3AED"/><rect x="138" y="55" width="42" height="47" rx="6" fill="#4C2896"/><rect x="148" y="62" width="22" height="16" rx="2" fill="#EDE7FA"/><rect x="18" y="30" width="110" height="10" rx="4" fill="#fff" opacity="0.7"/><circle cx="45" cy="105" r="13" fill="#231044"/><circle cx="45" cy="105" r="5" fill="#EDE7FA"/><circle cx="155" cy="105" r="13" fill="#231044"/><circle cx="155" cy="105" r="5" fill="#EDE7FA"/></svg>
-                    </div>
-                    <div class="fleet-body">
-                        <span class="fleet-tag">Most booked</span>
-                        <h3>Luton Van with Tail Lift</h3>
-                        <p>Best for two to three-bedroom homes — the tail lift makes heavy furniture straightforward.</p>
-                        <div class="fleet-specs"><span>4m load length</span><span>Up to 1,000kg</span></div>
-                    </div>
-                </div>
-                <div class="fleet-card reveal">
-                    <div class="fleet-art">
-                        <svg viewBox="0 0 220 130" width="200"><rect x="6" y="10" width="150" height="92" rx="8" fill="#5B21B6"/><rect x="156" y="50" width="46" height="52" rx="6" fill="#3B1D72"/><rect x="166" y="58" width="24" height="18" rx="2" fill="#EDE7FA"/><rect x="16" y="22" width="130" height="10" rx="4" fill="#fff" opacity="0.7"/><text x="30" y="70" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#fff" opacity="0.85">BOXIT</text><circle cx="48" cy="105" r="13" fill="#231044"/><circle cx="48" cy="105" r="5" fill="#EDE7FA"/><circle cx="172" cy="105" r="13" fill="#231044"/><circle cx="172" cy="105" r="5" fill="#EDE7FA"/></svg>
-                    </div>
-                    <div class="fleet-body">
-                        <span class="fleet-tag">Large</span>
-                        <h3>7.5 Tonne Truck</h3>
-                        <p>Best for large family homes, house-shares, or full office relocations in one trip.</p>
-                        <div class="fleet-specs"><span>6.2m load length</span><span>Up to 2,500kg</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <div class="wrap">
-            <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-                <span class="eyebrow">CUSTOMER STORIES</span>
-                <h2>Moves across the UK, done right</h2>
-            </div>
-            <div class="testi-grid">
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">Our whole flat was moved from Clapham to Bristol in a single day. The crew wrapped every piece of furniture without being asked twice.</p>
-                    <div class="testi-who"><div class="avatar">E</div><div><b>Emily H.</b><span>Clapham, London</span></div></div>
-                </div>
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">We moved our office of 30 people over a weekend. Everything was labelled and reassembled before Monday's first meeting.</p>
-                    <div class="testi-who"><div class="avatar">R</div><div><b>Ravi P.</b><span>Manchester City Centre</span></div></div>
-                </div>
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">Booked BOXIT for a last-minute man and van job. They arrived within the hour and the price didn't change at the door.</p>
-                    <div class="testi-who"><div class="avatar">S</div><div><b>Sophie L.</b><span>Leith, Edinburgh</span></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-        <div class="wrap">
-            <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-                <span class="eyebrow">FAQ</span>
-                <h2>Questions we're asked before moving day</h2>
-            </div>
-            <div class="faq-list reveal">
-                <details class="faq-item" open>
-                    <summary>Do you provide packing materials?<span class="faq-plus"></span></summary>
-                    <p>Yes. We supply boxes, tape, bubble wrap and wardrobe cartons, either as part of a full-service move or for you to collect and pack yourself in advance.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Is my furniture insured during the move?<span class="faq-plus"></span></summary>
-                    <p>Every booking includes goods-in-transit and public liability insurance as standard, at no extra cost. Full policy details are confirmed at your free survey.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>How far in advance should I book?<span class="faq-plus"></span></summary>
-                    <p>We recommend two to four weeks' notice for weekday moves, and four to six weeks for weekends or the end of the month, when demand is highest. Man &amp; van bookings can often be arranged with a few days' notice.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Do you move outside London?<span class="faq-plus"></span></summary>
-                    <p>Yes. BOXIT operates across England, Scotland and Wales, with regular routes between London, Manchester, Birmingham, Bristol and Edinburgh.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Can you dismantle and reassemble furniture?<span class="faq-plus"></span></summary>
-                    <p>Our crews carry the tools to dismantle and reassemble wardrobes, beds and flat-pack furniture at both ends of the move, included in a full-service booking.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Do you offer storage if my new home isn't ready?</span><span class="faq-plus"></span></summary>
-                    <p>Yes, we offer secure short and long-term storage, so your move can go ahead even if there's a gap between properties.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <span class="eyebrow">GET IN TOUCH</span>
-                <h2>Tell us about your move</h2>
-                <p>Share a few details and our team will come back with a free, no-obligation quote — usually the same day.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-card reveal">
-                    <h3>Speak to the team</h3>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6A2 2 0 0 1 22 16.9Z"/></svg>
-                        <div><b>Phone</b><span>020 3868 4471 (London)<br>0161 850 3392 (Manchester)</span></div>
-                    </div>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
-                        <div><b>Email</b><span>hello@boxitmoving.co.uk</span></div>
-                    </div>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        <div><b>Head office</b><span>Unit 4, Riverside Business Park<br>Nine Elms Lane, London SW8 5BH</span></div>
-                    </div>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-                        <div><b>Opening hours</b><span>Monday–Saturday, 7:00–19:00<br>Sunday: office closed, moves by arrangement</span></div>
-                    </div>
-                </div>
-
-                <div class="contact-form reveal">
-                    <div style="text-align:center;padding:30px 10px;">
-                        <svg width="70" height="70" viewBox="0 0 24 24" fill="none"
-                             stroke="#6528D9" stroke-width="1.8"
-                             style="margin:0 auto 20px;">
-                            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6A2 2 0 0 1 22 16.9Z"/>
-                        </svg>
-
-                        <h3 style="margin-bottom:15px;color:#231044;">
-                            Online Quote Request Coming Soon
-                        </h3>
-
-                        <p style="color:#6B6478;line-height:1.8;margin-bottom:30px;">
-                            We're currently upgrading our online booking system.<br>
-                            Please contact our team directly and we'll provide your free,
-                            no-obligation quote within one working day.
-                        </p>
-
-                        <a href="tel:+442038684471"
-                           class="btn btn-primary btn-block"
-                           style="margin-bottom:15px;">
-                            📞 Call 020 3868 4471
-                        </a>
-
-                        <a href="mailto:hello@boxitmoving.co.uk"
-                           class="btn btn-outline btn-block">
-                            ✉️ Email Us
-                        </a>
-
-                        <p class="form-note" style="margin-top:25px;">
-                            Sorry for the inconvenience. Our online quote form will be available soon.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="wrap">
-        <div class="foot-grid">
-            <div class="foot-brand">
-                <div class="brand">
-                    <svg class="brand-mark" viewBox="0 0 32 32" fill="none"><rect x="3" y="13" width="26" height="16" rx="2" fill="#C7B6F7"/><path d="M3 13L16 6L29 13" stroke="#C7B6F7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6V22" stroke="#231044" stroke-width="1.6"/></svg>
-                    BOXIT
-                </div>
-                <p>Home and office removals across England, Scotland and Wales. Insured crews, modern vans, and a plan for every box.</p>
-            </div>
-            <div class="foot-col">
-                <h4>Services</h4>
-                <a href="#services">Home Removals</a>
-                <a href="#services">Office Relocations</a>
-                <a href="#services">Man &amp; Van</a>
-                <a href="#services">Storage Solutions</a>
-            </div>
-            <div class="foot-col">
-                <h4>Company</h4>
-                <a href="#about">About Us</a>
-                <a href="#fleet">Our Fleet</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="foot-col">
-                <h4>Contact</h4>
-                <a href="tel:+442038684471">020 3868 4471</a>
-                <a href="mailto:hello@boxitmoving.co.uk">hello@boxitmoving.co.uk</a>
-                <p style="margin-bottom:0;">Unit 4, Riverside Business Park<br>Nine Elms Lane, London SW8 5BH</p>
-            </div>
-        </div>
-        <div class="foot-bottom">
-            <span>© 2026 BOXIT Removals Ltd. All rights reserved.</span>
-            <span>Registered in England &amp; Wales · Company No. 14829371</span>
-        </div>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="reveal hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+        <span>UK's most trusted home &amp; office movers</span>
+      </div>
+      <h1 class="reveal">Moving made<br/><em>effortless.</em></h1>
+      <p class="reveal lead">From a studio in Shoreditch to a family home in Surrey — BOXIT handles every box, every mile, every detail. Uniformed crews, modern fleet, full insurance.</p>
+      <div class="reveal hero-cta">
+        <a href="#contact" class="btn btn-light">Book your move
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">Explore services</a>
+      </div>
+      <div class="reveal hero-stats">
+        <div><div class="hero-stat-n">12k+</div><div class="hero-stat-l">Moves completed</div></div>
+        <div><div class="hero-stat-n">4.9★</div><div class="hero-stat-l">Trustpilot rating</div></div>
+        <div><div class="hero-stat-n">16</div><div class="hero-stat-l">Years in the UK</div></div>
+      </div>
     </div>
+    <div class="reveal hero-visual">
+      <div class="hero-img-wrap">
+        <img class="hero-img" src="images/hero.jpg" alt="BOXIT purple moving truck outside a London townhouse" />
+      </div>
+      <div class="hero-badge-card badge-bottom">
+        <div class="icon brand">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="hbc-label">Fully insured</div>
+          <div class="hbc-value">Up to £50,000 cover</div>
+        </div>
+      </div>
+      <div class="hero-badge-card badge-top">
+        <div class="icon gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <div>
+          <div class="hbc-label">Rated 4.9 / 5</div>
+          <div class="hbc-value">2,300+ reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="trust-bar">
+      <span>BAR Registered</span><span>•</span>
+      <span>FIDI Affiliated</span><span>•</span>
+      <span>Which? Trusted Trader</span><span>•</span>
+      <span>Checkatrade Approved</span><span>•</span>
+      <span>Trustpilot Excellent</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section">
+  <div class="container about-grid">
+    <div class="reveal about-visual">
+      <img src="images/movers.jpg" alt="BOXIT movers carrying boxes into a UK home" />
+      <div class="about-card">
+        <div class="n">2009</div>
+        <div class="d">Founded in London, moving families across Britain ever since.</div>
+      </div>
+    </div>
+    <div>
+      <div class="reveal eyebrow">About BOXIT</div>
+      <h2 class="reveal section-title">A British removals company built on <em class="text-gradient" style="font-style:normal;">care</em>, craft and calm.</h2>
+      <p class="reveal section-lead">Founded in Islington in 2009, BOXIT began with one van and a promise: to make moving day feel less like a mountain and more like a milestone. Sixteen years later, our uniformed crews and purple fleet serve homes and businesses across England, Scotland and Wales.</p>
+      <p class="reveal section-lead" style="margin-top:16px;">Every job is planned by a dedicated move coordinator, packed by trained hands and driven by DVSA-certified operators. No subcontractors. No surprises.</p>
+      <div class="about-features" data-stagger>
+        <div class="reveal af">
+          <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><strong>In-house crews</strong><span>Every mover is BOXIT-badged and vetted.</span></div>
+        </div>
+        <div class="reveal af">
+          <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <div><strong>BAR members</strong><span>Bound by the British Association of Removers code.</span></div>
+        </div>
+        <div class="reveal af">
+          <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><strong>Goods in transit</strong><span>Comprehensive cover up to £50,000 as standard.</span></div>
+        </div>
+        <div class="reveal af">
+          <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg></div>
+          <div><strong>UK-wide reach</strong><span>From Cornwall to the Cairngorms — one crew, one contact.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="section section-soft">
+  <div class="container">
+    <div style="max-width:640px;">
+      <div class="reveal eyebrow">What we do</div>
+      <h2 class="reveal section-title">Every kind of move, handled beautifully.</h2>
+      <p class="reveal section-lead">Whether it's a one-bedroom flat in Manchester or a 40-desk relocation in the City, our services scale to fit the day — never the other way round.</p>
+    </div>
+    <div class="services-grid" data-stagger>
+      <!-- 6 service cards -->
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Home Removals</h3>
+        <p>From studios to seven-bedroom estates. Careful crews, protective wraps, zero rushing.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="9" x2="9" y2="9"/><line x1="15" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
+        <h3>Office Relocations</h3>
+        <p>Out-of-hours moves for offices, retail and hospitality — with minimal downtime.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/></svg></div>
+        <h3>Full Packing Service</h3>
+        <p>Bubble wrap, tissue paper, custom crates. We pack it as if it were our own.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect x="6" y="10" width="12" height="12"/></svg></div>
+        <h3>Secure Storage</h3>
+        <p>Climate-controlled units in Park Royal, Manchester and Birmingham. Access on demand.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Man &amp; Van</h3>
+        <p>Two-person crews for small loads, IKEA runs and single-item deliveries.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="reveal service-card">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <h3>International Moves</h3>
+        <p>FIDI-affiliated logistics for European relocations, sea freight and air freight.</p>
+        <span class="learn">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+    </div>
+
+    <div class="services-features">
+      <div class="reveal feat-card purple">
+        <img src="images/family.jpg" alt="Family with keys in front of their new UK home" />
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="eyebrow">Home moves</div>
+          <h3>Doorstep to doorstep, box to bookshelf.</h3>
+          <p>We can pack you on Tuesday, drive on Wednesday and unpack on Thursday. Your kettle on the counter before the last box is in.</p>
+        </div>
+      </div>
+      <div class="reveal feat-card dark">
+        <img src="images/office.jpg" alt="BOXIT office relocation in the City of London" />
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="eyebrow">Office moves</div>
+          <h3>Sunday shutdown, Monday go-live.</h3>
+          <p>IT-safe crating, colour-coded floor plans, on-site coordinators. Your team walks in on Monday and simply gets to work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" class="section">
+  <div class="container why-grid">
+    <div>
+      <div class="reveal eyebrow">Why choose BOXIT</div>
+      <h2 class="reveal section-title">The difference is in the detail.</h2>
+      <p class="reveal section-lead">A move is thousands of tiny decisions in sequence. We've spent sixteen years refining every one — so you don't have to think about any of them.</p>
+      <div class="reveal why-card">
+        <div class="n">98%</div>
+        <div class="d">of BOXIT clients would book us again — measured across 2,300+ post-move surveys in 2025.</div>
+      </div>
+    </div>
+    <div class="why-list" data-stagger>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <strong>Full insurance included</strong><span>£50k goods-in-transit and £5m public liability as standard.</span>
+      </div>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <strong>On-time, every time</strong><span>97.4% on-time arrival rate. If we're late, the first hour is on us.</span>
+      </div>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <strong>In-house crews</strong><span>No subcontractors. Every mover trained, uniformed and background-checked.</span>
+      </div>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <strong>Award-winning care</strong><span>BAR 'Domestic Mover of the Year' finalist 2024.</span>
+      </div>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/></svg></div>
+        <strong>Museum-grade packing</strong><span>Acid-free tissue, honeycomb card, bespoke crates for art and antiques.</span>
+      </div>
+      <div class="reveal why-item">
+        <div class="w-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg></div>
+        <strong>One point of contact</strong><span>A dedicated move manager from first call to final unpack.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="section section-soft">
+  <div class="container">
+    <div style="max-width:640px;">
+      <div class="reveal eyebrow">How it works</div>
+      <h2 class="reveal section-title">Four calm steps from first call to final box.</h2>
+    </div>
+    <div class="process-grid" data-stagger>
+      <div class="reveal step">
+        <div class="step-n">01</div><h3>Survey</h3>
+        <p>Free home or video survey by a BOXIT move manager. We measure, list and plan.</p>
+        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="reveal step">
+        <div class="step-n">02</div><h3>Plan</h3>
+        <p>You receive a written schedule, crew profile and packing plan tailored to your day.</p>
+        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="reveal step">
+        <div class="step-n">03</div><h3>Move</h3>
+        <p>Uniformed crews arrive on time. Floors are protected, corners padded, everything wrapped.</p>
+        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="reveal step">
+        <div class="step-n">04</div><h3>Settle</h3>
+        <p>We reassemble beds, place furniture and remove every box. You put the kettle on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLEET ============ -->
+<section id="fleet" class="section">
+  <div class="container fleet-grid">
+    <div>
+      <div class="reveal eyebrow">Our fleet</div>
+      <h2 class="reveal section-title">A modern purple fleet, ready for any postcode.</h2>
+      <p class="reveal section-lead">Forty-two vehicles strong and growing — from nimble 3.5-tonne Sprinters that thread London mews to 18-tonne Atego lorries built for the motorway.</p>
+      <div class="fleet-list" data-stagger>
+        <div class="reveal fleet-item">
+          <div class="left"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><strong>3.5t Mercedes Sprinter</strong><span class="desc">Studio &amp; one-bed moves. ULEZ compliant.</span></div></div>
+          <div style="text-align:right;"><div class="cap-label">Capacity</div><div class="cap-value">600 cu ft</div></div>
+        </div>
+        <div class="reveal fleet-item">
+          <div class="left"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><strong>7.5t Iveco Eurocargo</strong><span class="desc">Two to three-bed homes. Air-ride, tail-lift.</span></div></div>
+          <div style="text-align:right;"><div class="cap-label">Capacity</div><div class="cap-value">1,400 cu ft</div></div>
+        </div>
+        <div class="reveal fleet-item">
+          <div class="left"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><strong>18t Mercedes Atego</strong><span class="desc">Large homes and full-office moves. Barn-doors and ramp.</span></div></div>
+          <div style="text-align:right;"><div class="cap-label">Capacity</div><div class="cap-value">3,200 cu ft</div></div>
+        </div>
+        <div class="reveal fleet-item">
+          <div class="left"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><strong>Removal Container Rig</strong><span class="desc">Long-haul UK-wide and international consolidations.</span></div></div>
+          <div style="text-align:right;"><div class="cap-label">Capacity</div><div class="cap-value">6,000 cu ft</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal fleet-visual">
+      <img class="main-img" src="images/fleet.jpg" alt="BOXIT purple removal fleet at the Park Royal depot" />
+      <div class="fleet-badge">
+        <div class="n">42</div>
+        <div class="d">Vehicles serviced weekly at our Park Royal depot.</div>
+      </div>
+      <img class="fleet-mini" src="images/packing.jpg" alt="Neatly stacked labelled boxes inside a BOXIT van" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section testimonials">
+  <div class="container">
+    <div style="max-width:640px;">
+      <div class="reveal eyebrow">Loved across the UK</div>
+      <h2 class="reveal section-title">What our clients say.</h2>
+    </div>
+    <div class="testi-grid" data-stagger>
+      <div class="reveal testi">
+        <div class="stars">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <blockquote>"The BOXIT crew turned our four-bedroom move from Clapham to Guildford into the calmest day of the year. Nothing chipped, nothing lost, and they even made the beds."</blockquote>
+        <div class="who"><strong>Eleanor Whitfield</strong><span>Homeowner, SW4 → GU1</span></div>
+      </div>
+      <div class="reveal testi">
+        <div class="stars">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <blockquote>"We relocated 60 desks from Old Street to Farringdon over a Sunday. Monday morning: laptops on, kettle boiling, business as usual. Extraordinary planning."</blockquote>
+        <div class="who"><strong>Marcus Alderton</strong><span>COO, Palladium Studios</span></div>
+      </div>
+      <div class="reveal testi">
+        <div class="stars">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <blockquote>"From the video survey to the last box, everyone was courteous, on time and quietly competent. This is how a British removals company should feel."</blockquote>
+        <div class="who"><strong>Dr. Priya Ramaswamy</strong><span>Home move, Edinburgh EH3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="reveal eyebrow">Frequently asked</div>
+      <h2 class="reveal section-title">Answers before you ask.</h2>
+    </div>
+    <div class="reveal faq-wrap">
+      <div class="faq-item open">
+        <button class="faq-q"><span class="q-text">How far in advance should I book my move?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>For weekday moves we recommend two to three weeks' notice; for Fridays, weekends and month-end we suggest four to six weeks. That said, we hold last-minute slots for urgent relocations — call us and we'll do our best.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-text">Which areas of the UK do you cover?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>Every mainland postcode. Our depots in Park Royal (London), Trafford Park (Manchester) and Aston (Birmingham) mean we can crew a move from Cornwall to the Cairngorms without subcontracting a single mile.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-text">Is my property insured during the move?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>Yes. Every BOXIT job includes £50,000 goods-in-transit cover and £5,000,000 public liability as standard. Extended cover for high-value items, art and antiques is available on request.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-text">Do you supply packing materials?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>We do — bubble wrap, tissue paper, wardrobe cartons, honeycomb crates and mattress covers can all be delivered before your move date, or bring your own if you prefer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-text">Can BOXIT dismantle and reassemble furniture?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>Yes. Beds, wardrobes, dining tables and flat-pack furniture are dismantled and rebuilt by the same crew that transports them, using their original fixings whenever possible.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-text">Do you handle office and commercial moves?</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p>Absolutely. We plan out-of-hours moves for offices, retail units, restaurants and healthcare premises across the UK with IT-safe crating, colour-coded floor plans and on-site coordinators.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section section-soft">
+  <div class="container contact-grid">
+    <div>
+      <div class="reveal eyebrow">Get in touch</div>
+      <h2 class="reveal section-title">Let's plan a move you'll actually enjoy.</h2>
+      <p class="reveal section-lead">Tell us where you're heading and we'll come back within one working hour with a free, no-obligation survey time.</p>
+      <div class="contact-items" data-stagger>
+        <div class="reveal c-item">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><strong>Head Office</strong><div class="info">BOXIT Removals Ltd
+14 Abbey Road, Park Royal
+London NW10 7RQ, United Kingdom</div></div>
+        </div>
+        <div class="reveal c-item">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><strong>Call us</strong><div class="info">020 4577 2468
+Monday–Saturday, 8am–7pm</div></div>
+        </div>
+        <div class="reveal c-item">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><strong>Email</strong><div class="info">hello@boxit.co.uk
+moves@boxit.co.uk</div></div>
+        </div>
+        <div class="reveal c-item">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+          <div><strong>Regional depots</strong><div class="info">Trafford Park, Manchester M17 1SG
+Aston, Birmingham B6 7EU</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-intro">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="BOXIT logo" />
+          <div>
+            <div class="logo-name" style="color:#fff;">BOXIT</div>
+            <div class="logo-tag" style="color:rgba(255,255,255,0.6);">Moving Made Simple</div>
+          </div>
+        </div>
+        <p>A British-owned removals company caring for homes and offices across England, Scotland and Wales since 2009.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Home removals</a></li>
+          <li><a href="#services">Office relocations</a></li>
+          <li><a href="#services">Packing service</a></li>
+          <li><a href="#services">Secure storage</a></li>
+          <li><a href="#services">International moves</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About BOXIT</a></li>
+          <li><a href="#why">Why choose us</a></li>
+          <li><a href="#fleet">Our fleet</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li class="with-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>14 Abbey Road, Park Royal, London NW10 7RQ</li>
+          <li class="with-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>020 4577 2468</li>
+          <li class="with-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>hello@boxit.co.uk</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> BOXIT Removals Ltd — Registered in England &amp; Wales, No. 07248391.</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<script>
-    // scroll reveal
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // route-line van position tracks scroll progress
-    const routeLine = document.getElementById('routeLine');
-    const routeVan = document.getElementById('routeVan');
-    function updateRoute(){
-      const doc = document.documentElement;
-      const scrollPct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
-      const y = Math.min(Math.max(scrollPct, 0), 1) * window.innerHeight;
-      routeVan.style.top = y + 'px';
-    }
-    window.addEventListener('scroll', updateRoute);
-    window.addEventListener('resize', updateRoute);
-    updateRoute();
-
-    // mobile burger -> jump to nav
-    const burger = document.querySelector('.burger');
-    if (burger) {
-      burger.addEventListener('click', () => {
-        document.getElementById('services').scrollIntoView({behavior:'smooth'});
-      });
-    }
-</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="script.js"></script>
 </body>
 </html>
