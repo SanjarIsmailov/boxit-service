@@ -1,41 +1,45 @@
-# 📦 BOXIT Service
-
 <div align="center">
 
-<img src="images/logo.png" alt="BOXIT Logo" width="180"/>
+<img src="./logo.png" alt="BOXIT Logo" width="180"/>
+
+# 📦 BOXIT Service
 
 ### Professional Moving & Relocation Services
 
 Move your home or office safely, quickly, and stress-free.
 
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
 </div>
 
 ---
 
-## 🚚 About
+# 🚚 About
 
-BOXIT is a modern moving service platform that helps customers relocate their homes, offices, furniture, and other belongings with professional movers and reliable transportation.
+BOXIT is a modern moving service platform designed to make relocation simple, fast, and secure.
 
-Our mission is to make moving simple, fast, and secure.
+Whether you are moving your home, apartment, office, or furniture, our experienced team provides reliable transportation and professional moving services.
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-- 🏠 Home Relocation
-- 🏢 Office Moving
+- 🏠 Home Moving
+- 🏢 Office Relocation
 - 📦 Packing Service
-- 🚛 Furniture Transportation
+- 🚛 Furniture Delivery
 - 👨‍🔧 Professional Movers
 - ⚡ Fast Booking
-- 📱 Responsive Design
-- 🎨 Modern UI/UX
-- 🔒 Secure & Reliable
-- 💬 Customer Support
+- 📱 Fully Responsive Design
+- 🎨 Modern User Interface
+- 🔒 Safe Transportation
+- 💬 24/7 Customer Support
 
 ---
 
-## 🖥️ Technologies
+# 🖥️ Technologies
 
 - HTML5
 - CSS3
@@ -47,59 +51,27 @@ Our mission is to make moving simple, fast, and secure.
 
 ---
 
-## 📸 Preview
-
-> Landing Page Preview
-
-(Add screenshots here after finishing the project.)
-
----
-
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 boxit-service/
 │
 ├── index.html
+├── logo.png
+├── README.md
+│
 ├── css/
 │   └── style.css
 │
 ├── js/
 │   └── script.js
 │
-├── images/
-│   ├── logo.png
-│   ├── hero.jpg
-│   └── ...
-│
-└── README.md
+└── images/
 ```
 
 ---
 
-## 🎯 Services
-
-- Home Moving
-- Office Relocation
-- Furniture Delivery
-- Packing & Unpacking
-- Heavy Item Transport
-- Local & Long Distance Moving
-
----
-
-## 🌟 Why Choose BOXIT?
-
-- Experienced Team
-- Affordable Pricing
-- On-Time Delivery
-- Safe Transportation
-- Modern Equipment
-- Customer Satisfaction
-
----
-
-## 🚀 Getting Started
+# 🚀 Getting Started
 
 Clone the repository
 
@@ -113,33 +85,78 @@ Open the project
 cd boxit-service
 ```
 
-Run
+Run the project
 
-Simply open **index.html** in your browser.
+Simply open
 
----
+```text
+index.html
+```
 
-## 📱 Responsive
-
-The website is fully responsive and optimized for:
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile
+in your browser.
 
 ---
 
-## 👨‍💻 Author
+# 🎯 Services
+
+- Home Relocation
+- Office Moving
+- Furniture Transportation
+- Packing & Unpacking
+- Apartment Moving
+- Heavy Item Transport
+- Local Moving
+- Long Distance Moving
+
+---
+
+# ⭐ Why Choose BOXIT?
+
+- Experienced Professionals
+- Affordable Pricing
+- Reliable Transportation
+- Safe Delivery
+- Modern Equipment
+- Customer Satisfaction
+- Fast Response
+- Secure Service
+
+---
+
+# 📱 Responsive Design
+
+The website is optimized for:
+
+- 💻 Desktop
+- 💼 Laptop
+- 📱 Mobile
+- 📟 Tablet
+
+---
+
+# 📈 Future Improvements
+
+- Online Booking System
+- Payment Integration
+- Live Tracking
+- Admin Dashboard
+- Customer Accounts
+- Email Notifications
+- Google Maps Integration
+
+---
+
+# 👨‍💻 Author
 
 **Sanjar Ismailov**
 
-GitHub:
+GitHub
+
 https://github.com/SanjarIsmailov
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project is licensed under the MIT License.
 
@@ -147,7 +164,7 @@ This project is licensed under the MIT License.
 
 <div align="center">
 
-### ⭐ If you like this project, don't forget to star the repository!
+### ⭐ If you like this project, please give it a Star!
 
 Made with ❤️ by BOXIT
 
