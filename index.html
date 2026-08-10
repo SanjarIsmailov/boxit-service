@@ -502,10 +502,11 @@
 
 
   /* =========================================================
-     TICKER
+     TICKER — RIGHT EDGE TO LEFT EDGE
      ========================================================= */
 
   .ticker{
+    position:relative;
     background:var(--navy);
     color:#fff;
     overflow:hidden;
@@ -516,13 +517,28 @@
   }
 
   .ticker div{
-    animation:move 25s linear infinite;
+    display:block;
     width:max-content;
+    min-width:max-content;
+    animation:tickerMove 22s linear infinite;
+    will-change:transform;
+    transform:translate3d(100vw,0,0);
   }
 
-  @keyframes move{
+  @keyframes tickerMove{
+    from{
+      transform:translate3d(100vw,0,0);
+    }
     to{
-      transform:translateX(-50%);
+      transform:translate3d(-100%,0,0);
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .ticker div{
+      animation:none;
+      transform:none;
+      margin-left:20px;
     }
   }
 
@@ -911,95 +927,121 @@
 
 
   /* =========================================================
-     SPECIAL OFFER
+     SPECIAL OFFER — COMPACT RIGHT SIDE
      ========================================================= */
 
   .offer-section{
-    padding-top:34px;
-    padding-bottom:6px;
+    padding-top:30px;
+    padding-bottom:0;
   }
 
   .offer-card{
     position:relative;
-    max-width:800px;
-    margin:0 auto;
-    background:#fff;
-    border:2px solid var(--gold);
-    border-radius:28px;
-    padding:42px 46px 34px;
+    width:min(500px,100%);
+    max-width:500px;
+    margin:0 0 0 auto;
+    background:linear-gradient(135deg,#fffdf7 0%,#fff 65%,#fff8e7 100%);
+    border:1px solid rgba(245,185,54,.75);
+    border-radius:22px;
+    padding:24px 25px 20px;
     display:grid;
-    grid-template-columns:1fr auto;
-    gap:16px 34px;
+    grid-template-columns:minmax(0,1fr) 82px;
+    gap:12px 18px;
     align-items:center;
-    box-shadow:0 22px 55px rgba(16,43,102,.14);
+    box-shadow:0 14px 35px rgba(16,43,102,.10);
+  }
+
+  .offer-card:after{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(245,185,54,.15);
+    border-radius:18px;
+    pointer-events:none;
   }
 
   .offer-ribbon{
     position:absolute;
-    top:-19px;
-    left:50%;
-    transform:translateX(-50%);
+    top:-13px;
+    right:20px;
+    left:auto;
+    transform:none;
     background:var(--navy);
     color:#fff;
-    font:800 12px 'Manrope';
+    font:800 9px 'Manrope';
     letter-spacing:.16em;
     text-transform:uppercase;
-    padding:11px 24px;
+    padding:7px 14px;
+    border:1px solid var(--gold);
     border-radius:999px;
     white-space:nowrap;
+    box-shadow:0 6px 15px rgba(10,23,53,.14);
   }
 
   .offer-price{
     display:flex;
     align-items:baseline;
-    gap:9px;
-    font:800 52px 'Manrope';
+    gap:6px;
+    font:800 36px 'Manrope';
+    letter-spacing:-.04em;
     color:var(--navy);
   }
 
   .offer-price small{
-    font-size:16px;
+    font-size:12px;
     font-weight:700;
-    color:var(--muted);
+    color:#806315;
   }
 
   .offer-list{
     list-style:none;
-    margin:22px 0 0;
+    margin:10px 0 0;
     padding:0;
     display:grid;
-    gap:11px;
+    gap:5px;
   }
 
   .offer-list li{
     display:flex;
-    gap:10px;
+    gap:7px;
     align-items:flex-start;
-    font-weight:700;
-    font-size:14.5px;
-    color:#344054;
+    font-weight:600;
+    font-size:11.5px;
+    line-height:1.35;
+    color:#475467;
   }
 
   .offer-list li b{
     color:#b47c00;
+    font-size:11px;
   }
 
-
   .offer-badge{
-    width:128px;
-    height:128px;
+    width:82px;
+    height:82px;
     border-radius:50%;
     background:var(--navy);
     color:#fff;
     display:grid;
     place-items:center;
     text-align:center;
-    font:800 13px 'Manrope';
-    line-height:1.35;
-    justify-self:center;
+    font:800 9px 'Manrope';
+    line-height:1.25;
+    justify-self:end;
     position:relative;
     overflow:hidden;
     isolation:isolate;
+    border:3px solid #fff;
+    box-shadow:0 0 0 1px var(--gold),0 8px 20px rgba(10,23,53,.15);
+  }
+
+  .offer-badge:after{
+    content:"";
+    position:absolute;
+    inset:4px;
+    border:1px solid rgba(245,185,54,.7);
+    border-radius:50%;
+    z-index:1;
   }
 
   .offer-badge img{
@@ -1008,7 +1050,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    opacity:.34;
+    opacity:.28;
     z-index:-1;
   }
 
@@ -1016,31 +1058,75 @@
     position:relative;
     z-index:2;
     display:grid;
-    gap:2px;
-    padding:18px;
-    text-shadow:0 2px 10px rgba(0,0,0,.25);
+    gap:1px;
+    padding:10px;
+    text-shadow:0 1px 6px rgba(0,0,0,.3);
   }
 
   .offer-badge-overlay span{
     display:block;
     color:#fff;
-    font-size:10px;
-    letter-spacing:.08em;
+    font-size:7px;
+    letter-spacing:.1em;
   }
 
   .offer-badge-overlay strong{
     display:block;
     color:var(--gold);
-    font-size:20px;
-    letter-spacing:.06em;
+    font-size:14px;
+    letter-spacing:.04em;
   }
 
   .offer-cta{
     grid-column:1/-1;
-    margin-top:10px;
+    margin-top:5px;
     width:max-content;
+    padding:10px 16px;
+    font-size:12px;
   }
 
+  @media(max-width:960px){
+    .offer-section{
+      padding-top:25px;
+    }
+
+    .offer-card{
+      margin-left:auto;
+      margin-right:0;
+    }
+  }
+
+  @media(max-width:600px){
+    .offer-section{
+      padding-top:28px;
+      padding-bottom:0;
+    }
+
+    .offer-card{
+      width:100%;
+      max-width:none;
+      grid-template-columns:1fr 72px;
+      padding:22px 18px 18px;
+      border-radius:20px;
+    }
+
+    .offer-badge{
+      width:72px;
+      height:72px;
+    }
+
+    .offer-price{
+      font-size:32px;
+    }
+
+    .offer-list li{
+      font-size:11px;
+    }
+
+    .offer-cta{
+      width:100%;
+    }
+  }
 
   /* =========================================================
      COMPARISON
@@ -1667,14 +1753,1133 @@
     }
   }
 
+
+  /* =========================================================
+     BOXIT — FINAL VISUAL POLISH
+     CSS ONLY • HTML/JS untouched
+     ========================================================= */
+
+  :root{
+    --navy:#081735;
+    --blue:#173b78;
+    --gold:#f4b82f;
+    --gold-deep:#b77b00;
+    --gold-soft:#fff4d2;
+    --cream:#fbf8f1;
+    --ink:#172033;
+    --muted:#69758b;
+    --line:#e5e8ee;
+    --shadow-sm:0 8px 25px rgba(8,23,53,.07);
+    --shadow-md:0 18px 45px rgba(8,23,53,.10);
+    --shadow-lg:0 30px 80px rgba(8,23,53,.13);
+  }
+
+  /* ---------- Global ---------- */
+
+  ::selection{
+    background:var(--gold);
+    color:var(--navy);
+  }
+
+  body{
+    background:#fff;
+    overflow-x:hidden;
+  }
+
+  button,
+  input,
+  select,
+  textarea{
+    font-family:'DM Sans',sans-serif;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  details,
+  .service-grid article,
+  .steps article,
+  .tips-grid article,
+  .review-grid article{
+    transition:
+            color .2s ease,
+            background-color .2s ease,
+            border-color .2s ease,
+            box-shadow .2s ease,
+            transform .2s ease;
+  }
+
+  /* ---------- Header ---------- */
+
+  .site-header{
+    height:78px;
+    padding-left:max(22px,calc((100vw - 1240px)/2));
+    padding-right:max(22px,calc((100vw - 1240px)/2));
+    background:rgba(255,255,255,.88);
+    border-bottom:1px solid rgba(8,23,53,.07);
+    box-shadow:0 4px 20px rgba(8,23,53,.025);
+  }
+
+  .header-logo{
+    width:142px;
+    height:52px;
+  }
+
+  .header-service-text{
+    margin-left:12px;
+    padding-left:12px;
+    border-left:1px solid rgba(8,23,53,.13);
+  }
+
+  .header-service-text strong{
+    font-size:15px;
+    letter-spacing:.12em;
+  }
+
+  .header-service-text small{
+    color:#a47309;
+    letter-spacing:.25em;
+    font-size:8px;
+  }
+
+  .site-header nav{
+    gap:20px;
+    font-size:13px;
+  }
+
+  .site-header nav>a:not(.btn):hover{
+    color:#a87500;
+  }
+
+  .nav-phone{
+    font-weight:800;
+  }
+
+  /* ---------- Buttons ---------- */
+
+  .btn{
+    min-height:52px;
+    padding:15px 23px;
+    border-radius:14px;
+    box-shadow:none;
+    font-size:14px;
+    letter-spacing:-.01em;
+  }
+
+  .btn:hover{
+    transform:translateY(-2px);
+  }
+
+  .btn:active{
+    transform:translateY(0);
+  }
+
+  .btn-ghost{
+    background:#fff;
+    border:1px solid #dce1e9;
+  }
+
+  .btn-ghost:hover{
+    border-color:#e8bd50;
+    background:#fffdf7;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    position:relative;
+    min-height:650px;
+    grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);
+    gap:24px;
+    padding-top:42px;
+    padding-bottom:55px;
+    background:
+            radial-gradient(circle at 78% 35%,rgba(231,238,252,.72),transparent 30%),
+            linear-gradient(180deg,#fff 0%,#fcfbf8 100%);
+  }
+
+  .hero-copy{
+    position:relative;
+    z-index:3;
+    max-width:680px;
+  }
+
+  .eyebrow{
+    color:#a87500;
+    font-size:11px;
+    letter-spacing:.19em;
+  }
+
+  .hero h1{
+    font-size:clamp(58px,7vw,94px);
+    letter-spacing:-.065em;
+    margin:15px 0 22px;
+    max-width:760px;
+  }
+
+  .hero h1 span{
+    color:var(--gold);
+  }
+
+  .hero-copy>p{
+    max-width:610px;
+    font-size:17px;
+    line-height:1.75;
+  }
+
+  .hero-actions{
+    align-items:center;
+    margin:28px 0 25px;
+  }
+
+  .hero-actions .btn{
+    min-height:50px;
+  }
+
+  .trust-row{
+    gap:16px;
+    font-size:12px;
+  }
+
+  .trust-row span:before{
+    color:#b47c00;
+  }
+
+  /* ---------- Hero illustration ---------- */
+
+  .hero-visual{
+    height:430px;
+    max-width:500px;
+    width:100%;
+    justify-self:end;
+    transform:translateX(16px);
+  }
+
+  .hero-visual:before{
+    width:370px;
+    height:370px;
+    background:#e9effc;
+  }
+
+  .hero-visual:after{
+    width:58px;
+    height:58px;
+    right:42px;
+    top:35px;
+  }
+
+  .hero-visual .house{
+    left:48px;
+    bottom:76px;
+    width:145px;
+    height:142px;
+  }
+
+  .hero-visual .house:before{
+    left:-16px;
+    top:-48px;
+    border-left-width:88px;
+    border-right-width:88px;
+    border-bottom-width:62px;
+  }
+
+  .hero-visual .van{
+    right:8px;
+    bottom:51px;
+    width:270px;
+    height:132px;
+  }
+
+  .hero-visual .van-box{
+    width:180px;
+    height:112px;
+    font-size:23px;
+  }
+
+  .hero-visual .van-cab{
+    width:94px;
+    height:84px;
+  }
+
+  .hero-visual .wheel{
+    width:46px;
+    height:46px;
+    border-width:8px;
+  }
+
+  .hero-visual .w1{left:35px}
+  .hero-visual .w2{right:29px}
+
+  .hero-visual .box-stack{
+    left:25px;
+    bottom:76px;
+  }
+
+  .hero-visual .box-stack div{
+    width:48px;
+    height:42px;
+  }
+
+  .hero-visual .box-stack div:nth-child(2){
+    margin-left:38px;
+  }
+
+  .hero-visual .road{
+    left:5px;
+    right:5px;
+    bottom:8px;
+    height:65px;
+  }
+
+  /* ---------- Offer: compact and visually separate ---------- */
+  /* The current HTML nests the offer inside .hero-copy.
+     CSS positions it as a compact secondary card below the hero text. */
+
+  #offer.offer-section{
+    width:min(470px,100%);
+    margin-top:30px;
+    padding:0 !important;
+  }
+
+  #offer .offer-card{
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:20px 21px 18px;
+    grid-template-columns:minmax(0,1fr) 76px;
+    gap:10px 16px;
+    border:1px solid rgba(244,184,47,.62);
+    border-radius:20px;
+    background:
+            radial-gradient(circle at 100% 0%,rgba(244,184,47,.14),transparent 36%),
+            linear-gradient(135deg,#fffdf8,#fff);
+    box-shadow:var(--shadow-sm);
+  }
+
+  #offer .offer-ribbon{
+    top:-11px;
+    right:16px;
+    padding:6px 12px;
+    font-size:8px;
+    border:1px solid rgba(244,184,47,.75);
+    box-shadow:none;
+  }
+
+  #offer .offer-price{
+    font-size:34px;
+  }
+
+  #offer .offer-price small{
+    font-size:11px;
+  }
+
+  #offer .offer-list{
+    margin-top:9px;
+    gap:4px;
+  }
+
+  #offer .offer-list li{
+    font-size:10.5px;
+  }
+
+  #offer .offer-badge{
+    width:76px;
+    height:76px;
+    border:3px solid #fff;
+    box-shadow:0 0 0 1px var(--gold),0 7px 18px rgba(8,23,53,.13);
+  }
+
+  #offer .offer-badge-overlay{
+    padding:8px;
+  }
+
+  #offer .offer-badge-overlay span{
+    font-size:6.5px;
+  }
+
+  #offer .offer-badge-overlay strong{
+    font-size:13px;
+  }
+
+  #offer .offer-cta{
+    min-height:39px;
+    margin-top:4px;
+    padding:9px 14px;
+    font-size:11px;
+    border-radius:11px;
+  }
+
+  /* ---------- Ticker ---------- */
+
+  .ticker{
+    padding:14px 0;
+    background:var(--navy);
+    font-size:11px;
+    letter-spacing:.18em;
+  }
+
+  /* ---------- Section rhythm ---------- */
+
+  .section-block{
+    padding-top:92px;
+    padding-bottom:92px;
+  }
+
+  .section-heading{
+    margin-bottom:40px;
+  }
+
+  .section-heading h2{
+    font-size:clamp(38px,4.8vw,62px);
+  }
+
+  /* ---------- Services ---------- */
+
+  .service-grid{
+    gap:14px;
+  }
+
+  .service-grid article{
+    min-height:215px;
+    padding:27px;
+    border-color:#e4e8ef;
+    border-radius:20px;
+  }
+
+  .service-grid article:hover{
+    transform:translateY(-5px);
+    border-color:#f1c65e;
+    box-shadow:var(--shadow-md);
+  }
+
+  .icon{
+    width:42px;
+    height:42px;
+    margin-bottom:30px;
+    border-radius:12px;
+  }
+
+  /* ---------- Dark section ---------- */
+
+  .dark-section{
+    padding-top:92px;
+    padding-bottom:92px;
+    background:
+            radial-gradient(circle at 80% 20%,rgba(40,75,135,.34),transparent 32%),
+            var(--navy);
+  }
+
+  .feature-grid{
+    gap:10px;
+  }
+
+  .feature-grid article{
+    padding:26px;
+  }
+
+  /* ---------- Process ---------- */
+
+  .process-wrap{
+    background:
+            radial-gradient(circle at 20% 10%,rgba(255,255,255,.8),transparent 30%),
+            var(--cream);
+  }
+
+  .steps{
+    gap:14px;
+  }
+
+  .steps article{
+    padding:27px;
+    border:1px solid rgba(8,23,53,.06);
+    box-shadow:0 5px 20px rgba(8,23,53,.035);
+  }
+
+  .steps article:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-md);
+  }
+
+  .steps b{
+    width:45px;
+    height:45px;
+    margin-bottom:45px;
+  }
+
+  /* ---------- Premium ---------- */
+
+  .premium{
+    padding-top:78px;
+    padding-bottom:78px;
+    grid-template-columns:1fr 1.25fr;
+    gap:45px;
+    background:
+            radial-gradient(circle at 90% 50%,rgba(255,255,255,.28),transparent 35%),
+            var(--gold);
+  }
+
+  .premium h2{
+    font-size:clamp(48px,5.5vw,68px);
+  }
+
+  .premium-list{
+    gap:9px;
+  }
+
+  .premium-list span{
+    padding:11px 14px;
+    background:rgba(255,255,255,.78);
+  }
+
+  /* ---------- Comparison ---------- */
+
+  .comparison-card{
+    border-radius:22px;
+    box-shadow:var(--shadow-md);
+  }
+
+  .comparison-table th,
+  .comparison-table td{
+    padding:17px 16px;
+  }
+
+  .comparison-table .boxit-col{
+    background:#fff9e9;
+  }
+
+  .comparison-table thead .boxit-col{
+    background:linear-gradient(135deg,#f4b82f,#ffd66c);
+  }
+
+  /* ---------- Tips ---------- */
+
+  .tips-grid{
+    gap:14px;
+  }
+
+  .tips-grid article{
+    min-height:260px;
+    padding:26px;
+    border-radius:20px;
+  }
+
+  .tips-grid article:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-md);
+  }
+
+  /* ---------- Reviews ---------- */
+
+  .reviews-section{
+    background:#f0f4fc;
+  }
+
+  .review-grid{
+    gap:14px;
+  }
+
+  .review-grid article{
+    min-height:245px;
+    padding:27px;
+    border-radius:20px;
+  }
+
+  .review-grid article:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-md);
+  }
+
+  /* ---------- Quote ---------- */
+
+  .quote-section{
+    padding-top:92px;
+    padding-bottom:92px;
+    background:
+            radial-gradient(circle at 0 20%,rgba(255,255,255,.8),transparent 32%),
+            #eef3fd;
+    gap:55px;
+  }
+
+  .quote-form{
+    padding:30px;
+    border:1px solid rgba(8,23,53,.05);
+    border-radius:22px;
+    box-shadow:var(--shadow-lg);
+  }
+
+  input,
+  select,
+  textarea{
+    border-color:#d9dee7;
+    border-radius:11px;
+  }
+
+  input:hover,
+  select:hover,
+  textarea:hover{
+    border-color:#c3cad6;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus{
+    outline:3px solid rgba(244,184,47,.18);
+    border-color:#d59c1e;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    padding-top:48px;
+  }
+
+  .footer-top{
+    padding-bottom:38px;
+  }
+
+  /* ---------- Floating WhatsApp ---------- */
+
+  .floating-whatsapp{
+    width:54px;
+    height:54px;
+    right:20px;
+    bottom:20px;
+    box-shadow:0 12px 28px rgba(0,0,0,.17);
+  }
+
+  .floating-whatsapp:hover{
+    transform:translateY(-3px) scale(1.04);
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media(max-width:960px){
+
+    .site-header{
+      height:76px;
+    }
+
+    .site-header nav{
+      top:76px;
+      padding:22px;
+      box-shadow:0 15px 30px rgba(8,23,53,.08);
+    }
+
+    .hero{
+      min-height:auto;
+      grid-template-columns:1fr;
+      padding-top:58px;
+    }
+
+    .hero-copy{
+      max-width:760px;
+    }
+
+    .hero h1{
+      font-size:clamp(54px,9vw,78px);
+    }
+
+    #offer.offer-section{
+      width:min(500px,100%);
+      margin-top:28px;
+    }
+
+    .hero-visual{
+      justify-self:center;
+      transform:none;
+      margin-top:10px;
+    }
+
+    .premium{
+      gap:30px;
+    }
+  }
+
+  @media(max-width:600px){
+
+    .site-header{
+      height:70px;
+    }
+
+    .header-logo{
+      width:116px;
+      height:48px;
+    }
+
+    .header-service-text{
+      margin-left:8px;
+      padding-left:8px;
+    }
+
+    .header-service-text strong{
+      font-size:12px;
+    }
+
+    .header-service-text small{
+      font-size:7px;
+      letter-spacing:.18em;
+    }
+
+    .hero{
+      padding-top:44px;
+      padding-bottom:45px;
+    }
+
+    .hero h1{
+      font-size:clamp(48px,15vw,62px);
+      margin-top:12px;
+    }
+
+    .hero-copy>p{
+      font-size:16px;
+    }
+
+    .hero-actions{
+      flex-direction:row !important;
+      align-items:stretch;
+      gap:8px;
+    }
+
+    .hero-actions .btn{
+      width:auto !important;
+      flex:1 1 0;
+      padding-left:13px;
+      padding-right:13px;
+      font-size:12px;
+    }
+
+    .trust-row{
+      gap:10px 14px;
+      font-size:11px;
+    }
+
+    #offer.offer-section{
+      width:100%;
+      margin-top:28px;
+    }
+
+    #offer .offer-card{
+      grid-template-columns:1fr 68px;
+      padding:19px 16px 16px;
+      border-radius:18px;
+    }
+
+    #offer .offer-price{
+      font-size:30px;
+    }
+
+    #offer .offer-badge{
+      width:68px;
+      height:68px;
+    }
+
+    .hero-visual{
+      height:350px;
+      margin-top:8px;
+    }
+
+    .hero-visual:before{
+      width:300px;
+      height:300px;
+    }
+
+    .hero-visual .house{
+      left:38px;
+      bottom:68px;
+      transform:scale(.82);
+      transform-origin:bottom left;
+    }
+
+    .hero-visual .van{
+      right:0;
+      bottom:47px;
+      transform:scale(.82);
+      transform-origin:bottom right;
+    }
+
+    .hero-visual .box-stack{
+      left:17px;
+      bottom:69px;
+      transform:scale(.82);
+      transform-origin:bottom left;
+    }
+
+    .hero-visual .road{
+      height:55px;
+    }
+
+    .section-block,
+    .dark-section,
+    .quote-section{
+      padding-top:72px;
+      padding-bottom:72px;
+    }
+
+    .section-heading h2{
+      font-size:42px;
+    }
+
+    .premium{
+      padding-top:62px;
+      padding-bottom:62px;
+    }
+
+    .premium h2{
+      font-size:46px;
+    }
+
+    .quote-form{
+      padding:22px;
+    }
+
+    .floating-whatsapp{
+      width:50px;
+      height:50px;
+      right:15px;
+      bottom:15px;
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+      animation:none !important;
+      transition:none !important;
+      scroll-behavior:auto !important;
+    }
+  }
+
+
+
+  /* Services — larger category icons and balanced 8-card grid */
+  .service-grid article:last-child{
+    grid-column:auto;
+  }
+
+  .service-grid .icon{
+    width:58px;
+    height:58px;
+    min-width:58px;
+    border-radius:16px;
+    margin-bottom:30px;
+    font-size:22px;
+    line-height:1;
+    box-shadow:inset 0 0 0 1px rgba(245,185,54,.10);
+  }
+
+  .service-grid article{
+    min-height:250px;
+  }
+
+  @media(max-width:960px){
+    .service-grid article:last-child{
+      grid-column:auto;
+    }
+
+    .service-grid .icon{
+      width:56px;
+      height:56px;
+      min-width:56px;
+    }
+  }
+
+  @media(max-width:600px){
+    .service-grid .icon{
+      width:56px;
+      height:56px;
+      min-width:56px;
+      font-size:21px;
+    }
+
+    .service-grid article{
+      min-height:220px;
+    }
+  }
+
+
+  /* =========================================================
+     SERVICES — UNIFIED STAR ICONS + COMING SOON
+     ========================================================= */
+
+  .service-grid article{
+    position:relative;
+  }
+
+  .service-grid .icon{
+    width:58px;
+    height:58px;
+    min-width:58px;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#fff5d9,#ffefc1);
+    color:#b47c00;
+    font-family:'Manrope',sans-serif;
+    font-size:27px;
+    font-weight:800;
+    line-height:1;
+    margin-bottom:30px;
+    box-shadow:inset 0 0 0 1px rgba(245,185,54,.16);
+  }
+
+  .service-grid article:hover .icon{
+    background:linear-gradient(135deg,#f5b936,#ffd86f);
+    color:var(--navy);
+    transform:scale(1.04);
+  }
+
+  .service-grid .coming-soon-card{
+    padding-top:30px;
+  }
+
+  .service-grid .coming-soon{
+    position:absolute;
+    top:27px;
+    right:25px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:7px 11px;
+    border-radius:999px;
+    background:#fff4d2;
+    border:1px solid rgba(245,185,54,.45);
+    color:#9a6b00;
+    font:800 10px 'Manrope',sans-serif;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .service-grid .coming-soon-card h3{
+    padding-right:110px;
+  }
+
+  @media(max-width:600px){
+    .service-grid .icon{
+      width:56px;
+      height:56px;
+      min-width:56px;
+      font-size:26px;
+    }
+
+    .service-grid .coming-soon{
+      top:24px;
+      right:20px;
+      padding:6px 9px;
+      font-size:9px;
+    }
+
+    .service-grid .coming-soon-card h3{
+      padding-right:0;
+      padding-top:34px;
+    }
+  }
+
+
+  /* =========================================================
+     FINAL HEADER + OFFER ART
+     ========================================================= */
+
+  /* Text-only header: no logo.jpg */
+  .brand-text-only{
+    gap:0;
+  }
+
+  .brand-text-only .header-service-text{
+    margin-left:0;
+    padding-left:0;
+    border-left:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    line-height:.9;
+  }
+
+  .brand-text-only .header-service-text strong{
+    font-family:'Manrope',sans-serif;
+    font-size:28px;
+    line-height:.9;
+    font-weight:800;
+    letter-spacing:.055em;
+    color:var(--navy);
+  }
+
+  .brand-text-only .header-service-text small{
+    margin-top:8px;
+    font-family:'DM Sans',sans-serif;
+    font-size:10px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:.38em;
+    color:#a87500;
+  }
+
+  /* Remove any old image styling from the offer badge */
+  #offer .offer-badge{
+    position:relative;
+    width:82px;
+    height:82px;
+    overflow:visible;
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    border-radius:0;
+    isolation:auto;
+  }
+
+  #offer .offer-badge:after,
+  #offer .offer-badge img{
+    display:none !important;
+  }
+
+  /* Pure HTML moving carton */
+  .offer-box-art{
+    display:grid !important;
+    place-items:center;
+  }
+
+  .box-art{
+    position:relative;
+    width:68px;
+    height:58px;
+    transform:translateY(5px);
+    filter:drop-shadow(0 9px 8px rgba(8,23,53,.16));
+  }
+
+  /* box front */
+  .box-front{
+    position:absolute;
+    left:9px;
+    bottom:2px;
+    width:50px;
+    height:38px;
+    background:linear-gradient(135deg,#e2ad3d 0%,#c98c18 100%);
+    border:2px solid #9f6d0e;
+    border-radius:2px 2px 5px 5px;
+    z-index:4;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+  }
+
+  .box-front:after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:2px;
+    background:rgba(121,78,3,.2);
+  }
+
+  .box-front b{
+    position:relative;
+    z-index:2;
+    color:var(--navy);
+    font:800 7px 'Manrope',sans-serif;
+    letter-spacing:.12em;
+  }
+
+  /* left flap */
+  .box-left{
+    position:absolute;
+    left:8px;
+    top:9px;
+    width:27px;
+    height:20px;
+    background:#d8a031;
+    border:2px solid #9f6d0e;
+    transform:skewY(-17deg) rotate(-2deg);
+    transform-origin:right bottom;
+    z-index:3;
+  }
+
+  /* right flap */
+  .box-right{
+    position:absolute;
+    right:8px;
+    top:9px;
+    width:27px;
+    height:20px;
+    background:#efbd51;
+    border:2px solid #9f6d0e;
+    transform:skewY(17deg) rotate(2deg);
+    transform-origin:left bottom;
+    z-index:3;
+  }
+
+  /* top panel */
+  .box-top{
+    position:absolute;
+    left:14px;
+    top:8px;
+    width:40px;
+    height:23px;
+    background:linear-gradient(135deg,#f2c35d,#d79b25);
+    border:2px solid #9f6d0e;
+    transform:perspective(80px) rotateX(48deg) skewX(-8deg);
+    z-index:2;
+  }
+
+  /* packing tape */
+  .box-tape{
+    position:absolute;
+    left:31px;
+    top:14px;
+    width:7px;
+    height:43px;
+    background:rgba(255,244,210,.78);
+    border-left:1px solid rgba(159,109,14,.25);
+    border-right:1px solid rgba(159,109,14,.25);
+    z-index:5;
+    transform:rotate(0deg);
+  }
+
+  /* subtle little shine */
+  .box-art:after{
+    content:"";
+    position:absolute;
+    left:17px;
+    top:19px;
+    width:12px;
+    height:5px;
+    background:rgba(255,255,255,.28);
+    border-radius:50%;
+    transform:rotate(-18deg);
+    z-index:6;
+  }
+
+  @media(max-width:600px){
+    .brand-text-only .header-service-text strong{
+      font-size:23px;
+    }
+
+    .brand-text-only .header-service-text small{
+      font-size:8px;
+      margin-top:7px;
+      letter-spacing:.32em;
+    }
+
+    #offer .offer-badge{
+      width:68px;
+      height:68px;
+    }
+
+    .box-art{
+      transform:scale(.88) translateY(5px);
+    }
+  }
+
 </style>
 <body>
 <header class="site-header">
-  <a class="brand" href="#top" aria-label="BOXIT home">
-    <img class="header-logo" src="logo.jpg" alt="BOXIT Group">
+  <a class="brand brand-text-only" href="#top" aria-label="BOXIT Service home">
     <span class="header-service-text">
       <strong>BOXIT</strong>
-      <small>SERVICES</small>
+      <small>SERVICE</small>
     </span>
   </a>
   <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -1692,38 +2897,6 @@
 </header>
 
 <main id="top">
-  <section id="offer" class="offer-section section-pad" aria-label="Special offer">
-    <div class="offer-card">
-
-      <span class="offer-ribbon">Special Offer</span>
-
-      <div class="offer-content">
-        <div class="offer-price">
-          £45<small>/hour*</small>
-        </div>
-
-        <ul class="offer-list">
-          <li><b>✓</b> Van + driver included</li>
-          <li><b>✓</b> Transport-only service</li>
-          <li><b>✓</b> Loading &amp; unloading assistance available separately</li>
-        </ul>
-
-        <a class="btn offer-cta" href="#quote">
-          Get Your Quote Now →
-        </a>
-      </div>
-
-      <!-- Circular photo badge -->
-      <div class="offer-badge">
-        <img
-                src="logo.jpg"
-                alt="BOXIT moving service"
-        >
-      </div>
-
-    </div>
-  </section>
-
   <section class="hero section-pad">
     <div class="hero-copy">
       <span class="eyebrow">London-based • UK-wide service</span>
@@ -1737,18 +2910,45 @@
         <span>Clear pricing</span><span>Flexible booking</span><span>Careful handling</span>
       </div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="sun"></div>
-      <div class="house"><i></i><b></b></div>
-      <div class="van">
-        <div class="van-box"><span>BOXIT</span></div>
-        <div class="van-cab"></div>
-        <div class="wheel w1"></div><div class="wheel w2"></div>
+    <section id="offer" class="offer-section section-pad" aria-label="Special offer">
+      <div class="offer-card">
+
+        <span class="offer-ribbon">Special Offer</span>
+
+        <div class="offer-content">
+          <div class="offer-price">
+            £45<small>/hour*</small>
+          </div>
+
+          <ul class="offer-list">
+            <li><b>✓</b> Van + driver included</li>
+            <li><b>✓</b> Transport-only service</li>
+            <li><b>✓</b> Loading &amp; unloading assistance available separately</li>
+          </ul>
+
+          <a class="btn offer-cta" href="#quote">
+            Get Your Quote Now →
+          </a>
+        </div>
+
+        <!-- Pure HTML/CSS moving box illustration -->
+        <div class="offer-badge offer-box-art" aria-label="Moving box illustration" role="img">
+          <div class="box-art">
+            <span class="box-top"></span>
+            <span class="box-left"></span>
+            <span class="box-right"></span>
+            <span class="box-front">
+              <b>BOXIT</b>
+            </span>
+            <span class="box-tape"></span>
+          </div>
+        </div>
+
       </div>
-      <div class="box-stack"><div></div><div></div><div></div></div>
-      <div class="road"></div>
-    </div>
+    </section>
+
   </section>
+
 
   <section class="ticker" aria-label="BOXIT services">
     <div>REMOVALS • MAN & VAN • PACKING • CLEANING • HANDYMAN • FURNITURE DELIVERY • RUBBISH REMOVAL •</div>
@@ -1761,13 +2961,14 @@
       <p>Choose a single service or combine several into one straightforward booking.</p>
     </div>
     <div class="service-grid">
-      <article><span class="icon">↗</span><h3>House Removals</h3><p>Careful home moves, from small flats to full family houses.</p></article>
-      <article><span class="icon">▣</span><h3>Man & Van</h3><p>A flexible Luton van service with loading and unloading help.</p></article>
-      <article><span class="icon">□</span><h3>Packing</h3><p>Full or partial packing, wrapping and preparation before moving day.</p></article>
-      <article><span class="icon">⌂</span><h3>Furniture Delivery</h3><p>Collection and delivery for sofas, beds, tables and bulky items.</p></article>
+      <article><span class="icon">✦</span><h3>House Removals</h3><p>Careful home moves, from small flats to full family houses.</p></article>
+      <article><span class="icon">✦</span><h3>Man & Van</h3><p>A flexible Luton van service with loading and unloading help.</p></article>
+      <article><span class="icon">✦</span><h3>Packing</h3><p>Full or partial packing, wrapping and preparation before moving day.</p></article>
+      <article><span class="icon">✦</span><h3>Furniture Delivery</h3><p>Collection and delivery for sofas, beds, tables and bulky items.</p></article>
       <article><span class="icon">✦</span><h3>Cleaning</h3><p>Regular, deep and end-of-tenancy cleaning for homes and offices.</p></article>
-      <article><span class="icon">⌁</span><h3>Handyman</h3><p>Furniture assembly, shelves, minor repairs and practical help.</p></article>
-      <article><span class="icon">♻</span><h3>Rubbish Removal</h3><p>Household, garden, furniture, garage and loft clearances.</p></article>
+      <article><span class="icon">✦</span><h3>Handyman</h3><p>Furniture assembly, shelves, minor repairs and practical help.</p></article>
+      <article class="coming-soon-card"><span class="icon">✦</span><span class="coming-soon">Coming soon</span><h3>Rubbish Removal</h3><p>Household, garden, furniture, garage and loft clearances.</p></article>
+      <article class="coming-soon-card"><span class="icon">✦</span><span class="coming-soon">Coming soon</span><h3>Storage</h3><p>Safe and flexible storage solutions for your furniture and belongings.</p></article>
     </div>
   </section>
 
@@ -1780,8 +2981,8 @@
       <article><span>01</span><h3>One point of contact</h3><p>Simple communication from your first message to the final item.</p></article>
       <article><span>02</span><h3>Transparent quotes</h3><p>Clear rates and agreed job details before work begins.</p></article>
       <article><span>03</span><h3>Uniformed team</h3><p>A presentable crew representing the BOXIT brand on every booking.</p></article>
-      <article><span>04</span><h3>Flexible support</h3><p>Add packing, cleaning or handyman help when your move needs more.</p></article>
-      <article><span>05</span><h3>Body-camera equipped</h3><p>Added transparency and accountability during the service.</p></article>
+      <article><span>04</span><h3>Body-camera equipped</h3><p>Added transparency and accountability during the service.</p></article>
+      <article><span>05</span><h3>Flexible support</h3><p>Add packing, cleaning or handyman help when your move needs more.</p></article>
     </div>
   </section>
 
@@ -1832,10 +3033,10 @@
         <tr><th scope="row">Packing service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="yes">✓ Available</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually add-on</span></td></tr>
         <tr><th scope="row">Cleaning service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
         <tr><th scope="row">Handyman support</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
-        <tr><th scope="row">Rubbish removal</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
         <tr><th scope="row">Furniture delivery</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="limited">Limited</span></td><td><span class="yes">✓ Available</span></td><td><span class="yes">✓ Available</span></td></tr>
         <tr class="highlight-row"><th scope="row">Free cancellation with 24+ hours' notice</th><td class="boxit-col"><b class="yes">✓ Included</b></td><td><span class="varies">Check terms</span></td><td><span class="varies">Check terms</span></td><td><span class="varies">Varies</span></td></tr>
         <tr class="highlight-row"><th scope="row">24-hour customer support</th><td class="boxit-col"><b class="yes">✓ 24/7 support</b></td><td><span class="varies">Varies</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually limited</span></td></tr>
+        <tr><th scope="row">Rubbish removal</th><td class="boxit-col"><b class="soon">Coming soon</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
         <tr><th scope="row">Storage</th><td class="boxit-col"><b class="soon">Coming soon</b></td><td><span class="yes">✓ Core service</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
         </tbody>
       </table>
@@ -1910,7 +3111,7 @@
       </div>
       <div class="form-row">
         <label>Moving date<input name="date" type="date" /></label>
-        <label>Service<select name="service"><option>House Removals</option><option>Man & Van</option><option>Packing</option><option>Furniture Delivery</option><option>Cleaning</option><option>Handyman</option><option>Rubbish Removal</option></select></label>
+        <label>Service<select name="service"><option>House Removals</option><option>Man & Van</option><option>Packing</option><option>Furniture Delivery</option><option>Cleaning</option><option>Handyman</option><option>Rubbish Removal</option><option>Storage</option></select></label>
       </div>
       <label>Job details<textarea required name="details" rows="5" placeholder="Items, floors, lifts, dismantling, parking and any other useful details"></textarea></label>
       <button class="btn" type="submit">Send via WhatsApp</button>
