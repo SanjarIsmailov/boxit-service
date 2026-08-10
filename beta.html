@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#170b35">
+    <meta name="description" content="BOXIT Service — Beta page coming soon.">
+    <title>BOXIT Service — Coming Soon</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --purple:#7c3aed;
+            --purple-2:#9b6cff;
+            --deep:#170b35;
+            --deep-2:#24104d;
+            --gold:#f5b936;
+            --gold-light:#ffd968;
+            --white:#fff;
+            --muted:#d7cfee;
+        }
+
+        *{box-sizing:border-box}
+
+        html,body{
+            margin:0;
+            min-height:100%;
+        }
+
+        body{
+            min-height:100vh;
+            display:grid;
+            place-items:center;
+            overflow:hidden;
+            color:var(--white);
+            font-family:'DM Sans',sans-serif;
+            background:
+                    radial-gradient(circle at 15% 15%,rgba(155,108,255,.24),transparent 28%),
+                    radial-gradient(circle at 85% 85%,rgba(245,185,54,.10),transparent 25%),
+                    linear-gradient(135deg,var(--deep) 0%,#32126b 52%,#7c3aed 100%);
+        }
+
+        body::before,
+        body::after{
+            content:"";
+            position:fixed;
+            border:1px solid rgba(255,255,255,.09);
+            border-radius:50%;
+            pointer-events:none;
+        }
+
+        body::before{
+            width:620px;
+            height:620px;
+            top:-310px;
+            right:-170px;
+        }
+
+        body::after{
+            width:480px;
+            height:480px;
+            bottom:-300px;
+            left:-170px;
+            border-color:rgba(245,185,54,.12);
+        }
+
+        .page{
+            width:min(920px,calc(100% - 40px));
+            padding:58px 30px 42px;
+            text-align:center;
+            position:relative;
+            z-index:2;
+        }
+
+        /* HTML/CSS box mark */
+        .logo-box{
+            position:relative;
+            width:86px;
+            height:72px;
+            margin:0 auto 22px;
+            filter:drop-shadow(0 15px 18px rgba(0,0,0,.22));
+            animation:float 4s ease-in-out infinite;
+        }
+
+        .box-top{
+            position:absolute;
+            left:16px;
+            top:3px;
+            width:55px;
+            height:29px;
+            background:linear-gradient(135deg,#ffe083,#e1a52d);
+            border:2px solid #a96f00;
+            transform:perspective(110px) rotateX(48deg) skewX(-8deg);
+            z-index:2;
+        }
+
+        .box-front{
+            position:absolute;
+            left:11px;
+            bottom:3px;
+            width:65px;
+            height:44px;
+            display:grid;
+            place-items:center;
+            background:linear-gradient(135deg,#f7c957,#c98b17);
+            border:2px solid #a96f00;
+            border-radius:3px 3px 7px 7px;
+            overflow:hidden;
+            z-index:4;
+        }
+
+        .box-front::after{
+            content:"";
+            position:absolute;
+            left:50%;
+            top:0;
+            bottom:0;
+            width:2px;
+            background:rgba(117,76,0,.18);
+        }
+
+        .box-front b{
+            position:relative;
+            z-index:2;
+            color:#24104d;
+            font:800 9px 'Manrope',sans-serif;
+            letter-spacing:.12em;
+        }
+
+        .box-tape{
+            position:absolute;
+            left:40px;
+            top:10px;
+            width:9px;
+            height:53px;
+            background:rgba(255,248,220,.8);
+            z-index:5;
+        }
+
+        .eyebrow{
+            color:var(--gold-light);
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:.28em;
+            text-transform:uppercase;
+            margin-bottom:15px;
+        }
+
+        h1{
+            margin:0;
+            font-family:'Manrope',sans-serif;
+            font-size:clamp(54px,9vw,96px);
+            line-height:.92;
+            letter-spacing:-.065em;
+            color:#fff;
+        }
+
+        h1 span{
+            color:var(--gold);
+        }
+
+        .stars{
+            margin:22px auto 24px;
+            color:var(--gold);
+            font-size:20px;
+            letter-spacing:5px;
+            text-shadow:0 0 18px rgba(245,185,54,.28);
+        }
+
+        .message{
+            max-width:610px;
+            margin:0 auto;
+            color:var(--muted);
+            font-size:17px;
+            line-height:1.7;
+        }
+
+        .message strong{
+            color:#fff;
+        }
+
+        .actions{
+            display:flex;
+            justify-content:center;
+            gap:12px;
+            margin-top:32px;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:52px;
+            padding:0 24px;
+            border-radius:14px;
+            text-decoration:none;
+            font-weight:800;
+            transition:.22s ease;
+        }
+
+        .btn-home{
+            color:#2a124f;
+            background:var(--gold);
+            box-shadow:0 10px 28px rgba(245,185,54,.20);
+        }
+
+        .btn-home:hover{
+            transform:translateY(-2px);
+            background:var(--gold-light);
+            box-shadow:0 14px 34px rgba(245,185,54,.28);
+        }
+
+        .btn-back{
+            color:#fff;
+            background:rgba(255,255,255,.07);
+            border:1px solid rgba(255,255,255,.18);
+        }
+
+        .btn-back:hover{
+            transform:translateY(-2px);
+            background:rgba(255,255,255,.12);
+        }
+
+        .footer-note{
+            margin-top:46px;
+            color:rgba(255,255,255,.45);
+            font-size:12px;
+            letter-spacing:.04em;
+        }
+
+        @keyframes float{
+            0%,100%{transform:translateY(0) rotate(0deg)}
+            50%{transform:translateY(-7px) rotate(-1deg)}
+        }
+
+        @media(max-width:600px){
+            .page{
+                padding:40px 15px 30px;
+            }
+
+            h1{
+                font-size:58px;
+            }
+
+            .message{
+                font-size:15px;
+            }
+
+            .actions{
+                flex-direction:column;
+                align-items:center;
+            }
+
+            .btn{
+                width:min(300px,100%);
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce){
+            .logo-box{animation:none}
+            .btn{transition:none}
+        }
+
+        /* Single CTA */
+        .actions{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .actions .btn-home{
+            min-width:180px;
+        }
+
+    </style>
+</head>
+
+<body>
+<main class="page">
+    <div class="logo-box" aria-label="BOXIT box" role="img">
+        <span class="box-top"></span>
+        <span class="box-front"><b>BOXIT</b></span>
+        <span class="box-tape"></span>
+    </div>
+
+    <div class="eyebrow">BOXIT SERVICE · BETA</div>
+
+    <h1>Coming <span>Soon.</span></h1>
+
+    <div class="stars" aria-label="BOXIT five stars">★★★★★</div>
+
+    <p class="message">
+        We're putting the finishing touches on this page.
+        <br>
+        <strong>The next BOXIT experience is almost ready.</strong>
+    </p>
+
+    <div class="actions">
+        <a class="btn btn-home" href="index.html">← Back to Home</a>
+    </div>
+
+    <div class="footer-note">
+        © 2026 BOXIT Group Limited · London & UK-wide
+    </div>
+</main>
+</body>
+</html>
