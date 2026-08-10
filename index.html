@@ -8,236 +8,1963 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
 </head>
+<style>
+  :root{
+    --navy:#0a1735;
+    --blue:#102b66;
+    --gold:#f5b936;
+    --cream:#f7f3ea;
+    --ink:#111827;
+    --muted:#667085;
+    --white:#fff;
+    --line:#dfe3ea;
+    --radius:24px;
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
+    margin:0;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ink);
+    background:#fff;
+  }
+
+  h1,h2,h3{
+    font-family:'Manrope',sans-serif;
+    margin:0;
+    line-height:1.05;
+  }
+
+  p{
+    line-height:1.7;
+    color:var(--muted);
+  }
+
+  a{
+    text-decoration:none;
+    color:inherit;
+  }
+
+  .section-pad{
+    padding-left:max(24px,calc((100vw - 1200px)/2));
+    padding-right:max(24px,calc((100vw - 1200px)/2));
+  }
+
+
+  /* =========================================================
+     HEADER
+     ========================================================= */
+
+  .site-header{
+    height:86px;
+    padding:0 max(24px,calc((100vw - 1200px)/2));
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    z-index:20;
+    border-bottom:1px solid rgba(10,23,53,.08);
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+  }
+
+  .header-logo{
+    display:block;
+    width:150px;
+    height:58px;
+    object-fit:contain;
+    object-position:left center;
+  }
+
+  @media(max-width:600px){
+    .header-logo{
+      width:125px;
+      height:52px;
+    }
+  }
+
+  .brand-mark{
+    width:38px;
+    height:38px;
+    background:var(--gold);
+    border-radius:9px;
+    position:relative;
+    display:grid;
+    place-items:center;
+    transform:rotate(-4deg);
+  }
+
+  .brand-mark:before,
+  .brand-mark:after,
+  .brand-mark span{
+    content:"";
+    position:absolute;
+    background:var(--navy);
+  }
+
+  .brand-mark:before{
+    width:21px;
+    height:3px;
+    transform:rotate(28deg);
+  }
+
+  .brand-mark:after{
+    height:21px;
+    width:3px;
+    transform:rotate(28deg);
+  }
+
+  .brand-mark span{
+    width:13px;
+    height:13px;
+    border:3px solid var(--navy);
+    background:transparent;
+  }
+
+  .brand strong{
+    font:800 21px 'Manrope';
+    letter-spacing:.04em;
+    display:block;
+    color:var(--navy);
+  }
+
+  .brand small{
+    font-size:9px;
+    letter-spacing:.34em;
+    display:block;
+    color:#65708a;
+  }
+
+  .site-header nav{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    font-size:14px;
+    font-weight:600;
+  }
+
+  .site-header nav>a:hover{
+    color:var(--blue);
+  }
+
+  .nav-phone{
+    color:var(--blue);
+  }
+
+  .menu-btn{
+    display:none;
+  }
+
+
+  /* =========================================================
+     BUTTONS
+     ========================================================= */
+
+  .btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    background:var(--gold);
+    color:var(--navy);
+    padding:16px 23px;
+    border-radius:999px;
+    font-weight:800;
+    border:0;
+    cursor:pointer;
+    transition:.2s;
+  }
+
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(245,185,54,.3);
+  }
+
+  .btn-small{
+    padding:11px 18px;
+  }
+
+  .btn-ghost{
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:none;
+  }
+
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+
+  .hero{
+    min-height:690px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:60px;
+    align-items:center;
+    background:linear-gradient(180deg,#fff 0%,#fbfaf7 100%);
+    overflow:hidden;
+  }
+
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:12px;
+    font-weight:800;
+    color:#916c0c;
+  }
+
+  .hero h1{
+    font-size:clamp(58px,7.5vw,104px);
+    letter-spacing:-.06em;
+    color:var(--navy);
+    margin:16px 0 24px;
+  }
+
+  .hero h1 span{
+    color:var(--gold);
+  }
+
+  .hero-copy>p{
+    font-size:19px;
+    max-width:620px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    margin:30px 0;
+  }
+
+  .trust-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    font-size:13px;
+    font-weight:700;
+    color:#344054;
+  }
+
+  .trust-row span:before{
+    content:'✓';
+    color:#b47c00;
+    margin-right:7px;
+  }
+
+
+  /* =========================================================
+     HERO ROUND PHOTO
+     ========================================================= */
+
+  .hero-visual{
+    height:520px;
+    position:relative;
+    background:transparent;
+    border-radius:0;
+    overflow:visible;
+    box-shadow:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /*
+    If your hero contains a normal <img>, this makes it round.
+  */
+
+  .hero-visual img{
+    width:440px;
+    height:440px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    background:#e7eefc;
+    border:10px solid #fff;
+    box-shadow:
+            0 25px 60px rgba(16,43,102,.18),
+            0 5px 20px rgba(16,43,102,.08);
+  }
+
+
+  /* Decorative circle behind photo */
+
+  .hero-visual:before{
+    content:"";
+    position:absolute;
+    width:470px;
+    height:470px;
+    border-radius:50%;
+    background:#e7eefc;
+    z-index:0;
+  }
+
+  .hero-visual img{
+    position:relative;
+    z-index:1;
+  }
+
+
+  /* Small gold decorative circle */
+
+  .hero-visual:after{
+    content:"";
+    position:absolute;
+    right:25px;
+    top:40px;
+    width:78px;
+    height:78px;
+    border-radius:50%;
+    background:var(--gold);
+    z-index:2;
+    box-shadow:0 10px 25px rgba(245,185,54,.25);
+  }
+
+
+  /* =========================================================
+     OLD HERO ILLUSTRATION SUPPORT
+     ========================================================= */
+
+  .sun{
+    position:absolute;
+    right:55px;
+    top:55px;
+    width:84px;
+    height:84px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+
+  .road{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:90px;
+    background:#aab6cf;
+  }
+
+  .road:after{
+    content:"";
+    position:absolute;
+    top:42px;
+    width:100%;
+    border-top:5px dashed #fff;
+  }
+
+  .house{
+    position:absolute;
+    left:55px;
+    bottom:90px;
+    width:190px;
+    height:185px;
+    background:#fff;
+    border-radius:10px 10px 0 0;
+  }
+
+  .house:before{
+    content:"";
+    position:absolute;
+    left:-22px;
+    top:-65px;
+    border-left:117px solid transparent;
+    border-right:117px solid transparent;
+    border-bottom:82px solid #173973;
+  }
+
+  .house i,
+  .house b{
+    position:absolute;
+    background:#b7c8e9;
+  }
+
+  .house i{
+    width:48px;
+    height:70px;
+    left:70px;
+    bottom:0;
+  }
+
+  .house b{
+    width:42px;
+    height:42px;
+    right:18px;
+    top:45px;
+  }
+
+  .van{
+    position:absolute;
+    right:30px;
+    bottom:65px;
+    width:330px;
+    height:160px;
+  }
+
+  .van-box{
+    position:absolute;
+    left:0;
+    bottom:25px;
+    width:220px;
+    height:135px;
+    background:var(--navy);
+    border-radius:12px 12px 4px 4px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font:800 30px 'Manrope';
+  }
+
+  .van-box:before{
+    content:"";
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:30px;
+    height:30px;
+    border:4px solid var(--gold);
+    transform:rotate(30deg);
+  }
+
+  .van-cab{
+    position:absolute;
+    right:0;
+    bottom:25px;
+    width:115px;
+    height:100px;
+    background:var(--gold);
+    border-radius:12px 28px 6px 6px;
+  }
+
+  .van-cab:before{
+    content:"";
+    position:absolute;
+    top:12px;
+    left:15px;
+    width:58px;
+    height:35px;
+    background:#d7e5ff;
+    clip-path:polygon(0 0,75% 0,100% 100%,0 100%);
+  }
+
+  .wheel{
+    position:absolute;
+    bottom:0;
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    background:#222;
+    border:10px solid #44506a;
+  }
+
+  .w1{
+    left:43px;
+  }
+
+  .w2{
+    right:38px;
+  }
+
+  .box-stack{
+    position:absolute;
+    left:30px;
+    bottom:90px;
+  }
+
+  .box-stack div{
+    width:58px;
+    height:50px;
+    background:#d49b2a;
+    border:3px solid #a27318;
+    margin-top:3px;
+  }
+
+  .box-stack div:nth-child(2){
+    margin-left:46px;
+  }
+
+  .box-stack div:nth-child(3){
+    margin-left:12px;
+  }
+
+
+  /* =========================================================
+     TICKER
+     ========================================================= */
+
+  .ticker{
+    background:var(--navy);
+    color:#fff;
+    overflow:hidden;
+    white-space:nowrap;
+    padding:18px 0;
+    font:700 13px 'Manrope';
+    letter-spacing:.15em;
+  }
+
+  .ticker div{
+    animation:move 25s linear infinite;
+    width:max-content;
+  }
+
+  @keyframes move{
+    to{
+      transform:translateX(-50%);
+    }
+  }
+
+
+  /* =========================================================
+     GENERAL SECTIONS
+     ========================================================= */
+
+  .section-block{
+    padding-top:110px;
+    padding-bottom:110px;
+  }
+
+  .section-heading{
+    max-width:680px;
+    margin-bottom:48px;
+  }
+
+  .section-heading h2{
+    font-size:clamp(40px,5vw,68px);
+    letter-spacing:-.045em;
+    color:var(--navy);
+    margin:12px 0;
+  }
+
+  .section-heading>p{
+    font-size:18px;
+  }
+
+
+  /* =========================================================
+     SERVICES
+     ========================================================= */
+
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+
+  .service-grid article{
+    padding:30px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    min-height:230px;
+    transition:.25s;
+    background:#fff;
+  }
+
+  .service-grid article:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(17,24,39,.08);
+    border-color:#f4c75f;
+  }
+
+  .service-grid article:last-child{
+    grid-column:span 2;
+  }
+
+  .icon{
+    width:44px;
+    height:44px;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    background:#fff4d7;
+    color:#8f6600;
+    font-weight:800;
+    margin-bottom:35px;
+  }
+
+  .service-grid h3{
+    font-size:22px;
+    color:var(--navy);
+  }
+
+
+  /* =========================================================
+     DARK SECTION
+     ========================================================= */
+
+  .dark-section{
+    padding-top:110px;
+    padding-bottom:110px;
+    background:var(--navy);
+    color:#fff;
+  }
+
+  .section-heading.light h2{
+    color:#fff;
+  }
+
+  .section-heading.light .eyebrow{
+    color:#f8cb65;
+  }
+
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+  }
+
+  .feature-grid article{
+    padding:28px;
+    border-top:1px solid rgba(255,255,255,.25);
+  }
+
+  .feature-grid span{
+    color:var(--gold);
+    font-weight:800;
+  }
+
+  .feature-grid h3{
+    font-size:21px;
+    margin:38px 0 12px;
+  }
+
+  .feature-grid p{
+    color:#b8c1d5;
+  }
+
+
+  /* =========================================================
+     PROCESS
+     ========================================================= */
+
+  .process-wrap{
+    background:var(--cream);
+  }
+
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+
+  .steps article{
+    position:relative;
+    padding:30px;
+    background:#fff;
+    border-radius:var(--radius);
+  }
+
+  .steps b{
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:var(--navy);
+    color:#fff;
+    margin-bottom:55px;
+  }
+
+  .steps h3{
+    font-size:21px;
+    color:var(--navy);
+  }
+
+
+  /* =========================================================
+     PREMIUM SECTION
+     ========================================================= */
+
+  .premium{
+    padding-top:95px;
+    padding-bottom:95px;
+    background:var(--gold);
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    align-items:end;
+    gap:60px;
+  }
+
+  .premium h2{
+    font-size:64px;
+    color:var(--navy);
+    margin:12px 0;
+  }
+
+  .premium p{
+    color:#4e410f;
+  }
+
+  .premium-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .premium-list span{
+    background:rgba(255,255,255,.72);
+    padding:13px 16px;
+    border-radius:999px;
+    font-weight:700;
+    color:var(--navy);
+  }
+
+
+  /* =========================================================
+     FAQ
+     ========================================================= */
+
+  .faq-list{
+    border-top:1px solid var(--line);
+  }
+
+  details{
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+  }
+
+  summary{
+    cursor:pointer;
+    font:700 18px 'Manrope';
+    color:var(--navy);
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  summary:after{
+    content:'+';
+    color:#9b7009;
+    font-size:24px;
+  }
+
+  details[open] summary:after{
+    content:'−';
+  }
+
+
+  /* =========================================================
+     QUOTE SECTION
+     ========================================================= */
+
+  .quote-section{
+    padding-top:110px;
+    padding-bottom:110px;
+    background:#eef3fd;
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:80px;
+  }
+
+  .quote-copy h2{
+    font-size:clamp(46px,5vw,72px);
+    color:var(--navy);
+    letter-spacing:-.04em;
+    margin:12px 0;
+  }
+
+  .contact-cards{
+    display:grid;
+    gap:12px;
+    margin-top:35px;
+  }
+
+  .contact-cards a{
+    background:#fff;
+    padding:18px 20px;
+    border-radius:16px;
+  }
+
+  .contact-cards small{
+    display:block;
+    color:var(--muted);
+  }
+
+  .contact-cards strong{
+    color:var(--navy);
+  }
+
+  .quote-form{
+    background:#fff;
+    padding:32px;
+    border-radius:28px;
+    box-shadow:0 24px 60px rgba(16,43,102,.1);
+  }
+
+  label{
+    display:grid;
+    gap:7px;
+    font-weight:700;
+    font-size:13px;
+    color:var(--navy);
+    margin-bottom:16px;
+  }
+
+  input,
+  select,
+  textarea{
+    width:100%;
+    padding:14px 15px;
+    border:1px solid #ced5e1;
+    border-radius:12px;
+    font:inherit;
+    color:var(--ink);
+    background:#fff;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus{
+    outline:3px solid rgba(245,185,54,.28);
+    border-color:#d59c1e;
+  }
+
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .quote-form .btn{
+    width:100%;
+  }
+
+  .form-note{
+    font-size:12px;
+    text-align:center;
+    margin-bottom:0;
+  }
+
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+
+  footer{
+    background:#071126;
+    color:#fff;
+    padding:55px max(24px,calc((100vw - 1200px)/2)) 25px;
+  }
+
+  .footer-top{
+    display:grid;
+    grid-template-columns:1fr 1.3fr auto;
+    align-items:center;
+    gap:40px;
+    padding-bottom:45px;
+  }
+
+  .brand-light strong{
+    color:#fff;
+  }
+
+  .footer-top p{
+    color:#aeb8cd;
+  }
+
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.14);
+    padding-top:24px;
+    color:#9ba7bd;
+    font-size:13px;
+  }
+
+  .footer-bottom div{
+    display:flex;
+    gap:18px;
+  }
+
+
+  /* =========================================================
+     WHATSAPP
+     ========================================================= */
+
+  .floating-whatsapp{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:58px;
+    height:58px;
+    background:#25d366;
+    color:#fff;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    font-weight:800;
+    box-shadow:0 12px 25px rgba(0,0,0,.2);
+    z-index:30;
+  }
+
+
+  /* =========================================================
+     SPECIAL OFFER
+     ========================================================= */
+
+  .offer-section{
+    padding-top:34px;
+    padding-bottom:6px;
+  }
+
+  .offer-card{
+    position:relative;
+    max-width:800px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--gold);
+    border-radius:28px;
+    padding:42px 46px 34px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px 34px;
+    align-items:center;
+    box-shadow:0 22px 55px rgba(16,43,102,.14);
+  }
+
+  .offer-ribbon{
+    position:absolute;
+    top:-19px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--navy);
+    color:#fff;
+    font:800 12px 'Manrope';
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    padding:11px 24px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .offer-price{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font:800 52px 'Manrope';
+    color:var(--navy);
+  }
+
+  .offer-price small{
+    font-size:16px;
+    font-weight:700;
+    color:var(--muted);
+  }
+
+  .offer-list{
+    list-style:none;
+    margin:22px 0 0;
+    padding:0;
+    display:grid;
+    gap:11px;
+  }
+
+  .offer-list li{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    font-weight:700;
+    font-size:14.5px;
+    color:#344054;
+  }
+
+  .offer-list li b{
+    color:#b47c00;
+  }
+
+
+  .offer-badge{
+    width:128px;
+    height:128px;
+    border-radius:50%;
+    background:var(--navy);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    font:800 13px 'Manrope';
+    line-height:1.35;
+    justify-self:center;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .offer-badge img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.34;
+    z-index:-1;
+  }
+
+  .offer-badge-overlay{
+    position:relative;
+    z-index:2;
+    display:grid;
+    gap:2px;
+    padding:18px;
+    text-shadow:0 2px 10px rgba(0,0,0,.25);
+  }
+
+  .offer-badge-overlay span{
+    display:block;
+    color:#fff;
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+
+  .offer-badge-overlay strong{
+    display:block;
+    color:var(--gold);
+    font-size:20px;
+    letter-spacing:.06em;
+  }
+
+  .offer-cta{
+    grid-column:1/-1;
+    margin-top:10px;
+    width:max-content;
+  }
+
+
+  /* =========================================================
+     COMPARISON
+     ========================================================= */
+
+  .compare-section{
+    background:#fff;
+  }
+
+  .compare-heading{
+    max-width:820px;
+  }
+
+  .comparison-card{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:28px;
+    background:#fff;
+    box-shadow:0 24px 55px rgba(16,43,102,.08);
+  }
+
+  .comparison-table{
+    width:100%;
+    min-width:960px;
+    border-collapse:separate;
+    border-spacing:0;
+    text-align:center;
+  }
+
+  .comparison-table th,
+  .comparison-table td{
+    padding:19px 18px;
+    border-right:1px solid #e8ebf1;
+    border-bottom:1px solid #e8ebf1;
+  }
+
+  .comparison-table thead th{
+    background:#f4f6fa;
+    color:var(--navy);
+    font-family:'Manrope';
+    font-size:15px;
+    vertical-align:bottom;
+  }
+
+  .comparison-table thead th:first-child{
+    text-align:left;
+    min-width:255px;
+  }
+
+  .comparison-table thead span,
+  .comparison-table thead small{
+    display:block;
+  }
+
+  .comparison-table thead small{
+    margin-top:5px;
+    color:var(--muted);
+    font:500 12px 'DM Sans';
+  }
+
+  .comparison-table tbody th{
+    text-align:left;
+    color:var(--navy);
+    font-size:14px;
+    background:#fff;
+  }
+
+  .comparison-table tr:last-child th,
+  .comparison-table tr:last-child td{
+    border-bottom:0;
+  }
+
+  .comparison-table th:last-child,
+  .comparison-table td:last-child{
+    border-right:0;
+  }
+
+  .comparison-table .boxit-col{
+    background:#fff8e6;
+  }
+
+  .comparison-table thead .boxit-col{
+    background:var(--gold);
+    font-size:18px;
+  }
+
+  .comparison-table .highlight-row th{
+    font-weight:800;
+  }
+
+  .comparison-table .highlight-row .boxit-col{
+    background:#fff0bd;
+  }
+
+  .yes{
+    color:#147a43;
+    font-weight:800;
+  }
+
+  .limited{
+    color:#9a6700;
+    font-weight:700;
+  }
+
+  .varies{
+    color:#526078;
+    font-weight:700;
+  }
+
+  .no{
+    color:#a9afbc;
+    font-weight:800;
+  }
+
+  .soon{
+    display:inline-block;
+    background:var(--navy);
+    color:#fff;
+    padding:7px 11px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:.02em;
+  }
+
+  .comparison-note{
+    font-size:12px;
+    color:var(--muted);
+    margin:16px 4px 0;
+  }
+
+
+  /* =========================================================
+     TIPS
+     ========================================================= */
+
+  .tips-section{
+    background:var(--cream);
+  }
+
+  .tips-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+
+  .tips-grid article{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:28px;
+    min-height:280px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .tips-grid article>span{
+    font:800 13px 'Manrope';
+    color:#9a700a;
+  }
+
+  .tips-grid h3{
+    font-size:22px;
+    color:var(--navy);
+    margin:38px 0 12px;
+  }
+
+  .tips-grid p{
+    flex:1;
+  }
+
+  .tips-grid a{
+    font-weight:800;
+    color:#8a6200;
+    margin-top:22px;
+  }
+
+
+  /* =========================================================
+     REVIEWS
+     ========================================================= */
+
+  .reviews-section{
+    background:#eef3fd;
+  }
+
+  .reviews-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+  }
+
+  .review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+
+  .review-grid article{
+    background:#fff;
+    border-radius:24px;
+    padding:30px;
+    min-height:260px;
+    box-shadow:0 15px 35px rgba(16,43,102,.07);
+  }
+
+  .stars{
+    color:#d99d14;
+    letter-spacing:.14em;
+    font-size:18px;
+  }
+
+  .review-grid article>p{
+    font-size:19px;
+    color:var(--navy);
+    margin:32px 0;
+  }
+
+  .review-grid article footer{
+    background:none;
+    color:inherit;
+    padding:0;
+    display:grid;
+    gap:2px;
+  }
+
+  .review-grid article footer strong{
+    color:var(--navy);
+  }
+
+  .review-grid article footer span{
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  .review-placeholder{
+    border:1px dashed #b7c2d8;
+  }
+
+  .reviews-note{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:16px;
+  }
+
+
+  /* =========================================================
+     TABLET
+     ========================================================= */
+
+  @media(max-width:960px){
+
+    .site-header nav{
+      display:none;
+      position:absolute;
+      left:0;
+      right:0;
+      top:86px;
+      background:#fff;
+      padding:24px;
+      flex-direction:column;
+      align-items:flex-start;
+      border-bottom:1px solid var(--line);
+    }
+
+    .site-header nav.open{
+      display:flex;
+    }
+
+    .menu-btn{
+      display:block;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:99px;
+      padding:10px 14px;
+      font-weight:700;
+    }
+
+    .hero{
+      grid-template-columns:1fr;
+      padding-top:75px;
+      padding-bottom:60px;
+    }
+
+    .hero-visual{
+      height:500px;
+    }
+
+    .hero-visual:before{
+      width:440px;
+      height:440px;
+    }
+
+    .hero-visual img{
+      width:410px;
+      height:410px;
+    }
+
+    .service-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .steps{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .quote-section{
+      grid-template-columns:1fr;
+    }
+
+    .premium{
+      grid-template-columns:1fr;
+    }
+
+    .footer-top{
+      grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+      gap:18px;
+      flex-direction:column;
+    }
+
+    .footer-bottom div{
+      flex-wrap:wrap;
+    }
+
+    .offer-card{
+      grid-template-columns:1fr auto;
+    }
+
+    .tips-grid,
+    .review-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .reviews-head{
+      align-items:flex-start;
+      flex-direction:column;
+    }
+  }
+
+
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+
+  @media(max-width:600px){
+
+    .section-pad{
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    .hero{
+      min-height:auto;
+      padding-top:55px;
+    }
+
+    .hero h1{
+      font-size:58px;
+    }
+
+    .hero-copy>p{
+      font-size:17px;
+    }
+
+    .hero-actions{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .hero-actions .btn{
+      width:100%;
+    }
+
+    .hero-visual{
+      height:370px;
+      margin-top:10px;
+    }
+
+    .hero-visual:before{
+      width:320px;
+      height:320px;
+    }
+
+    .hero-visual img{
+      width:300px;
+      height:300px;
+      border-width:7px;
+    }
+
+    .hero-visual:after{
+      width:58px;
+      height:58px;
+      right:25px;
+      top:30px;
+    }
+
+    /*
+      Hide old illustration pieces on mobile if they are still
+      present in the HTML. This prevents them overlapping the
+      round photo.
+    */
+
+    .hero-visual .sun,
+    .hero-visual .road,
+    .hero-visual .house,
+    .hero-visual .van,
+    .hero-visual .box-stack{
+      display:none;
+    }
+
+    .service-grid,
+    .feature-grid,
+    .steps{
+      grid-template-columns:1fr;
+    }
+
+    .service-grid article:last-child{
+      grid-column:auto;
+    }
+
+    .form-row{
+      grid-template-columns:1fr;
+    }
+
+    .section-block,
+    .dark-section,
+    .quote-section{
+      padding-top:75px;
+      padding-bottom:75px;
+    }
+
+    .premium{
+      padding-top:70px;
+      padding-bottom:70px;
+    }
+
+    .premium h2{
+      font-size:48px;
+    }
+
+    .footer-bottom div{
+      flex-direction:column;
+    }
+
+    .offer-card{
+      grid-template-columns:1fr;
+      padding:36px 22px;
+      text-align:center;
+    }
+
+    .offer-badge{
+      justify-self:center;
+    }
+
+    .offer-price{
+      justify-content:center;
+    }
+
+    .offer-list{
+      text-align:left;
+    }
+
+    .offer-cta{
+      width:100%;
+    }
+
+    .tips-grid,
+    .review-grid{
+      grid-template-columns:1fr;
+    }
+
+    .comparison-card{
+      border-radius:20px;
+    }
+
+    .comparison-table th,
+    .comparison-table td{
+      padding:15px 13px;
+    }
+
+    .reviews-head .btn{
+      width:100%;
+    }
+  }
+
+
+  /* =========================================================
+     EXTRA SMALL PHONES
+     ========================================================= */
+
+  @media(max-width:380px){
+
+    .hero h1{
+      font-size:50px;
+    }
+
+    .hero-visual{
+      height:330px;
+    }
+
+    .hero-visual:before{
+      width:285px;
+      height:285px;
+    }
+
+    .hero-visual img{
+      width:270px;
+      height:270px;
+    }
+
+    .hero-visual:after{
+      width:48px;
+      height:48px;
+      right:15px;
+    }
+  }
+
+
+  /* Smooth, subtle motion */
+  .hero-copy > *{
+    animation:fadeUp .65s ease both;
+  }
+  .hero-copy > :nth-child(2){animation-delay:.08s}
+  .hero-copy > :nth-child(3){animation-delay:.16s}
+  .hero-copy > :nth-child(4){animation-delay:.24s}
+  .hero-copy > :nth-child(5){animation-delay:.32s}
+
+  .hero-visual .sun{
+    animation:float 5s ease-in-out infinite;
+  }
+  .hero-visual .van{
+    animation:vanFloat 4.5s ease-in-out infinite;
+  }
+  .hero-visual .box-stack{
+    animation:boxFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  @keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+  }
+
+  @keyframes vanFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-5px)}
+  }
+
+  @keyframes boxFloat{
+    0%,100%{transform:translateY(0) rotate(0)}
+    50%{transform:translateY(-6px) rotate(-1deg)}
+  }
+
+  .floating-whatsapp{
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+
+  .floating-whatsapp:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 16px 30px rgba(0,0,0,.24);
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+
+
+  .header-service-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin-left:14px;
+    line-height:1;
+    border-left:1px solid rgba(10,23,53,.14);
+    padding-left:14px;
+  }
+
+  .header-service-text strong{
+    font-family:'Manrope',sans-serif;
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.08em;
+    color:var(--navy);
+  }
+
+  .header-service-text small{
+    margin-top:5px;
+    font-family:'DM Sans',sans-serif;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.28em;
+    color:#9a700a;
+  }
+
+  @media(max-width:600px){
+    .header-service-text{
+      margin-left:10px;
+      padding-left:10px;
+    }
+
+    .header-service-text strong{
+      font-size:14px;
+    }
+
+    .header-service-text small{
+      font-size:8px;
+      letter-spacing:.2em;
+    }
+  }
+
+</style>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="BOXIT home">
-      <span class="brand-mark"><span></span></span>
-      <span><strong>BOXIT</strong><small>GROUP</small></span>
-    </a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav id="nav">
-      <a href="#services">Services</a>
-      <a href="#why">Why BOXIT</a>
-      <a href="#process">How it works</a>
-      <a href="#compare">Compare</a>
-      <a href="#tips">Tips</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-phone" href="tel:+447949286369">07949 286 369</a>
-      <a class="btn btn-small" href="#quote">Get a quote</a>
-    </nav>
-  </header>
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="BOXIT home">
+    <img class="header-logo" src="logo.jpg" alt="BOXIT Group">
+    <span class="header-service-text">
+      <strong>BOXIT</strong>
+      <small>SERVICES</small>
+    </span>
+  </a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav">
+    <a href="#services">Services</a>
+    <a href="#why">Why BOXIT</a>
+    <a href="#process">How it works</a>
+    <a href="#compare">Compare</a>
+    <a href="#tips">Tips</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a class="nav-phone" href="tel:+447949286369">07949 286 369</a>
+    <a class="btn btn-small" href="#quote">Get a quote</a>
+  </nav>
+</header>
 
-  <main id="top">
-    <section class="hero section-pad">
-      <div class="hero-copy">
-        <span class="eyebrow">London-based • UK-wide service</span>
-        <h1>Moving made <span>simple.</span></h1>
-        <p>Man & van, packing, furniture delivery, cleaning, handyman and rubbish removal — organised by one reliable team.</p>
-        <div class="hero-actions">
-          <a class="btn" href="#quote">Get a free quote</a>
-          <a class="btn btn-ghost" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp us</a>
+<main id="top">
+  <section id="offer" class="offer-section section-pad" aria-label="Special offer">
+    <div class="offer-card">
+
+      <span class="offer-ribbon">Special Offer</span>
+
+      <div class="offer-content">
+        <div class="offer-price">
+          £45<small>/hour*</small>
         </div>
-        <div class="trust-row">
-          <span>Clear pricing</span><span>Flexible booking</span><span>Careful handling</span>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="sun"></div>
-        <div class="house"><i></i><b></b></div>
-        <div class="van">
-          <div class="van-box"><span>BOXIT</span></div>
-          <div class="van-cab"></div>
-          <div class="wheel w1"></div><div class="wheel w2"></div>
-        </div>
-        <div class="box-stack"><div></div><div></div><div></div></div>
-        <div class="road"></div>
-      </div>
-    </section>
 
-    <section class="ticker" aria-label="BOXIT services">
-      <div>REMOVALS • MAN & VAN • PACKING • CLEANING • HANDYMAN • FURNITURE DELIVERY • RUBBISH REMOVAL •</div>
-    </section>
+        <ul class="offer-list">
+          <li><b>✓</b> Van + driver included</li>
+          <li><b>✓</b> Transport-only service</li>
+          <li><b>✓</b> Loading &amp; unloading assistance available separately</li>
+        </ul>
 
-    <section id="services" class="section-pad section-block">
-      <div class="section-heading">
-        <span class="eyebrow">What we do</span>
-        <h2>One team for the whole job.</h2>
-        <p>Choose a single service or combine several into one straightforward booking.</p>
+        <a class="btn offer-cta" href="#quote">
+          Get Your Quote Now →
+        </a>
       </div>
-      <div class="service-grid">
-        <article><span class="icon">↗</span><h3>House Removals</h3><p>Careful home moves, from small flats to full family houses.</p></article>
-        <article><span class="icon">▣</span><h3>Man & Van</h3><p>A flexible Luton van service with loading and unloading help.</p></article>
-        <article><span class="icon">□</span><h3>Packing</h3><p>Full or partial packing, wrapping and preparation before moving day.</p></article>
-        <article><span class="icon">⌂</span><h3>Furniture Delivery</h3><p>Collection and delivery for sofas, beds, tables and bulky items.</p></article>
-        <article><span class="icon">✦</span><h3>Cleaning</h3><p>Regular, deep and end-of-tenancy cleaning for homes and offices.</p></article>
-        <article><span class="icon">⌁</span><h3>Handyman</h3><p>Furniture assembly, shelves, minor repairs and practical help.</p></article>
-        <article><span class="icon">♻</span><h3>Rubbish Removal</h3><p>Household, garden, furniture, garage and loft clearances.</p></article>
-      </div>
-    </section>
 
-    <section id="why" class="dark-section section-pad">
-      <div class="section-heading light">
-        <span class="eyebrow">Why BOXIT</span>
-        <h2>Professional without the stress.</h2>
+      <!-- Circular photo badge -->
+      <div class="offer-badge">
+        <img
+                src="logo.jpg"
+                alt="BOXIT moving service"
+        >
       </div>
-      <div class="feature-grid">
-        <article><span>01</span><h3>One point of contact</h3><p>Simple communication from your first message to the final item.</p></article>
-        <article><span>02</span><h3>Transparent quotes</h3><p>Clear rates and agreed job details before work begins.</p></article>
-        <article><span>03</span><h3>Uniformed team</h3><p>A presentable crew representing the BOXIT brand on every booking.</p></article>
-        <article><span>04</span><h3>Flexible support</h3><p>Add packing, cleaning or handyman help when your move needs more.</p></article>
-      </div>
-    </section>
 
-    <section id="process" class="section-pad section-block process-wrap">
-      <div class="section-heading">
-        <span class="eyebrow">How it works</span>
-        <h2>Four easy steps.</h2>
-      </div>
-      <div class="steps">
-        <article><b>1</b><h3>Send details</h3><p>Share addresses, date, item list and photos or video.</p></article>
-        <article><b>2</b><h3>Receive your quote</h3><p>We confirm the team, vehicle, timing and price.</p></article>
-        <article><b>3</b><h3>Book the job</h3><p>Choose your preferred slot and confirm the booking.</p></article>
-        <article><b>4</b><h3>We take care of it</h3><p>Our team arrives, protects, loads, transports and unloads.</p></article>
-      </div>
-    </section>
-
-    <section class="premium section-pad">
-      <div>
-        <span class="eyebrow">Extra care option</span>
-        <h2>Premium Move</h2>
-        <p>For customers who want a more protective, detail-focused service.</p>
-      </div>
-      <div class="premium-list">
-        <span>Shoe covers</span><span>Floor protection</span><span>Furniture wrapping</span><span>Mattress protection</span><span>Careful placement</span><span>Reassembly support</span>
-      </div>
-    </section>
-
-
-    <section id="compare" class="compare-section section-pad section-block">
-      <div class="section-heading compare-heading">
-        <span class="eyebrow">Why customers choose us</span>
-        <h2>More support in one booking.</h2>
-        <p>A simple overview of how BOXIT compares with common moving and storage options. Services offered by other providers can vary by location, booking and package.</p>
-      </div>
-      <div class="comparison-card" role="region" aria-label="BOXIT service comparison" tabindex="0">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th scope="col">Service & benefit</th>
-              <th scope="col" class="boxit-col"><span>BOXIT</span><small>One trusted team</small></th>
-              <th scope="col"><span>Storage company</span><small>Storage-focused</small></th>
-              <th scope="col"><span>Booking platform</span><small>Marketplace model</small></th>
-              <th scope="col"><span>Traditional man & van</span><small>Transport-focused</small></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">House removals</th><td class="boxit-col"><b class="yes">✓ Included</b></td><td><span class="limited">Limited</span></td><td><span class="varies">Varies</span></td><td><span class="yes">✓ Available</span></td></tr>
-            <tr><th scope="row">Packing service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="yes">✓ Available</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually add-on</span></td></tr>
-            <tr><th scope="row">Cleaning service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
-            <tr><th scope="row">Handyman support</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
-            <tr><th scope="row">Rubbish removal(coming soon...)</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
-            <tr><th scope="row">Furniture delivery</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="limited">Limited</span></td><td><span class="yes">✓ Available</span></td><td><span class="yes">✓ Available</span></td></tr>
-            <tr class="highlight-row"><th scope="row">Free cancellation with 24+ hours' notice</th><td class="boxit-col"><b class="yes">✓ Included</b></td><td><span class="varies">Check terms</span></td><td><span class="varies">Check terms</span></td><td><span class="varies">Varies</span></td></tr>
-            <tr class="highlight-row"><th scope="row">24-hour customer support</th><td class="boxit-col"><b class="yes">✓ 24/7 support</b></td><td><span class="varies">Varies</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually limited</span></td></tr>
-            <tr><th scope="row">Storage</th><td class="boxit-col"><b class="soon">Coming soon</b></td><td><span class="yes">✓ Core service</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="comparison-note">Comparison is a general guide only. Other companies' services and terms may differ. Please check each provider's current offer before booking.</p>
-    </section>
-
-    <section id="tips" class="tips-section section-pad section-block">
-      <div class="section-heading">
-        <span class="eyebrow">Useful moving advice</span>
-        <h2>Plan better. Move easier.</h2>
-        <p>Simple tips that can save time, reduce costs and help moving day run smoothly.</p>
-      </div>
-      <div class="tips-grid">
-        <article><span>01</span><h3>Reserve parking early</h3><p>Check parking restrictions at both addresses and arrange permits before moving day where needed.</p><a href="#quote">Ask us about access →</a></article>
-        <article><span>02</span><h3>Send a walk-through video</h3><p>A short video helps us estimate volume, stairs, access and the right number of movers more accurately.</p><a href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20to%20send%20a%20video%20for%20a%20quote." target="_blank" rel="noopener">Send on WhatsApp →</a></article>
-        <article><span>03</span><h3>Label every box</h3><p>Write the room and contents on two sides of each box so unloading and unpacking are much faster.</p><a href="#quote">Book packing help →</a></article>
-        <article><span>04</span><h3>Measure large furniture</h3><p>Measure doors, staircases and lifts before moving sofas, wardrobes or oversized items.</p><a href="#faq">Read common questions →</a></article>
-        <article><span>05</span><h3>Keep essentials separate</h3><p>Pack keys, medicines, chargers, documents and overnight items in a bag that stays with you.</p><a href="#quote">Plan your move →</a></article>
-        <article><span>06</span><h3>Choose the right team size</h3><p>Two or three movers can reduce the total job time for larger homes, stairs and long carries.</p><a href="#quote">Get a team recommendation →</a></article>
-      </div>
-    </section>
-
-    <section id="reviews" class="reviews-section section-pad section-block">
-      <div class="reviews-head">
-        <div class="section-heading">
-          <span class="eyebrow">Client comments</span>
-          <h2>Real feedback builds trust.</h2>
-          <p>This section is ready for your genuine Google, WhatsApp or direct customer comments.</p>
-        </div>
-        <a class="btn btn-ghost" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20to%20leave%20feedback." target="_blank" rel="noopener">Leave a comment</a>
-      </div>
-      <div class="review-grid">
-        <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Removal service</span></footer></article>
-        <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Man & van service</span></footer></article>
-        <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Cleaning or handyman service</span></footer></article>
-      </div>
-      <p class="reviews-note">Replace these placeholders only with comments received from real customers. Do not publish invented names or reviews.</p>
-    </section>
-
-    <section id="faq" class="section-pad section-block faq-wrap">
-      <div class="section-heading">
-        <span class="eyebrow">FAQ</span>
-        <h2>Useful answers before booking.</h2>
-      </div>
-      <div class="faq-list">
-        <details><summary>Do you help with loading and unloading?</summary><p>Yes. We can provide a driver only or a driver with one or more helpers, depending on the job.</p></details>
-        <details><summary>Can you dismantle and reassemble furniture?</summary><p>Yes, this can be added to your booking. Please mention the items when requesting your quote.</p></details>
-        <details><summary>Do you work outside London?</summary><p>Yes. BOXIT is London-based and can complete long-distance jobs across the United Kingdom.</p></details>
-        <details><summary>Can I send photos or a video?</summary><p>Yes. Photos and walk-through videos help us understand the volume and provide a more accurate quote.</p></details>
-        <details><summary>What about parking, tolls and charges?</summary><p>Parking arrangements, tolls, congestion charges and similar costs are discussed before the booking where applicable.</p></details>
-        <details><summary>What is your cancellation policy?</summary><p>Bookings cancelled at least 24 hours in advance can be cancelled free of charge, subject to the agreed booking terms.</p></details>
-      </div>
-    </section>
-
-    <section id="quote" class="quote-section section-pad">
-      <div class="quote-copy">
-        <span class="eyebrow">Free quote</span>
-        <h2>Tell us what needs moving.</h2>
-        <p>Complete the form and your details will open in WhatsApp, ready to send to BOXIT.</p>
-        <div class="contact-cards">
-          <a href="tel:+447949286369"><small>Call us</small><strong>07949 286 369</strong></a>
-          <a href="mailto:boxitgroupuk@gmail.com"><small>Email us</small><strong>boxitgroupuk@gmail.com</strong></a>
-        </div>
-      </div>
-      <form id="quoteForm" class="quote-form">
-        <label>Full name<input required name="name" autocomplete="name" /></label>
-        <label>Phone number<input required name="phone" type="tel" autocomplete="tel" /></label>
-        <div class="form-row">
-          <label>Collection postcode<input required name="pickup" /></label>
-          <label>Delivery postcode<input required name="delivery" /></label>
-        </div>
-        <div class="form-row">
-          <label>Moving date<input name="date" type="date" /></label>
-          <label>Service<select name="service"><option>House Removals</option><option>Man & Van</option><option>Packing</option><option>Furniture Delivery</option><option>Cleaning</option><option>Handyman</option><option>Rubbish Removal</option></select></label>
-        </div>
-        <label>Job details<textarea required name="details" rows="5" placeholder="Items, floors, lifts, dismantling, parking and any other useful details"></textarea></label>
-        <button class="btn" type="submit">Send via WhatsApp</button>
-        <p class="form-note">By sending this enquiry, you agree that BOXIT may contact you about this job.</p>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-top">
-      <a class="brand brand-light" href="#top"><span class="brand-mark"><span></span></span><span><strong>BOXIT</strong><small>GROUP</small></span></a>
-      <p>Removals and practical home services across London and the UK.</p>
-      <a class="btn btn-small" href="#quote">Get a quote</a>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> BOXIT Group Limited</span>
-      <div><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a><a href="cookies.html">Cookie Policy</a></div>
-    </div>
-  </footer>
+  </section>
 
-  <a class="floating-whatsapp" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener" aria-label="Contact BOXIT on WhatsApp">WA</a>
-  <script src="script.js"></script>
+  <section class="hero section-pad">
+    <div class="hero-copy">
+      <span class="eyebrow">London-based • UK-wide service</span>
+      <h1>Moving made <span>simple.</span></h1>
+      <p>Man & van, packing, furniture delivery, cleaning, handyman and rubbish removal — organised by one reliable team.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#quote">Get a free quote</a>
+        <a class="btn btn-ghost" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+      <div class="trust-row">
+        <span>Clear pricing</span><span>Flexible booking</span><span>Careful handling</span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="house"><i></i><b></b></div>
+      <div class="van">
+        <div class="van-box"><span>BOXIT</span></div>
+        <div class="van-cab"></div>
+        <div class="wheel w1"></div><div class="wheel w2"></div>
+      </div>
+      <div class="box-stack"><div></div><div></div><div></div></div>
+      <div class="road"></div>
+    </div>
+  </section>
+
+  <section class="ticker" aria-label="BOXIT services">
+    <div>REMOVALS • MAN & VAN • PACKING • CLEANING • HANDYMAN • FURNITURE DELIVERY • RUBBISH REMOVAL •</div>
+  </section>
+
+  <section id="services" class="section-pad section-block">
+    <div class="section-heading">
+      <span class="eyebrow">What we do</span>
+      <h2>One team for the whole job.</h2>
+      <p>Choose a single service or combine several into one straightforward booking.</p>
+    </div>
+    <div class="service-grid">
+      <article><span class="icon">↗</span><h3>House Removals</h3><p>Careful home moves, from small flats to full family houses.</p></article>
+      <article><span class="icon">▣</span><h3>Man & Van</h3><p>A flexible Luton van service with loading and unloading help.</p></article>
+      <article><span class="icon">□</span><h3>Packing</h3><p>Full or partial packing, wrapping and preparation before moving day.</p></article>
+      <article><span class="icon">⌂</span><h3>Furniture Delivery</h3><p>Collection and delivery for sofas, beds, tables and bulky items.</p></article>
+      <article><span class="icon">✦</span><h3>Cleaning</h3><p>Regular, deep and end-of-tenancy cleaning for homes and offices.</p></article>
+      <article><span class="icon">⌁</span><h3>Handyman</h3><p>Furniture assembly, shelves, minor repairs and practical help.</p></article>
+      <article><span class="icon">♻</span><h3>Rubbish Removal</h3><p>Household, garden, furniture, garage and loft clearances.</p></article>
+    </div>
+  </section>
+
+  <section id="why" class="dark-section section-pad">
+    <div class="section-heading light">
+      <span class="eyebrow">Why BOXIT</span>
+      <h2>Professional without the stress.</h2>
+    </div>
+    <div class="feature-grid">
+      <article><span>01</span><h3>One point of contact</h3><p>Simple communication from your first message to the final item.</p></article>
+      <article><span>02</span><h3>Transparent quotes</h3><p>Clear rates and agreed job details before work begins.</p></article>
+      <article><span>03</span><h3>Uniformed team</h3><p>A presentable crew representing the BOXIT brand on every booking.</p></article>
+      <article><span>04</span><h3>Flexible support</h3><p>Add packing, cleaning or handyman help when your move needs more.</p></article>
+      <article><span>05</span><h3>Body-camera equipped</h3><p>Added transparency and accountability during the service.</p></article>
+    </div>
+  </section>
+
+  <section id="process" class="section-pad section-block process-wrap">
+    <div class="section-heading">
+      <span class="eyebrow">How it works</span>
+      <h2>Four easy steps.</h2>
+    </div>
+    <div class="steps">
+      <article><b>1</b><h3>Send details</h3><p>Share addresses, date, item list and photos or video.</p></article>
+      <article><b>2</b><h3>Receive your quote</h3><p>We confirm the team, vehicle, timing and price.</p></article>
+      <article><b>3</b><h3>Book the job</h3><p>Choose your preferred slot and confirm the booking.</p></article>
+      <article><b>4</b><h3>We take care of it</h3><p>Our team arrives, protects, loads, transports and unloads.</p></article>
+    </div>
+  </section>
+
+  <section class="premium section-pad">
+    <div>
+      <span class="eyebrow">Extra care option</span>
+      <h2>Premium Move</h2>
+      <p>For customers who want a more protective, detail-focused service.</p>
+    </div>
+    <div class="premium-list">
+      <span>Shoe covers</span><span>Floor protection</span><span>Furniture wrapping</span><span>Mattress protection</span><span>Careful placement</span><span>Reassembly support</span>
+    </div>
+  </section>
+
+
+  <section id="compare" class="compare-section section-pad section-block">
+    <div class="section-heading compare-heading">
+      <span class="eyebrow">Why customers choose us</span>
+      <h2>More support in one booking.</h2>
+      <p>A simple overview of how BOXIT compares with common moving and storage options. Services offered by other providers can vary by location, booking and package.</p>
+    </div>
+    <div class="comparison-card" role="region" aria-label="BOXIT service comparison" tabindex="0">
+      <table class="comparison-table">
+        <thead>
+        <tr>
+          <th scope="col">Service & benefit</th>
+          <th scope="col" class="boxit-col"><span>BOXIT</span><small>One trusted team</small></th>
+          <th scope="col"><span>Storage company</span><small>Storage-focused</small></th>
+          <th scope="col"><span>Booking platform</span><small>Marketplace model</small></th>
+          <th scope="col"><span>Traditional man & van</span><small>Transport-focused</small></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><th scope="row">House removals</th><td class="boxit-col"><b class="yes">✓ Included</b></td><td><span class="limited">Limited</span></td><td><span class="varies">Varies</span></td><td><span class="yes">✓ Available</span></td></tr>
+        <tr><th scope="row">Packing service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="yes">✓ Available</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually add-on</span></td></tr>
+        <tr><th scope="row">Cleaning service</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
+        <tr><th scope="row">Handyman support</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
+        <tr><th scope="row">Rubbish removal</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="no">—</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Sometimes</span></td></tr>
+        <tr><th scope="row">Furniture delivery</th><td class="boxit-col"><b class="yes">✓ Available</b></td><td><span class="limited">Limited</span></td><td><span class="yes">✓ Available</span></td><td><span class="yes">✓ Available</span></td></tr>
+        <tr class="highlight-row"><th scope="row">Free cancellation with 24+ hours' notice</th><td class="boxit-col"><b class="yes">✓ Included</b></td><td><span class="varies">Check terms</span></td><td><span class="varies">Check terms</span></td><td><span class="varies">Varies</span></td></tr>
+        <tr class="highlight-row"><th scope="row">24-hour customer support</th><td class="boxit-col"><b class="yes">✓ 24/7 support</b></td><td><span class="varies">Varies</span></td><td><span class="varies">Varies</span></td><td><span class="limited">Usually limited</span></td></tr>
+        <tr><th scope="row">Storage</th><td class="boxit-col"><b class="soon">Coming soon</b></td><td><span class="yes">✓ Core service</span></td><td><span class="varies">Varies</span></td><td><span class="no">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="comparison-note">Comparison is a general guide only. Other companies' services and terms may differ. Please check each provider's current offer before booking.</p>
+  </section>
+
+  <section id="tips" class="tips-section section-pad section-block">
+    <div class="section-heading">
+      <span class="eyebrow">Useful moving advice</span>
+      <h2>Plan better. Move easier.</h2>
+      <p>Simple tips that can save time, reduce costs and help moving day run smoothly.</p>
+    </div>
+    <div class="tips-grid">
+      <article><span>01</span><h3>Reserve parking early</h3><p>Check parking restrictions at both addresses and arrange permits before moving day where needed.</p><a href="#quote">Ask us about access →</a></article>
+      <article><span>02</span><h3>Send a walk-through video</h3><p>A short video helps us estimate volume, stairs, access and the right number of movers more accurately.</p><a href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20to%20send%20a%20video%20for%20a%20quote." target="_blank" rel="noopener">Send on WhatsApp →</a></article>
+      <article><span>03</span><h3>Label every box</h3><p>Write the room and contents on two sides of each box so unloading and unpacking are much faster.</p><a href="#quote">Book packing help →</a></article>
+      <article><span>04</span><h3>Measure large furniture</h3><p>Measure doors, staircases and lifts before moving sofas, wardrobes or oversized items.</p><a href="#faq">Read common questions →</a></article>
+      <article><span>05</span><h3>Keep essentials separate</h3><p>Pack keys, medicines, chargers, documents and overnight items in a bag that stays with you.</p><a href="#quote">Plan your move →</a></article>
+      <article><span>06</span><h3>Choose the right team size</h3><p>Two or three movers can reduce the total job time for larger homes, stairs and long carries.</p><a href="#quote">Get a team recommendation →</a></article>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews-section section-pad section-block">
+    <div class="reviews-head">
+      <div class="section-heading">
+        <span class="eyebrow">Client comments</span>
+        <h2>Real feedback builds trust.</h2>
+        <p>This section is ready for your genuine Google, WhatsApp or direct customer comments.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20to%20leave%20feedback." target="_blank" rel="noopener">Leave a comment</a>
+    </div>
+    <div class="review-grid">
+      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Removal service</span></footer></article>
+      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Man & van service</span></footer></article>
+      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Cleaning or handyman service</span></footer></article>
+    </div>
+    <p class="reviews-note">Replace these placeholders only with comments received from real customers. Do not publish invented names or reviews.</p>
+  </section>
+
+  <section id="faq" class="section-pad section-block faq-wrap">
+    <div class="section-heading">
+      <span class="eyebrow">FAQ</span>
+      <h2>Useful answers before booking.</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary>Do you help with loading and unloading?</summary><p>Yes. We can provide a driver only or a driver with one or more helpers, depending on the job.</p></details>
+      <details><summary>Can you dismantle and reassemble furniture?</summary><p>Yes, this can be added to your booking. Please mention the items when requesting your quote.</p></details>
+      <details><summary>Do you work outside London?</summary><p>Yes. BOXIT is London-based and can complete long-distance jobs across the United Kingdom.</p></details>
+      <details><summary>Can I send photos or a video?</summary><p>Yes. Photos and walk-through videos help us understand the volume and provide a more accurate quote.</p></details>
+      <details><summary>What about parking, tolls and charges?</summary><p>Parking arrangements, tolls, congestion charges and similar costs are discussed before the booking where applicable.</p></details>
+      <details><summary>What is your cancellation policy?</summary><p>Bookings cancelled at least 24 hours in advance can be cancelled free of charge, subject to the agreed booking terms.</p></details>
+    </div>
+  </section>
+
+  <section id="quote" class="quote-section section-pad">
+    <div class="quote-copy">
+      <span class="eyebrow">Free quote</span>
+      <h2>Tell us what needs moving.</h2>
+      <p>Complete the form and your details will open in WhatsApp, ready to send to BOXIT.</p>
+      <div class="contact-cards">
+        <a href="tel:+447949286369"><small>Call us</small><strong>07949 286 369</strong></a>
+        <a href="mailto:boxitgroupuk@gmail.com"><small>Email us</small><strong>boxitgroupuk@gmail.com</strong></a>
+      </div>
+    </div>
+    <form id="quoteForm" class="quote-form">
+      <label>Full name<input required name="name" autocomplete="name" /></label>
+      <label>Phone number<input required name="phone" type="tel" autocomplete="tel" /></label>
+      <div class="form-row">
+        <label>Collection postcode<input required name="pickup" /></label>
+        <label>Delivery postcode<input required name="delivery" /></label>
+      </div>
+      <div class="form-row">
+        <label>Moving date<input name="date" type="date" /></label>
+        <label>Service<select name="service"><option>House Removals</option><option>Man & Van</option><option>Packing</option><option>Furniture Delivery</option><option>Cleaning</option><option>Handyman</option><option>Rubbish Removal</option></select></label>
+      </div>
+      <label>Job details<textarea required name="details" rows="5" placeholder="Items, floors, lifts, dismantling, parking and any other useful details"></textarea></label>
+      <button class="btn" type="submit">Send via WhatsApp</button>
+      <p class="form-note">By sending this enquiry, you agree that BOXIT may contact you about this job.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <a class="brand brand-light" href="#top"><span class="brand-mark"><span></span></span><span><strong>BOXIT</strong><small>GROUP</small></span></a>
+    <p>Removals and practical home services across London and the UK.</p>
+    <a class="btn btn-small" href="#quote">Get a quote</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> BOXIT Group Limited</span>
+  </div>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener" aria-label="Contact BOXIT on WhatsApp">WA</a>
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const nav = document.querySelector('#nav');
+
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('open'));
+    });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('quoteForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const text = [
+      'Hello BOXIT, I would like a quote.',
+      '',
+      `Name: ${data.get('name')}`,
+      `Phone: ${data.get('phone')}`,
+      `Service: ${data.get('service')}`,
+      `Collection: ${data.get('pickup')}`,
+      `Delivery: ${data.get('delivery')}`,
+      `Date: ${data.get('date') || 'Flexible / not confirmed'}`,
+      '',
+      `Job details: ${data.get('details')}`
+    ].join('\n');
+    window.open(`https://wa.me/447949286369?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  });
+
+</script>
 </body>
 </html>
