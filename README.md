@@ -20,7 +20,7 @@ Man & Van · Removals · Packing · Furniture Delivery · Cleaning · Handyman
 
 <br>
 
-**[🌐 Visit Website](https://sanjarlsmailov.github.io/boxit-service/)**
+**[🌐 Visit Website](https://sanjarismailov.github.io/boxit-service/)**
 
 </div>
 
