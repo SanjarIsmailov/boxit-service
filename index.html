@@ -4080,6 +4080,263 @@
     flex:none !important;
   }
 
+
+  /* ---------- Premium Move: text only, no white backgrounds ---------- */
+  .premium-list{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    justify-content:center !important;
+    gap:10px 28px !important;
+  }
+  .premium-list span{
+    background:transparent !important;
+    background-color:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    padding:0 !important;
+    margin:0 !important;
+    border-radius:0 !important;
+    color:#FFD400 !important;
+    font-weight:700 !important;
+  }
+
+
+
+  /* Keep all six items on one row even on phones */
+  @media (max-width:600px){
+    .premium-list{
+      flex-wrap:nowrap !important;
+      gap:0 !important;
+      overflow:visible !important;
+    }
+    .premium-list span{
+      flex:1 1 0 !important;
+      font-size:clamp(8px, 2.45vw, 13px) !important;
+      letter-spacing:-.2px !important;
+    }
+  }
+
+
+  /* ---------- Premium Move: FORCE ALL ITEMS ON ONE LINE ---------- */
+  .premium-list{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    max-width:none !important;
+    gap:clamp(8px, 2.5vw, 32px) !important;
+    white-space:nowrap !important;
+  }
+  .premium-list > span{
+    display:block !important;
+    flex:0 1 auto !important;
+    width:auto !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    color:#FFD400 !important;
+    cursor:default !important;
+    transition:none !important;
+    transform:none !important;
+  }
+  .premium-list > span:hover,
+  .premium-list > span:focus,
+  .premium-list > span:active{
+    color:#FFD400 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    transform:none !important;
+  }
+
+  /* Desktop and mobile: never stack */
+  @media (max-width:700px){
+    .premium-list{
+      display:flex !important;
+      flex-direction:row !important;
+      flex-wrap:nowrap !important;
+      gap:clamp(4px, 1.6vw, 12px) !important;
+    }
+    .premium-list > span{
+      flex:1 1 0 !important;
+      font-size:clamp(7px, 2.35vw, 12px) !important;
+      letter-spacing:-.3px !important;
+    }
+  }
+
+
+  /* ---------- Special Offer: use logo.jpg instead of CSS box ---------- */
+  #offer .offer-box-art{
+    display:none !important;
+  }
+  #offer .offer-logo-image{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+    background:transparent !important;
+    border:1px solid #FFD400 !important;
+  }
+  #offer .offer-logo-image img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    display:block !important;
+  }
+
+
+  /* ---------- Special Offer label: ultra-bright gold ---------- */
+  #offer .offer-ribbon{
+    background:#FFD400 !important;
+    color:#FFF3A0 !important;
+    border-color:#FFE600 !important;
+    text-shadow:
+            0 0 4px rgba(255,255,255,.95),
+            0 0 10px rgba(255,212,0,.95),
+            0 0 20px rgba(255,212,0,.75) !important;
+    box-shadow:
+            0 0 8px rgba(255,212,0,.95),
+            0 0 18px rgba(255,212,0,.75),
+            0 0 32px rgba(255,212,0,.45) !important;
+  }
+
+
+  /* ---------- Special Offer: purple logo visibility ---------- */
+  #offer .offer-card{
+    background:
+            linear-gradient(135deg, #5B2BBF 0%, #7A3FE0 52%, #9B6BFF 100%) !important;
+  }
+  #offer .offer-logo-image{
+    background:#FFFFFF !important;
+    border:2px solid #FFD400 !important;
+    padding:6px !important;
+    box-shadow:
+            0 0 0 1px rgba(255,212,0,.35),
+            0 8px 20px rgba(37,12,88,.25) !important;
+  }
+  #offer .offer-logo-image img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    background:#FFFFFF !important;
+    display:block !important;
+  }
+
+
+  /* ---------- FIX: Special Offer logo.jpg must be visible ---------- */
+  #offer .offer-logo-image{
+    width:92px !important;
+    height:92px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    background:#160A2D !important;
+    border:2px solid #FFD400 !important;
+    box-shadow:0 0 0 1px rgba(255,212,0,.4) !important;
+    border-radius:0 !important;
+  }
+  #offer .offer-logo-image img,
+  #offer .offer-badge.offer-logo-image img{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    position:static !important;
+    z-index:5 !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    max-height:none !important;
+    object-fit:cover !important;
+    object-position:center !important;
+    background:transparent !important;
+  }
+  #offer .offer-logo-image:after{
+    display:none !important;
+  }
+
+
+
+
+  /* ---------- Reviews: 3 visible, one exits and the next enters ---------- */
+  #reviews{
+    overflow:hidden !important;
+  }
+
+  #reviews .review-grid{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    width:max-content !important;
+    max-width:none !important;
+    gap:18px !important;
+    margin:0 !important;
+    padding:0 !important;
+    animation:reviewCarousel 16s linear infinite !important;
+    will-change:transform;
+  }
+
+  #reviews .review-grid .review-placeholder{
+    flex:0 0 calc((100vw - 72px) / 3) !important;
+    width:calc((100vw - 72px) / 3) !important;
+    min-width:calc((100vw - 72px) / 3) !important;
+    box-sizing:border-box !important;
+  }
+
+  /* Move exactly one card width each cycle.
+   Four original cards are followed by clones for a seamless loop. */
+  @keyframes reviewCarousel{
+    0%, 18%{
+      transform:translateX(0);
+    }
+    25%, 43%{
+      transform:translateX(calc(-1 * ((100vw - 72px) / 3 + 18px)));
+    }
+    50%, 68%{
+      transform:translateX(calc(-2 * ((100vw - 72px) / 3 + 18px)));
+    }
+    75%, 93%{
+      transform:translateX(calc(-3 * ((100vw - 72px) / 3 + 18px)));
+    }
+    100%{
+      transform:translateX(0);
+    }
+  }
+
+  #reviews .review-grid:hover{
+    animation-play-state:paused !important;
+  }
+
+  @media(max-width:700px){
+    #reviews .review-grid{
+      gap:12px !important;
+      animation-duration:12s !important;
+    }
+
+    #reviews .review-grid .review-placeholder{
+      flex:0 0 calc(100vw - 48px) !important;
+      width:calc(100vw - 48px) !important;
+      min-width:calc(100vw - 48px) !important;
+    }
+
+    @keyframes reviewCarousel{
+      0%, 18%{ transform:translateX(0); }
+      25%, 43%{ transform:translateX(calc(-1 * (100vw - 36px))); }
+      50%, 68%{ transform:translateX(calc(-2 * (100vw - 36px))); }
+      75%, 93%{ transform:translateX(calc(-3 * (100vw - 36px))); }
+      100%{ transform:translateX(0); }
+    }
+  }
+
 </style>
 <body>
 <header class="site-header">
@@ -4139,17 +4396,9 @@
           </a>
         </div>
 
-        <!-- Pure HTML/CSS moving box illustration -->
-        <div class="offer-badge offer-box-art" aria-label="Moving box illustration" role="img">
-          <div class="box-art">
-            <span class="box-top"></span>
-            <span class="box-left"></span>
-            <span class="box-right"></span>
-            <span class="box-front">
-              <b>BOXIT</b>
-            </span>
-            <span class="box-tape"></span>
-          </div>
+        <!-- logo.jpg used for the Special Offer image -->
+        <div class="offer-badge offer-logo-image" aria-label="BOXIT logo">
+          <img src="logo.jpg" alt="BOXIT logo">
         </div>
 
       </div>
@@ -4281,11 +4530,47 @@
       <a class="btn btn-ghost" href="https://wa.me/447949286369?text=Hello%20BOXIT%2C%20I%20would%20like%20to%20leave%20feedback." target="_blank" rel="noopener">Leave a comment</a>
     </div>
     <div class="review-grid">
-      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Removal service</span></footer></article>
-      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Man & van service</span></footer></article>
-      <article class="review-placeholder"><div class="stars">★★★★★</div><p>“Add a genuine client comment here.”</p><footer><strong>Verified customer</strong><span>Cleaning or handyman service</span></footer></article>
+      <article class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Thank you so much! We’ve finished the move and we’re very happy with everything. The guy you sent us was really great. Thank you for your quick response and reliability.”</p>
+        <footer><strong>Nigora</strong><span>Customer review</span></footer>
+      </article>
+      <article class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Absolutely brilliant service! The guys arrived on time, worked quickly and were very polite. They made the whole move much less stressful than we expected. Thank you again.”</p>
+        <footer><strong>Alice</strong><span>Customer review</span></footer>
+      </article>
+      <article class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Thank you so much for your help! Everything went smoothly and the team was very professional and careful with our belongings. Really happy with the service and would definitely recommend BOXIT.”</p>
+        <footer><strong>Simon</strong><span>Customer review</span></footer>
+      </article>
+      <article class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“You have no idea how happy and grateful I am! I actually had to move my things back again today. 🫣 Thank you so much for all your help. I’ll definitely recommend you to everyone.”</p>
+        <footer><strong>Ann</strong><span>Customer review</span></footer>
+      </article>
+      <article data-review-clone="true" class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Thank you so much! We’ve finished the move and we’re very happy with everything. The guy you sent us was really great. Thank you for your quick response and reliability.”</p>
+        <footer><strong>Nigora</strong><span>Customer review</span></footer>
+      </article>
+      <article data-review-clone="true" class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Absolutely brilliant service! The guys arrived on time, worked quickly and were very polite. They made the whole move much less stressful than we expected. Thank you again.”</p>
+        <footer><strong>Alice</strong><span>Customer review</span></footer>
+      </article>
+      <article data-review-clone="true" class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“Thank you so much for your help! Everything went smoothly and the team was very professional and careful with our belongings. Really happy with the service and would definitely recommend BOXIT.”</p>
+        <footer><strong>Simon</strong><span>Customer review</span></footer>
+      </article>
+      <article data-review-clone="true" class="review-placeholder">
+        <div class="stars">★★★★★</div>
+        <p>“You have no idea how happy and grateful I am! I actually had to move my things back again today. 🫣 Thank you so much for all your help. I’ll definitely recommend you to everyone.”</p>
+        <footer><strong>Ann</strong><span>Customer review</span></footer>
+      </article>
     </div>
-    <p class="reviews-note">Replace these placeholders only with comments received from real customers. Do not publish invented names or reviews.</p>
   </section>
 
   <section id="faq" class="section-pad section-block faq-wrap">
