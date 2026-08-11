@@ -4293,7 +4293,7 @@
     }
 
     /* Move exactly one card width each cycle.
-   Four original cards are followed by clones for a seamless loop. */
+     Four original cards are followed by clones for a seamless loop. */
     @keyframes reviewCarousel{
         0%, 18%{
             transform:translateX(0);
@@ -4334,6 +4334,47 @@
             50%, 68%{ transform:translateX(calc(-2 * (100vw - 36px))); }
             75%, 93%{ transform:translateX(calc(-3 * (100vw - 36px))); }
             100%{ transform:translateX(0); }
+        }
+    }
+
+
+    /* ---------- Premium Move: two clean rows on mobile ---------- */
+    @media(max-width:700px){
+        .premium-list{
+            display:grid !important;
+            grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+            grid-template-rows:auto auto !important;
+            gap:14px 18px !important;
+            width:100% !important;
+            padding:0 12px !important;
+            box-sizing:border-box !important;
+            white-space:normal !important;
+            align-items:center !important;
+        }
+
+        .premium-list > span{
+            display:block !important;
+            width:auto !important;
+            min-width:0 !important;
+            flex:none !important;
+            white-space:normal !important;
+            text-align:center !important;
+            line-height:1.25 !important;
+            font-size:clamp(10px, 3vw, 13px) !important;
+            margin:0 !important;
+            padding:0 !important;
+            color:#FFD400 !important;
+        }
+    }
+
+    /* Desktop remains one row */
+    @media(min-width:701px){
+        .premium-list{
+            display:flex !important;
+            flex-wrap:nowrap !important;
+            justify-content:center !important;
+            align-items:center !important;
+            white-space:nowrap !important;
         }
     }
 
