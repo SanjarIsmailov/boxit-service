@@ -260,6 +260,292 @@
       #offer .offer-ribbon-v2{min-width:150px;font-size:9px;padding:7px 15px 8px;}
     }
   </style>
+  <style>
+    /* =========================================================
+           FINAL HERO IMAGE FIX
+           background.jpg must be in the same folder as this HTML file.
+           This rule intentionally comes last so older hero styles cannot
+           override the image background.
+           ========================================================= */
+    .hero .hero-visual{
+      height:520px !important;
+      min-height:520px !important;
+      width:100% !important;
+      min-width:0 !important;
+      position:relative !important;
+      display:block !important;
+      overflow:hidden !important;
+      border-radius:30px !important;
+      transform:none !important;
+      background-image:
+              linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,0) 45%, rgba(43,19,94,.05)),
+              url("background.jpg") !important;
+      background-size:cover !important;
+      background-position:center center !important;
+      background-repeat:no-repeat !important;
+      background-color:#eee8ff !important;
+      box-shadow:0 28px 65px rgba(31,18,69,.16) !important;
+      isolation:isolate !important;
+    }
+
+    .hero .hero-visual::before,
+    .hero .hero-visual::after{
+      content:none !important;
+      display:none !important;
+    }
+
+    .hero .hero-image-overlay{
+      position:absolute !important;
+      inset:0 !important;
+      z-index:1 !important;
+      pointer-events:none !important;
+      background:linear-gradient(90deg,rgba(255,255,255,.02),transparent 35%,rgba(55,25,120,.03)) !important;
+    }
+
+    @media(max-width:960px){
+      .hero .hero-visual{
+        height:500px !important;
+        min-height:500px !important;
+        width:100% !important;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero .hero-visual{
+        height:360px !important;
+        min-height:360px !important;
+        border-radius:22px !important;
+      }
+    }
+  </style>
+
+  <style id="final-user-overrides">
+    /* =========================================================
+           FINAL USER REQUESTS
+           - Premium CTA buttons are purple
+           - Titles/headings are black in day mode (no gold/purple title accents)
+           - Hero image is clearer and remains responsive on phones
+           - Day/Night toggle stays visible in the header on mobile
+           ========================================================= */
+
+    /* Titles/headings: black in DAY mode */
+    html:not([data-theme="dark"]) h1,
+    html:not([data-theme="dark"]) h2,
+    html:not([data-theme="dark"]) h3,
+    html:not([data-theme="dark"]) h4,
+    html:not([data-theme="dark"]) h5,
+    html:not([data-theme="dark"]) h6,
+    html:not([data-theme="dark"]) .hero h1,
+    html:not([data-theme="dark"]) .hero h1 span,
+    html:not([data-theme="dark"]) .section-heading h2,
+    html:not([data-theme="dark"]) .section-block h2,
+    html:not([data-theme="dark"]) .section-block h3,
+    html:not([data-theme="dark"]) .compare-heading h2,
+    html:not([data-theme="dark"]) .tips-section h2,
+    html:not([data-theme="dark"]) .tips-grid h3,
+    html:not([data-theme="dark"]) .reviews-section h2,
+    html:not([data-theme="dark"]) .review-grid h3,
+    html:not([data-theme="dark"]) .faq-wrap h2,
+    html:not([data-theme="dark"]) .faq-list summary,
+    html:not([data-theme="dark"]) .quote-copy h2,
+    html:not([data-theme="dark"]) .quote-form h3,
+    html:not([data-theme="dark"]) .service-grid h3,
+    html:not([data-theme="dark"]) .steps h3,
+    html:not([data-theme="dark"]) .feature-grid h3,
+    html:not([data-theme="dark"]) .comparison-table th,
+    html:not([data-theme="dark"]) .pricing-heading h2,
+    html:not([data-theme="dark"]) .pricing-card h3,
+    html:not([data-theme="dark"]) .premium h2 {
+      color:#111111 !important;
+    }
+
+    /* Premium buttons — all buttons using the premium/dark pricing class */
+    .pricing-btn-dark,
+    #offer .pricing-btn-dark,
+    .pricing-btn-dark:hover,
+    #offer .pricing-btn-dark:hover {
+      background:#7c3aed !important;
+      background-image:none !important;
+      color:#ffffff !important;
+      border:1px solid #7c3aed !important;
+      box-shadow:0 10px 24px rgba(124,58,237,.28) !important;
+    }
+
+    /* Keep the premium CTA purple in both themes */
+    html[data-theme="dark"] .pricing-btn-dark,
+    html[data-theme="dark"] #offer .pricing-btn-dark {
+      background:#7c3aed !important;
+      color:#ffffff !important;
+      border-color:#7c3aed !important;
+    }
+
+    /* Hero image: clearer rendering + responsive sizing */
+    .hero{
+      background-size:cover !important;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+              linear-gradient(90deg,
+              rgba(255,255,255,.98) 0%,
+              rgba(255,255,255,.92) 28%,
+              rgba(255,255,255,.66) 48%,
+              rgba(255,255,255,.22) 72%,
+              rgba(255,255,255,.06) 100%),
+              url("background.jpg") center right / cover no-repeat;
+      filter:contrast(1.08) saturate(.98);
+      transform:scale(1.002);
+    }
+
+    .hero > *{
+      position:relative;
+      z-index:1;
+    }
+
+    /* Hide the old background layer so the clearer pseudo-element is used. */
+    .hero{
+      background-image:none !important;
+    }
+
+    html[data-theme="dark"] .hero::before{
+      background:
+              linear-gradient(90deg,
+              rgba(12,10,24,.96) 0%,
+              rgba(12,10,24,.88) 28%,
+              rgba(12,10,24,.58) 52%,
+              rgba(12,10,24,.20) 78%,
+              rgba(12,10,24,.08) 100%),
+              url("background.jpg") center right / cover no-repeat;
+      filter:contrast(1.08) saturate(.9);
+    }
+
+    @media(max-width:1000px){
+      .hero::before{
+        background:
+                linear-gradient(180deg,
+                rgba(255,255,255,.98) 0%,
+                rgba(255,255,255,.92) 44%,
+                rgba(255,255,255,.52) 78%,
+                rgba(255,255,255,.16) 100%),
+                url("background.jpg") center center / cover no-repeat;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero::before{
+        background:
+                linear-gradient(180deg,
+                rgba(255,255,255,.98) 0%,
+                rgba(255,255,255,.93) 43%,
+                rgba(255,255,255,.48) 76%,
+                rgba(255,255,255,.14) 100%),
+                url("background.jpg") 62% center / cover no-repeat;
+        filter:contrast(1.1) saturate(.98);
+      }
+    }
+
+    /* Theme button is now a direct child of the header, so it stays visible on phones. */
+    .site-header{
+      position:sticky;
+    }
+
+    .site-header > .theme-toggle{
+      display:inline-flex !important;
+      order:3;
+      margin-left:12px;
+    }
+
+    .site-header > .menu-btn{
+      order:2;
+      margin-left:auto;
+    }
+
+    .site-header > nav{
+      order:4;
+    }
+
+    @media(min-width:961px){
+      .site-header > .menu-btn{
+        display:none !important;
+      }
+      .site-header > .theme-toggle{
+        display:none !important;
+      }
+    }
+
+    @media(max-width:960px){
+      .site-header{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      .site-header > .theme-toggle{
+        width:42px;
+        height:42px;
+        margin-left:10px;
+      }
+
+      .site-header > .menu-btn{
+        margin-left:auto;
+      }
+    }
+
+    @media(max-width:600px){
+      .site-header{
+        height:72px;
+        min-height:72px;
+      }
+
+      .site-header > .theme-toggle{
+        width:40px;
+        height:40px;
+        margin-left:8px;
+      }
+
+      .theme-icon{
+        font-size:18px;
+      }
+
+      .header-logo{
+        width:118px !important;
+        height:48px !important;
+      }
+    }
+
+    @media(max-width:380px){
+      .site-header > .theme-toggle{
+        width:38px;
+        height:38px;
+      }
+      .header-logo{
+        width:108px !important;
+      }
+    }
+  </style>
+
+
+  <style id="boxit-final-fixes">
+    /* Final fixed version: day/night mode removed */
+    .pricing-btn-gold,
+    .pricing-btn-dark,
+    .pricing-btn-outline,
+    .pricing-btn { background:#7c3aed !important; color:#fff !important; border-color:#7c3aed !important; }
+    .pricing-btn:hover, .pricing-btn-gold:hover, .pricing-btn-dark:hover, .pricing-btn-outline:hover { background:#6d28d9 !important; color:#fff !important; border-color:#6d28d9 !important; }
+    body h1, body h2, body h3, body h4, body h5, body h6,
+    .hero h1, .section-heading h2, .section-block h2, .section-block h3,
+    .compare-heading h2, .tips-section h2, .tips-grid h3, .reviews-section h2,
+    .review-grid h3, .faq-wrap h2, .faq-list summary, .quote-copy h2,
+    .quote-form h3, .service-grid h3, .steps h3, .feature-grid h3,
+    .comparison-table th, .pricing-heading h2, .pricing-card h3, .premium h2 { color:#000 !important; }
+    @media (max-width:600px){
+      .hero-visual img, .hero-visual svg { max-width:100%; height:auto; }
+    }
+  </style>
 </head>
 <style>
   :root{
@@ -517,6 +803,49 @@
     margin-right:7px;
   }
 
+
+  /* =========================================================
+       HERO RIGHT-SIDE BACKGROUND IMAGE
+       Put background.jpg next to this HTML file.
+       ========================================================= */
+  .hero-visual{
+    height:520px;
+    min-width:0;
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+    background-image:
+            linear-gradient(90deg,rgba(255,255,255,.02) 0%,rgba(255,255,255,.04) 100%),
+            url("background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    box-shadow:0 28px 65px rgba(31,18,69,.16);
+    isolation:isolate;
+  }
+
+  .hero-visual:before,
+  .hero-visual:after{
+    display:none !important;
+  }
+
+  .hero-image-overlay{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(255,255,255,.02),transparent 30%,rgba(55,25,120,.04));
+    z-index:1;
+  }
+
+  /* Old illustration/photo elements are not needed for the new hero image. */
+  .hero-visual img,
+  .hero-visual .sun,
+  .hero-visual .road,
+  .hero-visual .house,
+  .hero-visual .van,
+  .hero-visual .box-stack{
+    display:none !important;
+  }
 
   /* =========================================================
      HERO ROUND PHOTO
@@ -5765,6 +6094,459 @@
     color: #8b5cf6 !important;
   }
 
+
+  /* =========================================================
+       PRICING CARDS — OFFERS BELOW HERO
+       ========================================================= */
+  .pricing-section{
+    background:#f5f7fb;
+    color:#071d36;
+    padding-top:70px;
+    padding-bottom:78px;
+  }
+  .pricing-inner{
+    width:min(1200px, calc(100% - 40px));
+    margin:0 auto;
+  }
+  .pricing-heading{
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 38px;
+  }
+  .pricing-heading h2{
+    margin:8px 0 10px;
+    font-size:clamp(30px,4vw,46px);
+    line-height:1.05;
+    color:#071d36;
+  }
+  .pricing-heading p{
+    margin:0;
+    color:#66758a;
+    font-size:16px;
+  }
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    align-items:stretch;
+  }
+  .pricing-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    min-height:600px;
+    padding:30px 28px 25px;
+    border:1px solid #dbe2ec;
+    border-radius:24px;
+    background:#fff;
+    box-shadow:0 15px 38px rgba(18,32,52,.08);
+    transition:
+            background-color .45s ease,
+            border-color .45s ease,
+            color .45s ease,
+            box-shadow .45s ease,
+            transform .3s ease;
+  }
+  .pricing-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 48px rgba(18,32,52,.13);
+  }
+  .pricing-card-popular{
+    border:2px solid #f5b51b;
+    box-shadow:0 18px 45px rgba(245,181,27,.14);
+  }
+  .pricing-kicker{
+    color:#8290a3;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    margin-bottom:14px;
+  }
+  .pricing-card h3{
+    margin:0 0 22px;
+    font-size:30px;
+    color:#071d36;
+  }
+  .pricing-price{
+    margin-bottom:14px;
+    font-size:38px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-1px;
+    color:#071d36;
+  }
+  .pricing-card-popular .pricing-price{
+    color:#071d36;
+  }
+  .pricing-price small{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0;
+    color:#66758a;
+  }
+  .pricing-card > p{
+    min-height:54px;
+    margin:0 0 16px;
+    color:#53677f;
+    font-size:15px;
+    line-height:1.5;
+  }
+  .pricing-card ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    flex:1;
+  }
+  .pricing-card li{
+    position:relative;
+    padding:0 0 11px 20px;
+    margin-bottom:5px;
+    color:#18304b;
+    font-size:14px;
+    line-height:1.45;
+  }
+  .pricing-card li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#16a66a;
+    font-weight:900;
+  }
+  .popular-badge{
+    position:absolute;
+    top:17px;
+    right:17px;
+    padding:9px 14px;
+    border-radius:999px;
+    background:#f5b51b;
+    color:#071d36;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.3px;
+  }
+  .pricing-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-height:54px;
+    margin-top:20px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:900;
+    transition:transform .25s ease, box-shadow .25s ease, background-color .4s ease, color .4s ease;
+  }
+  .pricing-btn:hover{
+    transform:translateY(-2px);
+  }
+  .pricing-btn-outline{
+    border:1px solid #d2dce8;
+    background:#fff;
+    color:#071d36;
+  }
+  .pricing-btn-gold{
+    background:#f7b83d;
+    color:#071d36;
+    box-shadow:0 10px 22px rgba(247,184,61,.24);
+  }
+  .pricing-btn-dark{
+    background:#071d36;
+    color:#fff;
+  }
+  .pricing-note{
+    margin-top:14px;
+    min-height:34px;
+    text-align:center;
+    color:#718096;
+    font-size:11px;
+    line-height:1.45;
+  }
+
+  /* Dark mode */
+  html[data-theme="dark"] .pricing-section{
+    background:#0d0b1d;
+    color:#fff;
+  }
+  html[data-theme="dark"] .pricing-heading h2{
+    color:#fff;
+  }
+  html[data-theme="dark"] .pricing-heading p{
+    color:#aaa5bb;
+  }
+  html[data-theme="dark"] .pricing-card{
+    background:#151326;
+    border-color:#302b48;
+    color:#fff;
+    box-shadow:0 16px 40px rgba(0,0,0,.22);
+  }
+  html[data-theme="dark"] .pricing-card-popular{
+    border-color:#f5b51b;
+  }
+  html[data-theme="dark"] .pricing-card h3,
+  html[data-theme="dark"] .pricing-price{
+    color:#fff;
+  }
+  html[data-theme="dark"] .pricing-price small{
+    color:#aaa5bb;
+  }
+  html[data-theme="dark"] .pricing-card > p{
+    color:#b9b4ca;
+  }
+  html[data-theme="dark"] .pricing-card li{
+    color:#eeeaff;
+  }
+  html[data-theme="dark"] .pricing-btn-outline{
+    background:#151326;
+    border-color:#554d72;
+    color:#fff;
+  }
+  html[data-theme="dark"] .pricing-btn-dark{
+    background:#fff;
+    color:#17102f;
+  }
+  html[data-theme="dark"] .pricing-note{
+    color:#918ba5;
+  }
+  html[data-theme="dark"] .pricing-kicker{
+    color:#aaa0c8;
+  }
+
+  /* Tablet */
+  @media (max-width: 950px){
+    .pricing-grid{
+      grid-template-columns:1fr;
+      max-width:650px;
+      margin:0 auto;
+    }
+    .pricing-card{
+      min-height:0;
+    }
+  }
+
+  /* Phone */
+  @media (max-width: 600px){
+    .pricing-section{
+      padding-top:48px;
+      padding-bottom:55px;
+    }
+    .pricing-inner{
+      width:min(100% - 28px, 520px);
+    }
+    .pricing-heading{
+      margin-bottom:26px;
+    }
+    .pricing-heading h2{
+      font-size:31px;
+    }
+    .pricing-grid{
+      gap:16px;
+    }
+    .pricing-card{
+      padding:25px 21px 22px;
+      border-radius:20px;
+    }
+    .pricing-card h3{
+      font-size:27px;
+    }
+    .pricing-price{
+      font-size:34px;
+    }
+    .popular-badge{
+      top:14px;
+      right:14px;
+      font-size:10px;
+      padding:8px 11px;
+    }
+  }
+
+
+
+  /* =========================================================
+       PRICING CARDS — PURPLE / HIGH-CONTRAST FIX
+       ========================================================= */
+  #offer.pricing-section {
+    background: linear-gradient(135deg, #3b1b78 0%, #2a1257 48%, #1b0b39 100%) !important;
+    color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #offer.pricing-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(151,91,255,.24), transparent 48%);
+    pointer-events: none;
+  }
+
+  #offer .pricing-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  #offer .pricing-heading h2,
+  #offer .pricing-heading p,
+  #offer .pricing-heading .eyebrow {
+    color: #ffffff !important;
+  }
+
+  #offer .pricing-heading .eyebrow {
+    color: #ffd33f !important;
+  }
+
+  #offer .pricing-grid {
+    align-items: stretch;
+  }
+
+  #offer .pricing-card {
+    position: relative;
+    background: linear-gradient(145deg, #2b1558 0%, #241146 55%, #1b0c35 100%) !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    color: #ffffff !important;
+    box-shadow: 0 18px 45px rgba(12,5,30,.28) !important;
+  }
+
+  #offer .pricing-card:hover {
+    border-color: rgba(255,211,63,.75) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 24px 55px rgba(12,5,30,.38) !important;
+  }
+
+  #offer .pricing-card-popular {
+    border: 2px solid #ffd33f !important;
+    box-shadow: 0 22px 55px rgba(255,211,63,.14) !important;
+  }
+
+  #offer .pricing-kicker,
+  #offer .pricing-card h3,
+  #offer .pricing-price,
+  #offer .pricing-price small,
+  #offer .pricing-card p,
+  #offer .pricing-card li,
+  #offer .pricing-note {
+    color: #ffffff !important;
+  }
+
+  #offer .pricing-kicker {
+    color: #ffd33f !important;
+  }
+
+  #offer .pricing-card h3 {
+    color: #ffffff !important;
+  }
+
+  #offer .pricing-price {
+    color: #ffd33f !important;
+  }
+
+  #offer .pricing-price small {
+    color: rgba(255,255,255,.82) !important;
+  }
+
+  #offer .pricing-card p {
+    color: rgba(255,255,255,.86) !important;
+  }
+
+  #offer .pricing-card li::before {
+    color: #ffd33f !important;
+  }
+
+  #offer .pricing-note {
+    color: rgba(255,255,255,.68) !important;
+  }
+
+  #offer .popular-badge {
+    background: linear-gradient(135deg,#ffd84d,#f4b900) !important;
+    color: #2b1558 !important;
+    border-color: #ffd33f !important;
+  }
+
+  #offer .pricing-btn-outline {
+    color: #ffffff !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,.55) !important;
+  }
+
+  #offer .pricing-btn-outline:hover {
+    color: #2b1558 !important;
+    background: #ffd33f !important;
+    border-color: #ffd33f !important;
+  }
+
+  #offer .pricing-btn-gold {
+    color: #2b1558 !important;
+    background: linear-gradient(135deg,#ffd84d,#f4b900) !important;
+    border-color: #ffd33f !important;
+  }
+
+  #offer .pricing-btn-dark {
+    color: #ffffff !important;
+    background: #111a35 !important;
+    border-color: rgba(255,255,255,.2) !important;
+  }
+
+  @media (max-width: 700px) {
+    #offer .pricing-grid {
+      grid-template-columns: 1fr !important;
+    }
+    #offer .pricing-card {
+      min-height: auto !important;
+    }
+  }
+
+  /* =========================================================
+       FINAL HERO IMAGE OVERRIDES
+       ========================================================= */
+  .hero{
+    grid-template-columns:minmax(0,1fr) minmax(420px,.95fr);
+    gap:56px;
+  }
+
+  .hero-copy{
+    position:relative;
+    z-index:3;
+  }
+
+  .hero-visual{
+    width:100%;
+    height:520px;
+    min-height:520px;
+    margin:0;
+    transform:none;
+    align-self:center;
+    justify-self:stretch;
+  }
+
+  html[data-theme="dark"] .hero-visual{
+    box-shadow:0 28px 70px rgba(0,0,0,.38);
+    background-image:
+            linear-gradient(90deg,rgba(11,9,27,.12),rgba(11,9,27,.08)),
+            url("background.jpg");
+  }
+
+  @media(max-width:1000px){
+    .hero{
+      grid-template-columns:1fr;
+      gap:34px;
+    }
+    .hero-visual{
+      width:100%;
+      height:430px;
+      min-height:430px;
+    }
+  }
+
+  @media(max-width:600px){
+    .hero-visual{
+      height:320px;
+      min-height:320px;
+      border-radius:22px;
+      margin-top:8px;
+      background-position:center;
+    }
+  }
 </style>
 <body>
 <header class="site-header">
@@ -5785,10 +6567,7 @@
     <a href="#reviews">Reviews</a>
     <a href="#faq">FAQ</a>
     <a class="nav-phone" href="tel:+447949286369">07949 286 369</a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
-      <span class="theme-icon theme-sun" aria-hidden="true">☀</span>
-      <span class="theme-icon theme-moon" aria-hidden="true">☾</span>
-    </button>
+
     <a class="btn btn-small" href="#quote">Get a quote</a>
   </nav>
 </header>
@@ -5807,40 +6586,77 @@
         <span>Clear pricing</span><span>Flexible booking</span><span>Careful handling</span>
       </div>
     </div>
-    <section id="offer" class="offer-section section-pad" aria-label="Special offer">
-      <div class="offer-card offer-card-v2">
-        <div class="offer-ribbon-v2"><span>☆</span> SPECIAL OFFER</div>
 
-        <div class="offer-price-panel">
-          <div class="offer-price-v2">£45</div>
-          <div class="offer-per-v2">Per hour</div>
-          <div class="offer-van-art" aria-hidden="true">
-            <div class="van-body"></div>
-            <div class="van-window"></div>
-            <div class="van-wheel van-wheel-1"></div>
-            <div class="van-wheel van-wheel-2"></div>
-            <div class="city-line city-1"></div>
-            <div class="city-line city-2"></div>
-            <div class="city-line city-3"></div>
-          </div>
-        </div>
-
-        <div class="offer-details-panel">
-          <ul class="offer-features-v2">
-            <li><span class="offer-icon-v2">▣</span><span>Van + driver included</span></li>
-            <li><span class="offer-icon-v2">▣</span><span>Transport-only service</span></li>
-            <li><span class="offer-icon-v2">▣</span><span>Loading &amp; unloading<br>assistance available<br>separately</span></li>
-          </ul>
-          <a class="offer-cta-v2" href="#quote">Get Your Quote Now <span>→</span></a>
-        </div>
-      </div>
-    </section>
-
+    <!-- Right-side moving background image. Keep background.jpg in the same folder as this HTML file. -->
+    <div class="hero-visual" aria-label="BOXIT moving service in London">
+      <div class="hero-image-overlay"></div>
+    </div>
   </section>
 
+  <section id="offer" class="pricing-section section-pad" aria-label="BOXIT moving packages">
+    <div class="pricing-inner">
+      <div class="pricing-heading">
+        <span class="eyebrow">Simple pricing</span>
+        <h2>Choose the right move for you</h2>
+        <p>Clear options, careful handling and flexible support for every type of move.</p>
+      </div>
 
-  <section class="ticker" aria-label="BOXIT services">
-    <div>REMOVALS • MAN & VAN • PACKING • CLEANING • HANDYMAN • FURNITURE DELIVERY • RUBBISH REMOVAL •</div>
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <div class="pricing-kicker">ESSENTIAL TRANSPORT</div>
+          <h3>Basic</h3>
+          <div class="pricing-price">£45 <small>/ hour</small></div>
+          <p>For customers who are happy to load and unload themselves.</p>
+          <ul>
+            <li>Luton van included</li>
+            <li>Professional driver</li>
+            <li>Transport from A to B</li>
+            <li>Flexible booking</li>
+            <li>Loading/unloading help can be added separately</li>
+          </ul>
+          <a class="pricing-btn pricing-btn-outline" href="#quote">Choose Basic</a>
+          <div class="pricing-note">Minimum booking and additional charges may apply.</div>
+        </article>
+
+        <article class="pricing-card pricing-card-popular">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="pricing-kicker">EVERYDAY MOVING</div>
+          <h3>Standard</h3>
+          <div class="pricing-price">Custom <small>quote</small></div>
+          <p>The best balance of price and hands-on moving support.</p>
+          <ul>
+            <li>Luton van + driver</li>
+            <li>Loading &amp; unloading assistance</li>
+            <li>Careful handling of your belongings</li>
+            <li>Furniture placement at delivery</li>
+            <li>Extra helper available when needed</li>
+          </ul>
+          <a class="pricing-btn pricing-btn-gold" href="#quote">Choose Standard</a>
+          <div class="pricing-note">Final price depends on job size, access, distance and team size.</div>
+        </article>
+
+        <article class="pricing-card">
+          <div class="pricing-kicker">EXTRA CARE</div>
+          <h3>Premium</h3>
+          <div class="pricing-price">Tailored <small>quote</small></div>
+          <p>For customers who want maximum care and a more complete moving service.</p>
+          <ul>
+            <li>Everything in Standard</li>
+            <li>Furniture wrapping &amp; protection</li>
+            <li>Mattress protection</li>
+            <li>Floor protection</li>
+            <li>Shoe covers for the team</li>
+            <li>Dismantling &amp; reassembly support</li>
+            <li>Careful room-by-room placement</li>
+          </ul>
+          <a class="pricing-btn pricing-btn-dark" href="#quote">Choose Premium</a>
+          <div class="pricing-note">Recommended for delicate items, larger homes and detail-focused moves.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="ticker aria-label="BOXIT services">
+  <div>REMOVALS • MAN & VAN • PACKING • CLEANING • HANDYMAN • FURNITURE DELIVERY • RUBBISH REMOVAL •</div>
   </section>
 
   <section id="services" class="section-pad section-block">
@@ -6082,26 +6898,6 @@
 
 
   // Day/Night mode — day mode is the default.
-  const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('boxit-theme');
-  const initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', initialTheme);
-
-  function updateThemeButton(theme){
-    const isDark = theme === 'dark';
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-    themeToggle.setAttribute('aria-label', isDark ? 'Switch to day mode' : 'Switch to night mode');
-    themeToggle.title = isDark ? 'Day mode' : 'Night mode';
-  }
-
-  if (themeToggle) {
-    updateThemeButton(initialTheme);
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('boxit-theme', nextTheme);
-      updateThemeButton(nextTheme);
-    });
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -6127,3 +6923,79 @@
 </script>
 </body>
 </html>
+`
+<style>
+  /* =========================================================
+       FINAL FIX — MOVING IMAGE AS FULL HERO BACKGROUND
+       background.jpg must be in the same folder as this HTML file.
+       ========================================================= */
+  .hero{
+    position:relative !important;
+    isolation:isolate !important;
+    min-height:620px !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(420px,.95fr) !important;
+    align-items:center !important;
+    overflow:hidden !important;
+    background-color:#f8f6ff !important;
+    background-image:
+            linear-gradient(90deg,
+            rgba(255,255,255,1) 0%,
+            rgba(255,255,255,.98) 28%,
+            rgba(255,255,255,.86) 46%,
+            rgba(255,255,255,.38) 67%,
+            rgba(255,255,255,.08) 100%),
+            url("background.jpg") !important;
+    background-size:cover !important;
+    background-position:center right !important;
+    background-repeat:no-repeat !important;
+  }
+
+  .hero-copy{
+    position:relative !important;
+    z-index:5 !important;
+  }
+
+  /* Remove the old separate image box completely. */
+  .hero .hero-visual{
+    display:none !important;
+  }
+
+  /* Keep the text highly readable over the photo. */
+  .hero-copy h1,
+  .hero-copy p,
+  .hero-copy .trust-row,
+  .hero-copy .eyebrow{
+    position:relative !important;
+    z-index:6 !important;
+  }
+
+  @media(max-width:1000px){
+    .hero{
+      min-height:600px !important;
+      grid-template-columns:1fr !important;
+      background-position:center center !important;
+      background-image:
+              linear-gradient(180deg,
+              rgba(255,255,255,.97) 0%,
+              rgba(255,255,255,.91) 42%,
+              rgba(255,255,255,.48) 75%,
+              rgba(255,255,255,.18) 100%),
+              url("background.jpg") !important;
+    }
+  }
+
+  @media(max-width:600px){
+    .hero{
+      min-height:650px !important;
+      background-position:62% center !important;
+      background-image:
+              linear-gradient(180deg,
+              rgba(255,255,255,.98) 0%,
+              rgba(255,255,255,.94) 48%,
+              rgba(255,255,255,.50) 82%,
+              rgba(255,255,255,.20) 100%),
+              url("background.jpg") !important;
+    }
+  }
+</style>
