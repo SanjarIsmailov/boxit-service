@@ -546,6 +546,126 @@
             .hero-visual img, .hero-visual svg { max-width:100%; height:auto; }
         }
     </style>
+
+    <style id="premium-move-final-fix">
+        /* =========================================================
+           PREMIUM MOVE — FINAL CLEAN DESIGN
+           ========================================================= */
+        .premium{
+            background:linear-gradient(135deg,#241047 0%,#32145f 50%,#241047 100%) !important;
+            color:#fff !important;
+        }
+
+        /* Gold Premium Move title */
+        .premium h2{
+            color:#FFD84D !important;
+            text-shadow:0 8px 28px rgba(255,216,77,.12) !important;
+            margin:0 0 18px !important;
+        }
+
+        /* More breathing room between title / subtitle / description */
+        .premium .eyebrow{
+            color:#fff !important;
+            margin:0 0 34px !important;
+            opacity:.95 !important;
+        }
+
+        .premium p{
+            color:#fff !important;
+            margin:0 auto 0 !important;
+            opacity:.92 !important;
+        }
+
+        /* Six options: plain text only — no boxes, borders or hover effects */
+        .premium-list{
+            display:flex !important;
+            flex-wrap:wrap !important;
+            justify-content:center !important;
+            align-items:center !important;
+            gap:14px 38px !important;
+            width:100% !important;
+            max-width:1200px !important;
+            margin:34px auto 0 !important;
+        }
+
+        .premium-list span,
+        .premium-list span:hover,
+        .premium-list span:focus,
+        .premium-list span:active{
+            display:inline !important;
+            padding:0 !important;
+            margin:0 !important;
+            border:0 !important;
+            border-radius:0 !important;
+            background:transparent !important;
+            box-shadow:none !important;
+            color:#fff !important;
+            font-weight:700 !important;
+            transform:none !important;
+            transition:none !important;
+            cursor:default !important;
+            pointer-events:none !important;
+            white-space:nowrap !important;
+        }
+
+        /* Remove the previous checkmark pseudo-element */
+        .premium-list span::before,
+        .premium-list span:hover::before,
+        .premium-list span:focus::before,
+        .premium-list span:active::before{
+            content:none !important;
+            display:none !important;
+        }
+
+        @media(max-width:800px){
+            .premium{
+                padding:76px 20px !important;
+            }
+
+            .premium h2{
+                font-size:clamp(44px,10vw,60px) !important;
+                margin-bottom:16px !important;
+            }
+
+            .premium .eyebrow{
+                margin-bottom:28px !important;
+            }
+
+            .premium-list{
+                gap:14px 24px !important;
+                margin-top:30px !important;
+            }
+        }
+
+        @media(max-width:600px){
+            .premium h2{
+                font-size:48px !important;
+            }
+
+            .premium .eyebrow{
+                margin-bottom:24px !important;
+            }
+
+            .premium p{
+                font-size:15px !important;
+                line-height:1.6 !important;
+            }
+
+            .premium-list{
+                display:grid !important;
+                grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+                gap:16px 20px !important;
+                margin-top:28px !important;
+            }
+
+            .premium-list span{
+                font-size:13px !important;
+                white-space:normal !important;
+                text-align:center !important;
+            }
+        }
+    </style>
+
 </head>
 <style>
     :root{
@@ -6993,6 +7113,285 @@
                     rgba(255,255,255,.50) 82%,
                     rgba(255,255,255,.20) 100%),
                     url("background.jpg") !important;
+        }
+    }
+</style>
+
+<style id="final-colour-design-fix">
+    /* =========================================================
+       FINAL COLOUR + DESIGN FIX
+       Premium Move:
+       - dark purple background
+       - Premium Move title = gold
+       - all supporting text/options = white
+
+       Why BOXIT:
+       - heading/title = white
+       - card headings = white
+       - body text = soft white
+       - stars = gold
+       ========================================================= */
+
+    /* ---------- PREMIUM MOVE ---------- */
+    .premium{
+        background:
+                radial-gradient(circle at 12% 18%, rgba(255,216,77,.10), transparent 30%),
+                radial-gradient(circle at 88% 80%, rgba(124,58,237,.18), transparent 34%),
+                linear-gradient(135deg,#241047 0%,#32145f 50%,#1f0d3d 100%) !important;
+        color:#ffffff !important;
+        border-top:1px solid rgba(255,255,255,.08);
+        border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .premium h2{
+        color:#FFD84D !important;
+        text-shadow:0 8px 30px rgba(0,0,0,.25);
+    }
+
+    .premium .eyebrow,
+    .premium p{
+        color:#ffffff !important;
+    }
+
+    .premium .eyebrow{
+        opacity:.92;
+        letter-spacing:.18em;
+    }
+
+    .premium p{
+        opacity:.88;
+    }
+
+    .premium-list span,
+    .premium-list span:hover,
+    .premium-list span:focus,
+    .premium-list span:active{
+        color:#ffffff !important;
+        background:transparent !important;
+        border:1px solid rgba(255,255,255,.18) !important;
+        box-shadow:none !important;
+        transition:all .22s ease;
+    }
+
+    .premium-list span:hover{
+        background:rgba(255,216,77,.10) !important;
+        border-color:rgba(255,216,77,.65) !important;
+        transform:translateY(-2px);
+    }
+
+    /* Small gold accent before each Premium Move option */
+    .premium-list span::before{
+        content:"✓";
+        color:#FFD84D;
+        font-weight:900;
+        margin-right:8px;
+    }
+
+    /* ---------- WHY BOXIT / DARK SECTION ---------- */
+    .dark-section{
+        background:
+                radial-gradient(circle at 90% 10%, rgba(92,72,180,.14), transparent 30%),
+                linear-gradient(135deg,#071633 0%,#0a1b3e 52%,#08142e 100%) !important;
+        color:#ffffff !important;
+    }
+
+    .dark-section .section-heading h2,
+    #why .section-heading h2{
+        color:#ffffff !important;
+        text-shadow:0 8px 28px rgba(0,0,0,.28);
+    }
+
+    .dark-section .section-heading .eyebrow,
+    #why .section-heading .eyebrow{
+        color:#FFD84D !important;
+    }
+
+    #why .section-title-stars{
+        background:rgba(255,255,255,.035);
+        border:1px solid rgba(255,216,77,.28);
+        border-radius:999px;
+        padding:10px 18px;
+        box-shadow:0 10px 30px rgba(0,0,0,.16);
+    }
+
+    #why .section-title-stars span{
+        color:#FFD84D !important;
+        text-shadow:0 0 12px rgba(255,216,77,.25);
+    }
+
+    .dark-section .feature-grid article{
+        border-color:rgba(255,255,255,.13) !important;
+    }
+
+    .dark-section .feature-grid article > span{
+        color:#FFD84D !important;
+    }
+
+    .dark-section .feature-grid h3,
+    #why .feature-grid h3{
+        color:#ffffff !important;
+    }
+
+    .dark-section .feature-grid p,
+    #why .feature-grid p{
+        color:#c7d1e5 !important;
+    }
+
+    /* ---------- RESPONSIVE POLISH ---------- */
+    @media(max-width:700px){
+        .premium-list{
+            width:100%;
+        }
+
+        .premium-list span{
+            min-height:42px;
+            white-space:nowrap;
+        }
+    }
+
+    @media(max-width:600px){
+        .premium h2{
+            font-size:48px;
+        }
+
+        .premium-list span{
+            font-size:11px;
+            padding:9px 11px;
+        }
+
+        #why .section-title-stars{
+            padding:8px 14px;
+        }
+    }
+</style>
+
+
+
+<style id="ultimate-premium-move-fix">
+    /* =========================================================
+       ULTIMATE PREMIUM MOVE FIX
+       ========================================================= */
+
+    /* Premium Move section */
+    .premium{
+        background:linear-gradient(135deg,#241047 0%,#32145f 52%,#211044 100%) !important;
+        color:#fff !important;
+        text-align:center !important;
+        padding:92px 24px 86px !important;
+        gap:0 !important;
+    }
+
+    /* Gold title — force against every previous rule */
+    .premium h2,
+    .premium h2:hover,
+    .premium h2:focus,
+    .premium h2:active{
+        color:#FFD84D !important;
+        -webkit-text-fill-color:#FFD84D !important;
+        text-shadow:none !important;
+        margin:0 !important;
+        line-height:1 !important;
+    }
+
+    /* Subtitle: more space below title */
+    .premium .eyebrow{
+        color:#fff !important;
+        -webkit-text-fill-color:#fff !important;
+        margin-top:16px !important;
+        margin-bottom:0 !important;
+        opacity:1 !important;
+    }
+
+    /* Description: noticeably more separation from subtitle */
+    .premium p{
+        color:#fff !important;
+        -webkit-text-fill-color:#fff !important;
+        margin:34px auto 0 !important;
+        opacity:.92 !important;
+        max-width:760px !important;
+    }
+
+    /* Plain text options — NO boxes, borders, icons, hover effects */
+    .premium-list{
+        display:flex !important;
+        flex-wrap:wrap !important;
+        align-items:center !important;
+        justify-content:center !important;
+        gap:18px 34px !important;
+        width:100% !important;
+        max-width:1250px !important;
+        margin:58px auto 0 !important;
+    }
+
+    .premium-list span,
+    .premium-list span:hover,
+    .premium-list span:focus,
+    .premium-list span:focus-visible,
+    .premium-list span:active{
+        display:inline !important;
+        width:auto !important;
+        min-height:0 !important;
+        padding:0 !important;
+        margin:0 !important;
+        border:0 !important;
+        outline:0 !important;
+        border-radius:0 !important;
+        background:none !important;
+        box-shadow:none !important;
+        transform:none !important;
+        transition:none !important;
+        color:#fff !important;
+        -webkit-text-fill-color:#fff !important;
+        text-decoration:none !important;
+        cursor:default !important;
+        font-weight:700 !important;
+    }
+
+    /* Remove any generated checkmarks/icons */
+    .premium-list span::before,
+    .premium-list span::after{
+        content:none !important;
+        display:none !important;
+    }
+
+    /* Prevent inherited link-like styling */
+    .premium-list span a,
+    .premium-list span a:hover,
+    .premium-list span a:focus{
+        color:#fff !important;
+        text-decoration:none !important;
+        background:none !important;
+        border:0 !important;
+        box-shadow:none !important;
+        cursor:default !important;
+    }
+
+    @media(max-width:900px){
+        .premium-list{
+            gap:18px 26px !important;
+        }
+    }
+
+    @media(max-width:600px){
+        .premium{
+            padding:70px 18px 64px !important;
+        }
+        .premium h2{
+            font-size:48px !important;
+        }
+        .premium .eyebrow{
+            margin-top:14px !important;
+        }
+        .premium p{
+            margin-top:28px !important;
+            font-size:15px !important;
+        }
+        .premium-list{
+            margin-top:42px !important;
+            gap:16px 22px !important;
+        }
+        .premium-list span{
+            font-size:13px !important;
         }
     }
 </style>
